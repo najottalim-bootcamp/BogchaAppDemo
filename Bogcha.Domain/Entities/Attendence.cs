@@ -1,4 +1,4 @@
-﻿namespace Bogcha.Domain.Entities.Models
+﻿namespace Bogcha.Domain.Entities
 {
     public class Attendence
     {
