@@ -1,4 +1,4 @@
-﻿namespace Bogcha.Domain.Entities
+namespace Bogcha.Domain.Entities
 {
     public class Teacher
     {
@@ -10,12 +10,5 @@
         public DateTime Updated_At { get; set; }
         public int Created_By { get; set; }
         public int Updated_By { get; set; }
-
-
-
     }
 }
-
-
-
-
