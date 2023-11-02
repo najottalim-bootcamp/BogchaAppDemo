@@ -1,0 +1,43 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.6.33801.468
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bogcha.API", "Bogcha.API\Bogcha.API.csproj", "{56E2D049-2CC0-43E5-9DA4-8C948259A2BC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bogcha.Services", "Bogcha.Services\Bogcha.Services.csproj", "{B145F373-92CF-4064-98FC-C25D9211FF24}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bogcha.DataAccess", "Bogcha.DataAccess\Bogcha.DataAccess.csproj", "{34DE9BC6-2346-4CCB-A987-8536DD0BDE8D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bogcha.Domain", "Bogcha.Domain\Bogcha.Domain.csproj", "{DAD2E80B-35B1-46E3-B924-29E9415FDD8D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{56E2D049-2CC0-43E5-9DA4-8C948259A2BC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{56E2D049-2CC0-43E5-9DA4-8C948259A2BC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{56E2D049-2CC0-43E5-9DA4-8C948259A2BC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{56E2D049-2CC0-43E5-9DA4-8C948259A2BC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B145F373-92CF-4064-98FC-C25D9211FF24}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B145F373-92CF-4064-98FC-C25D9211FF24}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B145F373-92CF-4064-98FC-C25D9211FF24}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B145F373-92CF-4064-98FC-C25D9211FF24}.Release|Any CPU.Build.0 = Release|Any CPU
+		{34DE9BC6-2346-4CCB-A987-8536DD0BDE8D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{34DE9BC6-2346-4CCB-A987-8536DD0BDE8D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{34DE9BC6-2346-4CCB-A987-8536DD0BDE8D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{34DE9BC6-2346-4CCB-A987-8536DD0BDE8D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DAD2E80B-35B1-46E3-B924-29E9415FDD8D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DAD2E80B-35B1-46E3-B924-29E9415FDD8D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DAD2E80B-35B1-46E3-B924-29E9415FDD8D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DAD2E80B-35B1-46E3-B924-29E9415FDD8D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {66BBAEF4-8390-467D-AD92-7524DEBC7672}
+	EndGlobalSection
+EndGlobal
