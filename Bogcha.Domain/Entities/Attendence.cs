@@ -1,4 +1,4 @@
-﻿using Bogcha.Domain.Enums;
+using Bogcha.Domain.Enums;
 
 namespace Bogcha.Domain.Entities
 {
