@@ -17,6 +17,7 @@
 
   <ItemGroup>
     <PackageReference Include="Dapper" Version="2.1.15" />
+    <Folder Include="Repository\" />
   </ItemGroup>
 
 </Project>
