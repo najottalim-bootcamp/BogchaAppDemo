@@ -2,19 +2,20 @@
 
 public class Parents
 {
-    public int ChId { get; set; }
+    public string ChId { get; set; }
     public string FatherFullName { get; set; }
     public string MotherFullName { get; set; }
-    public char Passport { get; set; }
+    public string Passport { get; set; }
     public string StrAddress { get; set; }
     public string City { get; set; }
     public string Region { get; set; }
-    public char ZipCode { get; set; }
-    public char PhoneNo1 { get; set; }
-    public char PhoneNo2 { get; set; }
+    public string ZipCode { get; set; }
+    public string PhoneNo1 { get; set; }
+    public string PhoneNo2 { get; set; }
     public string Email { get; set; }
 
 }
+
 
 
 
