@@ -1,22 +1,28 @@
-using Bogcha.Domain.Enums;
+namespace Bogcha.Domain.Entities;
 
-namespace Bogcha.Domain.Entities
+public class Student
 {
-    public class Student
-    {
-        public int Id { get; set; }
-        public string Student_FirstName { get; set; }
-        public string Student_LastName { get; set; }
-        public Gender Student_Gender { get; set; }
-        public DateTime Student_DOB { get; set; }
-        public string Student_Address { get; set; }
-        public DateTime Attendence_Date { get; set; }
-        public Status Status { get; set; }
-        public DateTime Ceated_At { get; set; }
-        public DateTime Updated_At { get; set; }
-        public int Created_By { get; set; }
-        public int Updated_By { get; set; }
-        public int Class_Id { get; set; }
-        public int Parent_Id { get; set; }
-    }
+    public string CHId { get; set; }
+    public string ChFName { get; set; }
+    public string ChLName { get; set; }
+    public string Gender { get; set; }
+    public DateTime ChDoB { get; set; }
+    public DateTime RegisteredDate { get; set; }
+    public DateTime EnrollmentDate { get; set; }
+    public string StAddress { get; set; }
+    public string City { get; set; }
+    public string Region { get; set; }
+    public string ZipeCode { get; set; }
+    public string PhyImpairment { get; set; }
+    public string AllergyType { get; set; }
+    public string AllergySymptom { get; set; }
+
 }
+
+
+
+
+
+
+
+
