@@ -1,8 +1,4 @@
-﻿using Bogcha.Domain.Entities;
-using Dapper;
-using System.Data.SqlClient;
-
-namespace Bogcha.DataAccess.Repositories.WithdrawalRepositories;
+﻿namespace Bogcha.DataAccess.Repositories.WithdrawalRepositories;
 
 public class WithdrawalRepository : Database, IWithdrawalRepository
 {

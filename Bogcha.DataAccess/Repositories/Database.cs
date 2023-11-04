@@ -1,6 +1,4 @@
-﻿using System.Data.SqlClient;
-
-namespace Bogcha.DataAccess.Repositories;
+﻿namespace Bogcha.DataAccess.Repositories;
 
 public class Database
 {

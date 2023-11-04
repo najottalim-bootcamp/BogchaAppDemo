@@ -1,6 +1,4 @@
-﻿using Bogcha.Domain.Entities;
-
-namespace Bogcha.DataAccess.Repositories.WithdrawalRepositories;
+﻿namespace Bogcha.DataAccess.Repositories.WithdrawalRepositories;
 
 public interface IWithdrawalRepository
 {
