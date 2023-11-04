@@ -8,6 +8,6 @@ public class Database
 
     public Database(string connectionString)
     {
-        this.sqlConnection = new SqlConnection(connectionString);
+        sqlConnection = new SqlConnection(connectionString);
     }
 }
