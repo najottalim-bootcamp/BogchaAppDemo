@@ -1,6 +1,6 @@
 ﻿namespace Bogcha.Domain.Entities;
 
-public class AssessmentDateRecKG
+public class AssessmentRecKG
 {
     public int Id { get; set; }
     public string ChId { get; set; }
