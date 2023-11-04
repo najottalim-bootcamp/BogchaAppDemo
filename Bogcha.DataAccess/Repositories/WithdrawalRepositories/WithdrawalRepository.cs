@@ -14,13 +14,14 @@ public class WithdrawalRepository : Database, IWithdrawalRepository
         {
             await sqlConnection.OpenAsync();
             string sqlQuery = "Insert into Withdrawal values(@Expense, @Amount, @DatePaid, @withdrawnBy); SELECT CAST(SCOPE_IDENTITY() as int)";
-            
+
             var command = new SqlCommand(sqlQuery, sqlConnection);
             int result = await command.ExecuteNonQueryAsync();
             return result > 0;
         }
         catch (Exception ex)
         {
+            await Console.Out.WriteLineAsync(ex.Message);
             return false;
         }
         finally
@@ -42,13 +43,14 @@ public class WithdrawalRepository : Database, IWithdrawalRepository
             int result = await command.ExecuteNonQueryAsync();
             return result > 0;
         }
-        catch
+        catch (Exception ex)
         {
+            await Console.Out.WriteLineAsync(ex.Message);
             return false;
         }
         finally
-        { 
-            await sqlConnection.CloseAsync(); 
+        {
+            await sqlConnection.CloseAsync();
         }
     }
 
@@ -63,6 +65,7 @@ public class WithdrawalRepository : Database, IWithdrawalRepository
         }
         catch (Exception ex)
         {
+            await Console.Out.WriteLineAsync(ex.Message);
             return Enumerable.Empty<Withdrawal>();
         }
         finally
@@ -71,13 +74,39 @@ public class WithdrawalRepository : Database, IWithdrawalRepository
         }
     }
 
-    public ValueTask<Withdrawal> GetByIdAsync(int id)
+    public async ValueTask<Withdrawal> GetByIdAsync(int id)
     {
-        throw new NotImplementedException();
+        try
+        {
+            await sqlConnection.OpenAsync();
+            string sqlQuery = "Select * from Withdrawal where id = @Id";
+
+            Withdrawal withdrawal = await sqlConnection.QueryFirstOrDefaultAsync<Withdrawal>(sqlQuery, new { Id = id });
+            return withdrawal;
+        }
+        catch (Exception ex)
+        {
+            await Console.Out.WriteLineAsync(ex.Message);
+            return null;
+        }
+        finally { await sqlConnection.CloseAsync(); }
+
     }
 
-    public ValueTask<bool> UpdateAsync(int id, Withdrawal withdrawal)
+    public async ValueTask<bool> UpdateAsync(Withdrawal withdrawal)
     {
-        throw new NotImplementedException();
+        try
+        {
+            await sqlConnection.OpenAsync();
+            string sqlQuery = "Update Withdrawal set Expense = @Expense, Amount = @Amount, DatePaid = @DatePaid, WithDrawnBy = @WithDrawnBy where Id = @Id";
+
+            int result = await sqlConnection.ExecuteAsync(sqlQuery, withdrawal);
+            return result > 0;
+        }
+        catch (Exception ex)
+        {
+            await Console.Out.WriteLineAsync(ex.Message);
+            return false;
+        }
     }
 }
