@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Bogcha.Domain.Entities;
+﻿namespace Bogcha.Domain.Entities;
 
 public class MealPlan
 {
