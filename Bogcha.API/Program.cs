@@ -1,40 +1,38 @@
-using Bogcha.DataAccess.Repositories.WithdrawalRepositories;
-using Bogcha.Domain.Entities;
+
+
+using Bogcha.Services.Services.RevenueServices;
 
 var builder = WebApplication.CreateBuilder(args);
-var repo = new WithdrawalRepository(builder.Configuration.GetConnectionString("DefaultConnection"));
 
+//Add services to the container.
 
-
-var res = await repo.DeleteAsync(19);
-Console.WriteLine(res);
-
-// Add services to the container.
-
-//builder.Services.AddControllers();
-
+builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen();
 
-//builder.Services.AddEndpointsApiExplorer();
-//builder.Services.AddSwaggerGen();
+string connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 
+//adding repositories
+builder.Services.AddScoped<IRevenueRepository>(x => new RevenueRepository(connectionString));
+builder.Services.AddScoped<IWithdrawalRepository>(x => new WithdrawalRepository(connectionString));
+
+
+//adding services
+builder.Services.AddScoped<IRevenueService, RevenueService>();
 var app = builder.Build();
 
-
-
-
 // Configure the HTTP request pipeline.
+if (app.Environment.IsDevelopment())
+{
+    app.UseSwagger();
+    app.UseSwaggerUI();
+}
 
-//if (app.Environment.IsDevelopment())
-//{
-//    app.UseSwagger();
-//    app.UseSwaggerUI();
-//}
+app.UseHttpsRedirection();
 
-//app.UseHttpsRedirection();
+app.UseAuthorization();
 
-//app.UseAuthorization();
-
-//app.MapControllers();
+app.MapControllers();
 
 app.Run();
