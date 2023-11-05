@@ -12,11 +12,10 @@
             try
             {
                 await sqlConnection.OpenAsync();
-                string sqlQuery = $"Insert into Accident_Records values({accident_Records.AccNo}, " +
-                    $"'{accident_Records.ChId}', '{accident_Records.AccidentDate}'," +
-                    $" '{accident_Records.TypeOfAccident}','{accident_Records.Location}','{accident_Records.FirstAid}')";
-
-                var command = new SqlCommand(sqlQuery,sqlConnection);
+                string sqlQuery = $"Insert into Accident_Records values(@AccNo, " +
+                    $"@ChId, @AccidentDate,@TypeOfAccident,@Location,@FirstAid)";
+                 
+                var command = new SqlCommand(sqlQuery,accident_Records);
                 int result = await command.ExecuteNonQueryAsync();
                 return result > 0;
             }
@@ -79,9 +78,9 @@
             try
             {
                 await sqlConnection.OpenAsync();
-                string sqlQuery = $"Select * from Accident_Records where '{id}' = AccNo;";
-
-                Accident_Records accident_Records = await sqlConnection.QueryFirstAsync<Accident_Records>(sqlQuery);
+                string sqlQuery = $"Select * from Accident_Records where AccNo=@id;";
+                
+                Accident_Records accident_Records = await sqlConnection.QueryFirstAsync<Accident_Records>(sqlQuery, new {id});
 
                 return accident_Records;
             }
@@ -100,12 +99,12 @@
             try
             {
                 await sqlConnection.OpenAsync();
-                string sqlQuery = $"update Accident_Records set @AccNo='{accident_Records.AccNo}', " +
-                    $"@ChId = '{accident_Records.ChId}', @AccidentDate = '{accident_Records.AccidentDate}'," +
-                    $"@TypeOfAccident='{accident_Records.TypeOfAccident}',@Location='{accident_Records.Location}'," +
-                    $"@FirstAid='{accident_Records.FirstAid}' where AccNo='{id}';";
+                string sqlQuery = $"update Accident_Records set @AccNo, " +
+                    $"@ChId , @AccidentDate," +
+                    $"@TypeOfAccident,@Location," +
+                    $"@FirstAid where AccNo;";
 
-                var command = new SqlCommand(sqlQuery,sqlConnection);
+                var command = new SqlCommand(sqlQuery,new { accident_Records, id });
 
                 int result = await command.ExecuteNonQueryAsync();
                 return result > 0;
