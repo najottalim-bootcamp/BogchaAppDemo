@@ -1,9 +1,3 @@
-
-
-using Bogcha.DataAccess.Repositories.Accident_RecordsRepositories;
-using Bogcha.Services.Services.Accident_RecordsServices;
-using Bogcha.Services.Services.RevenueServices;
-
 var builder = WebApplication.CreateBuilder(args);
 
 //Add services to the container.
@@ -18,12 +12,18 @@ string connectionString = builder.Configuration.GetConnectionString("DefaultConn
 //adding repositories
 builder.Services.AddScoped<IRevenueRepository>(x => new RevenueRepository(connectionString));
 builder.Services.AddScoped<IWithdrawalRepository>(x => new WithdrawalRepository(connectionString));
+
 builder.Services.AddScoped<IAccident_RecordsRepository>(x=> new Accident_RecordsRepository(connectionString));
+builder.Services.AddScoped<IMealPlanRepository>(x => new MealPlanRepository(connectionString));
+builder.Services.AddScoped<IMenuManagementRepository>(x => new MenuManagementRepository(connectionString));
+
 
 //adding services
 builder.Services.AddScoped<IAccident_RecordsService, Accident_RecordsService>();
 builder.Services.AddScoped<IRevenueService, RevenueService>();
-
+builder.Services.AddScoped<IWithdrawalService, WithdrawalService>();
+builder.Services.AddScoped<IMealPlanService, MealPlanService>();
+builder.Services.AddScoped<IMenuManagementRepository, MenuManagementService>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
