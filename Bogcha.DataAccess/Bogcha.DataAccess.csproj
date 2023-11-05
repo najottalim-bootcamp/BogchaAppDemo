@@ -15,4 +15,8 @@
     <Folder Include="Repository\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Bogcha.Domain\Bogcha.Domain.csproj" />
+  </ItemGroup>
+
 </Project>
