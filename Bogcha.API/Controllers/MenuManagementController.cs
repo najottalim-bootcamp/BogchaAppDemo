@@ -34,10 +34,11 @@ public class MenuManagementController : ControllerBase
         var res = await menuManagementService.UpdateAsync(value);
         return Ok(res);
     }
-    [HttpDelete("{id}")]
-    public async void Delete(string id)
+  //  [HttpDelete("{id}")]
+/*    public async void Delete(string id)
     {
         var res = await menuManagementService.DeleteAsync(id);
         return Ok(res);
     }
+*/
 }

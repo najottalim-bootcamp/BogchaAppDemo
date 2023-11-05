@@ -1,3 +1,4 @@
+
 var builder = WebApplication.CreateBuilder(args);
 
 //Add services to the container.
@@ -16,7 +17,7 @@ builder.Services.AddScoped<IAccident_RecordsRepository>(x=> new Accident_Records
 builder.Services.AddScoped<IEmployeeRepository>(x => new EmployeeRepository(connectionString));
 builder.Services.AddScoped<IMealPlanRepository>(x => new MealPlanRepository(connectionString));
 builder.Services.AddScoped<IMenuManagementRepository>(x => new MenuManagementRepository(connectionString));
-
+builder.Services.AddScoped<IStudentRepository>(x => new StudentRepository(connectionString));
 
 
 
@@ -26,7 +27,6 @@ builder.Services.AddScoped<IRevenueService, RevenueService>();
 builder.Services.AddScoped<IWithdrawalService, WithdrawalService>();
 builder.Services.AddScoped<IMealPlanService, MealPlanService>();
 builder.Services.AddScoped<IMenuManagementService, MenuManagementService>();
-builder.Services.AddScoped<IMenuManagementRepository, MenuManagementService>();
 builder.Services.AddScoped<IEmployeeService, EmployeeService>();
 builder.Services.AddScoped<IStudentService, StudentService>();
 var app = builder.Build();
