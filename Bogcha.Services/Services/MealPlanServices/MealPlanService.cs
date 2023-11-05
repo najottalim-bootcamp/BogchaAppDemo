@@ -2,9 +2,9 @@
 
 public class MealPlanService : IMealPlanService
 {
-    private readonly IMealPlanService mealPlanRepository;
+    private readonly IMealPlanRepository mealPlanRepository;
 
-    public MealPlanService(IMealPlanService mealPlanRepository)
+    public MealPlanService(IMealPlanRepository mealPlanRepository)
     {
         this.mealPlanRepository = mealPlanRepository;
     }
