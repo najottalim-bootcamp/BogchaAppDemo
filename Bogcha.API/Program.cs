@@ -1,9 +1,6 @@
 
 
-using Bogcha.DataAccess.Repositories.MealPlanRepositories;
-using Bogcha.DataAccess.Repositories.MenuManagementRepositories;
-using Bogcha.Services.Services.MealPlanServices;
-using Bogcha.Services.Services.RevenueServices;
+
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -27,7 +24,7 @@ builder.Services.AddScoped<IMenuManagementRepository>(x => new MenuManagementRep
 builder.Services.AddScoped<IRevenueService, RevenueService>();
 builder.Services.AddScoped<IWithdrawalService, WithdrawalService>();
 builder.Services.AddScoped<IMealPlanService, MealPlanService>();
-builder.Services.AddScoped<IMenu>
+builder.Services.AddScoped<IMenuManagementRepository, MenuManagementService>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
