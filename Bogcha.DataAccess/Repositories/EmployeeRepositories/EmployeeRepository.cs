@@ -106,10 +106,9 @@ public class EmployeeRepository : Database, IEmployeeRepository
             await sqlConnection.OpenAsync();
             string Query = "Update Employee set " +
                 "EmpFName=@EmpFName,EmpLName=@EmpLName,Passport=@Passport," +
-                "DoB=@DoB,Gender=@Gender,Salary=@Salary,EmployedDate" +
-                "=@EmployedDate,StrAddress=@StrAddress,Apt=@Apt,City=@City," +
-                "Region=@Region,ZipCode=@ZipCode,PhoneNo=@PhoneNo,Email=@Email" +
-                ",EmpType=@EmpType,Department=@Department" +
+                "DoB=@DoB,Gender=@Gender,Salary=@Salary,EmployedDate=@EmployedDate,StrAddress=@StrAddress,Apt=@Apt,City=@City," +
+                "Region=@Region,ZipCode=@ZipCode,PhoneNo=@PhoneNo,Email=@Email," +
+                "EmpType=@EmpType,Department=@Department" +
                 " where EmpId =@EmpId ";
 
             int result = await sqlConnection.ExecuteAsync(Query, entity);
