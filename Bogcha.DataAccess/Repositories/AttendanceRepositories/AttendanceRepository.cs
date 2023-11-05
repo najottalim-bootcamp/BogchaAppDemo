@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Bogcha.DataAccess.Repositories.AttendanceRepositories
 {
-    internal class AttendanceRepository
+    public class AttendanceRepository
     {
     }
 }

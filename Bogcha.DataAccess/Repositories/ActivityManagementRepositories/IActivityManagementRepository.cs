@@ -1,12 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Bogcha.Domain.Entities;
 
 namespace Bogcha.DataAccess.Repositories.ActivityManagementRepositories
 {
-    internal interface IActivityManagementRepository
+    public interface IActivityManagementRepository
     {
+
+        public ValueTask<bool> CreateAsync(ActivityManagement activityManagement);
+        public ValueTask<bool> updateAsync(int id, ActivityManagement activityManagement);
+        public ValueTask<bool> DeleteAsync(int id);
+        public ValueTask<ActivityManagement> GetByIdAsync(int id);
+        public ValueTask<IEnumerable<ActivityManagement>> GetAllAsync();
     }
 }

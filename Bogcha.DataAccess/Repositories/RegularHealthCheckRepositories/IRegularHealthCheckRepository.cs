@@ -1,12 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Bogcha.Domain.Entities;
 
 namespace Bogcha.DataAccess.Repositories.RegularHealthCheckRepositories
 {
-    internal interface IRegularHealthCheckRepository
+    public interface IRegularHealthCheckRepository
     {
+        public ValueTask<bool> CreateAsync(RegularHealthCheck regularHealthCheck);
+        public ValueTask<bool> updateAsync(int id, RegularHealthCheck regularHealthCheck);
+        public ValueTask<bool> DeleteAsync(int id);
+        public ValueTask<RegularHealthCheck> GetByIdAsync(int id);
+        public ValueTask<IEnumerable<RegularHealthCheck>> GetAllAsync();
     }
 }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Bogcha.DataAccess.Repositories.ActivityManagementRepositories
 {
-    internal class ActivityManagementRepository
+    public class ActivityManagementRepository
     {
     }
 }

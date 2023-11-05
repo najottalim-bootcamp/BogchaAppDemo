@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Bogcha.DataAccess.Repositories.RegularHealthCheckRepositories
 {
-    internal class RegularHealthCheckRepository
+    public class RegularHealthCheckRepository
     {
     }
 }

@@ -1,12 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Bogcha.Domain.Entities;
 
 namespace Bogcha.DataAccess.Repositories.AttendanceRepositories
 {
-    internal interface IAttendanceRepository
+    public interface IAttendanceRepository
     {
+        public ValueTask<bool> CreateAsync(Attendance attendance);
+        public ValueTask<bool> updateAsync(int id, Attendance attendance);
+        public ValueTask<bool> DeleteAsync(int id);
+        public ValueTask<Attendance> GetByIdAsync(int id);
+        public ValueTask<IEnumerable<Attendance>> GetAllAsync();
     }
 }
