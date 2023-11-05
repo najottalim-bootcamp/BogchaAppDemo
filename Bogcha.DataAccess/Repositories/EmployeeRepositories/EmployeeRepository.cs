@@ -1,6 +1,4 @@
-﻿
-
-namespace Bogcha.DataAccess.Repositories.EmployeeRepositories;
+﻿namespace Bogcha.DataAccess.Repositories.EmployeeRepositories;
 
 public class EmployeeRepository : Database, IEmployeeRepository
 {
@@ -14,21 +12,20 @@ public class EmployeeRepository : Database, IEmployeeRepository
             await sqlConnection.OpenAsync();
 
             string Query = "Insert into Employee values(@EmpId,@EmpFName,@EmpLName,@Passport," +
-                "@DateTime,@Gender,@Salary,@EmployedDate,@StrAddress,@Apt,@City,@Region," +
-                "@ZipCode,@PhoneNo,@Email,@EmpType,@Department);SELECT CAST(SCOPE_IDENTITY() as int)";
+                "@DoB,@Gender,@Salary,@EmployedDate,@StrAddress,@Apt,@City,@Region," +
+                "@ZipCode,@PhoneNo,@Email,@EmpType,@Department)";
 
-            var command = new SqlCommand(Query, sqlConnection);
-            int  result = await command.ExecuteNonQueryAsync();
+            int result = await sqlConnection.ExecuteAsync(Query, entity);
             return result > 0;
         }
-        catch (Exception ex) 
+        catch (Exception ex)
         {
             await Console.Out.WriteLineAsync(ex.Message);
             return false;
         }
         finally
         {
-            await sqlConnection.CloseAsync(); 
+            await sqlConnection.CloseAsync();
         }
 
 
@@ -39,17 +36,17 @@ public class EmployeeRepository : Database, IEmployeeRepository
         try
         {
             await sqlConnection.OpenAsync();
-            string Query = "Delete from Employee where id =@EmpId";
+            string Query = "Delete from Employee where Empid =@id";
 
-            var command = new SqlCommand(Query ,sqlConnection);
-            command.Parameters.AddWithValue("@EmpId", id);  
+            var command = new SqlCommand(Query, sqlConnection);
+            command.Parameters.AddWithValue("@id", id);
 
-            int result = await command.ExecuteNonQueryAsync();  
+            int result = await command.ExecuteNonQueryAsync();
             return result > 0;
         }
-        catch(Exception ex) 
+        catch (Exception ex)
         {
-            await Console.Out.WriteLineAsync (ex.Message);
+            await Console.Out.WriteLineAsync(ex.Message);
             return false;
         }
         finally
@@ -69,15 +66,15 @@ public class EmployeeRepository : Database, IEmployeeRepository
             IEnumerable<Employee> employees = await sqlConnection.QueryAsync<Employee>(Query);
             return employees;
         }
-        catch(Exception ex)
+        catch (Exception ex)
         {
             await Console.Out.WriteLineAsync(ex.Message);
             return Enumerable.Empty<Employee>();
         }
-        finally 
-        { 
-            await sqlConnection.CloseAsync(); 
-        }   
+        finally
+        {
+            await sqlConnection.CloseAsync();
+        }
 
     }
 
@@ -86,9 +83,9 @@ public class EmployeeRepository : Database, IEmployeeRepository
         try
         {
             await sqlConnection.OpenAsync();
-            string Query = "Select * from Employee Where Id = @EpmId ";
+            string Query = "Select * from Employee Where EmpId = @id ";
 
-            Employee employee= await sqlConnection.QueryFirstOrDefaultAsync<Employee>(Query, new{ EmpId = id });
+            Employee employee = await sqlConnection.QueryFirstOrDefaultAsync<Employee>(Query, new { id = id });
             return employee;
         }
         catch (Exception ex)
@@ -109,9 +106,11 @@ public class EmployeeRepository : Database, IEmployeeRepository
             await sqlConnection.OpenAsync();
             string Query = "Update Employee set " +
                 "EmpFName=@EmpFName,EmpLName=@EmpLName,Passport=@Passport," +
-                "DateTime=@DateTime,Gender=@Gender,Salary=@Salary,EmployedDate=@EmployedDate,StrAddress=@StrAddress," +
-                "Apt=@Apt,City=@City,Region=@Region,ZipCode=@ZipCode,PhoneNo=@PhoneNo,Email=@Email,EmpType=@EmpType,Department=@Department" +
-                " wherer id =@EmpId) ";
+                "DoB=@DoB,Gender=@Gender,Salary=@Salary,EmployedDate" +
+                "=@EmployedDate,StrAddress=@StrAddress,Apt=@Apt,City=@City," +
+                "Region=@Region,ZipCode=@ZipCode,PhoneNo=@PhoneNo,Email=@Email" +
+                ",EmpType=@EmpType,Department=@Department" +
+                " where EmpId =@EmpId ";
 
             int result = await sqlConnection.ExecuteAsync(Query, entity);
             return result > 0;
@@ -124,7 +123,7 @@ public class EmployeeRepository : Database, IEmployeeRepository
         }
         finally
         {
-            await sqlConnection.CloseAsync() ;
+            await sqlConnection.CloseAsync();
         }
     }
 }

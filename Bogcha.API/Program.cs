@@ -1,5 +1,7 @@
 
 
+using Bogcha.DataAccess.Repositories.EmployeeRepositories;
+using Bogcha.Services.Services.EmployeeServices;
 using Bogcha.Services.Services.RevenueServices;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -16,11 +18,13 @@ string connectionString = builder.Configuration.GetConnectionString("DefaultConn
 //adding repositories
 builder.Services.AddScoped<IRevenueRepository>(x => new RevenueRepository(connectionString));
 builder.Services.AddScoped<IWithdrawalRepository>(x => new WithdrawalRepository(connectionString));
-
+builder.Services.AddScoped<IEmployeeRepository>(x => new EmployeeRepository(connectionString));
 
 //adding services
 builder.Services.AddScoped<IRevenueService, RevenueService>();
+builder.Services.AddScoped<IEmployeeService, EmployeeService>();
 var app = builder.Build();
+
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
