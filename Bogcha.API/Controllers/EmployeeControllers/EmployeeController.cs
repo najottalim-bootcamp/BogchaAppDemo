@@ -31,13 +31,13 @@ public class EmployeeController : ControllerBase
         return Ok(res);
     }
     [HttpPost]
-    public async ValueTask<IActionResult> CreateRevenueAsync(Employee emp)
+    public async ValueTask<IActionResult> CreateEmployeeAsync(Employee emp)
     {
         var res = await _employee.CreateAsync(emp);
         return Ok(res);
     }
     [HttpPut]
-    public async ValueTask<IActionResult> UpdateRevenueAsync(Employee emp)
+    public async ValueTask<IActionResult> UpdateEmployeeAsync(Employee emp)
     {
         var res = await _employee.UpdateAsync(emp);
         return Ok(res);

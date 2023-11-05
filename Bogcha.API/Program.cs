@@ -28,6 +28,7 @@ builder.Services.AddScoped<IMealPlanService, MealPlanService>();
 builder.Services.AddScoped<IMenuManagementService, MenuManagementService>();
 builder.Services.AddScoped<IMenuManagementRepository, MenuManagementService>();
 builder.Services.AddScoped<IEmployeeService, EmployeeService>();
+builder.Services.AddScoped<IStudentService, StudentService>();
 var app = builder.Build();
 
 
