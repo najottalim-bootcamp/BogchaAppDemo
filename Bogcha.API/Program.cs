@@ -1,9 +1,3 @@
-
-
-using Bogcha.DataAccess.Repositories.EmployeeRepositories;
-using Bogcha.Services.Services.EmployeeServices;
-using Bogcha.Services.Services.RevenueServices;
-
 var builder = WebApplication.CreateBuilder(args);
 
 //Add services to the container.
@@ -19,10 +13,12 @@ string connectionString = builder.Configuration.GetConnectionString("DefaultConn
 builder.Services.AddScoped<IRevenueRepository>(x => new RevenueRepository(connectionString));
 builder.Services.AddScoped<IWithdrawalRepository>(x => new WithdrawalRepository(connectionString));
 builder.Services.AddScoped<IEmployeeRepository>(x => new EmployeeRepository(connectionString));
+builder.Services.AddScoped<IStudentRepository>(x => new StudentRepository(connectionString));
 
 //adding services
 builder.Services.AddScoped<IRevenueService, RevenueService>();
 builder.Services.AddScoped<IEmployeeService, EmployeeService>();
+builder.Services.AddScoped<IStudentService, StudentService>();
 var app = builder.Build();
 
 

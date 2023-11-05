@@ -1,4 +1,9 @@
 ﻿global using Bogcha.DataAccess.Repositories.RevenuesRepositories;
 global using Bogcha.DataAccess.Repositories.WithdrawalRepositories;
+global using Bogcha.DataAccess.Repositories.EmployeeRepositories;
+global using Bogcha.Services.Services.EmployeeServices;
+global using Bogcha.Services.Services.RevenueServices;
 global using Bogcha.Domain.Entities;
 global using Microsoft.AspNetCore.Mvc;
+global using Bogcha.DataAccess.Repositories.StudentRepositories;
+global using Bogcha.Services.Services.StudentServices;
