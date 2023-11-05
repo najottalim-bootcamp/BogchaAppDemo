@@ -1,12 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Bogcha.DataAccess.Repositories.AuthorizedPickUpRepositories
+﻿namespace Bogcha.DataAccess.Repositories.AuthorizedPickUpRepositories
 {
-    internal interface IAuthorizedPickUpRepository
+    public interface IAuthorizedPickUpRepository
     {
+        public ValueTask<bool> CreateAsync(AuthorizedPickUp authorizedPickUp);
+        public ValueTask<bool> UpdateAsync(int id, AuthorizedPickUp authorizedPickUp);
+        public ValueTask<bool> DeleteAsync(int id);
+        public ValueTask<bool> GetByIdAsync(int id);
+        public ValueTask<IEnumerable<AuthorizedPickUp>> GetAllAsync();
     }
 }
