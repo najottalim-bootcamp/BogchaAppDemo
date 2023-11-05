@@ -103,7 +103,7 @@
                 string sqlQuery = $"update Accident_Records set @AccNo='{accident_Records.AccNo}', " +
                     $"@ChId = '{accident_Records.ChId}', @AccidentDate = '{accident_Records.AccidentDate}'," +
                     $"@TypeOfAccident='{accident_Records.TypeOfAccident}',@Location='{accident_Records.Location}'," +
-                    $"@FirstAid='{accident_Records.FirstAid}' where '{id}' = AccNo;";
+                    $"@FirstAid='{accident_Records.FirstAid}' where AccNo='{id}';";
 
                 var command = new SqlCommand(sqlQuery,sqlConnection);
 
