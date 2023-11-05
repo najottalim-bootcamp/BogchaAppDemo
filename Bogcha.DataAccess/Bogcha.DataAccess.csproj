@@ -16,4 +16,8 @@
     <ProjectReference Include="..\Bogcha.Domain\Bogcha.Domain.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Bogcha.Domain\Bogcha.Domain.csproj" />
+  </ItemGroup>
+
 </Project>
