@@ -12,9 +12,11 @@
             try
             {
                 await sqlConnection.OpenAsync();
-                string sqlQuery = "Insert into Accident_Records values(@AccNo, @ChId, @AccidentDate, @TypeOfAccident,@Location,@FirstAid)";
+                string sqlQuery = $"Insert into Accident_Records values({accident_Records.AccNo}, " +
+                    $"'{accident_Records.ChId}', '{accident_Records.AccidentDate}'," +
+                    $" '{accident_Records.TypeOfAccident}','{accident_Records.Location}','{accident_Records.FirstAid}')";
 
-                var command = new SqlCommand(sqlQuery, sqlConnection);
+                var command = new SqlCommand(sqlQuery,sqlConnection);
                 int result = await command.ExecuteNonQueryAsync();
                 return result > 0;
             }
@@ -103,7 +105,7 @@
                     $"@TypeOfAccident='{accident_Records.TypeOfAccident}',@Location='{accident_Records.Location}'," +
                     $"@FirstAid='{accident_Records.FirstAid}' where '{id}' = AccNo;";
 
-                var command = new SqlCommand(sqlQuery);
+                var command = new SqlCommand(sqlQuery,sqlConnection);
 
                 int result = await command.ExecuteNonQueryAsync();
                 return result > 0;

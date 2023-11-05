@@ -17,6 +17,12 @@ namespace Bogcha.API.Controllers
             var d = await _accident_records_service.GetAllAsync();
             return Ok(d);
         }
+        [HttpPost]
+        public async ValueTask<IActionResult> CreateAsync(Accident_Records accident_Records)
+        {
+            var d = await _accident_records_service.CreateAsync(accident_Records);
+            return Ok(d);
+        }
         
     }
 }
