@@ -11,8 +11,7 @@ public class WithdrawalRepository : Database, IWithdrawalRepository
             await sqlConnection.OpenAsync();
             string sqlQuery = "Insert into Withdrawal values(@Expense, @Amount, @DatePaid, @withdrawnBy); SELECT CAST(SCOPE_IDENTITY() as int)";
 
-            var command = new SqlCommand(sqlQuery, sqlConnection);
-            int result = await command.ExecuteNonQueryAsync();
+            int result =await sqlConnection.ExecuteAsync(sqlQuery, withdrawal);
             return result > 0;
         }
         catch (Exception ex)
@@ -94,7 +93,9 @@ public class WithdrawalRepository : Database, IWithdrawalRepository
         try
         {
             await sqlConnection.OpenAsync();
-            string sqlQuery = "Update Withdrawal set Expense = @Expense, Amount = @Amount, DatePaid = @DatePaid, WithDrawnBy = @WithDrawnBy where Id = @Id";
+            string sqlQuery = "Update Withdrawal " +
+                                "set Expense = @Expense, Amount = @Amount, DatePaid = @DatePaid, WithDrawnBy = @WithDrawnBy " +
+                                "where Id = @Id";
 
             int result = await sqlConnection.ExecuteAsync(sqlQuery, withdrawal);
             return result > 0;
