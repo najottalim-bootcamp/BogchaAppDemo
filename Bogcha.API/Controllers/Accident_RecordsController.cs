@@ -23,6 +23,24 @@ namespace Bogcha.API.Controllers
             var d = await _accident_records_service.CreateAsync(accident_Records);
             return Ok(d);
         }
-        
+        [HttpPost]
+        public async ValueTask<IActionResult> UpdateAsync(Accident_Records accident_Records,int id)
+        {
+            var d = await _accident_records_service.UpdateAsync(id, accident_Records);
+            return Ok(d);
+        }
+        [HttpGet]
+        public async ValueTask<IActionResult> GetByIdAsync(int id)
+        {
+            var d = await _accident_records_service.GetByIdAsync(id);
+            return Ok(d);
+        }
+        [HttpPost]
+        public async ValueTask<IActionResult> DeleteByIdAsync(int id)
+        {
+            var d = await _accident_records_service.DeleteAsync(id);
+            return Ok(d);
+        }
+
     }
 }
