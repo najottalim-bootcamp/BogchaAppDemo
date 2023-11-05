@@ -1,41 +1,38 @@
-using Bogcha.DataAccess.Repositories.WithdrawalRepositories;
-using Bogcha.Domain.Entities;
+
+
+using Bogcha.Services.Services.RevenueServices;
 
 var builder = WebApplication.CreateBuilder(args);
-var repo = new WithdrawalRepository(builder.Configuration.GetConnectionString("DefaultConnection"));
 
-var with = new Withdrawal()
-{
-    Id = 1,
-    Amount = 900,
-    DatePaid = new DateTime(2022, 6, 11),
-    Expense = "Sanitary",
-    WithDrawnBy = "EMP11"
-};
+//Add services to the container.
 
-var res = await repo.UpdateAsync(with);
-Console.WriteLine(res);
+builder.Services.AddControllers();
+// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen();
 
-// Add services to the container.
+string connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 
-//builder.Services.AddControllers();
-//// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-//builder.Services.AddEndpointsApiExplorer();
-//builder.Services.AddSwaggerGen();
+//adding repositories
+builder.Services.AddScoped<IRevenueRepository>(x => new RevenueRepository(connectionString));
+builder.Services.AddScoped<IWithdrawalRepository>(x => new WithdrawalRepository(connectionString));
 
+
+//adding services
+builder.Services.AddScoped<IRevenueService, RevenueService>();
 var app = builder.Build();
 
-//// Configure the HTTP request pipeline.
-//if (app.Environment.IsDevelopment())
-//{
-//    app.UseSwagger();
-//    app.UseSwaggerUI();
-//}
+// Configure the HTTP request pipeline.
+if (app.Environment.IsDevelopment())
+{
+    app.UseSwagger();
+    app.UseSwaggerUI();
+}
 
-//app.UseHttpsRedirection();
+app.UseHttpsRedirection();
 
-//app.UseAuthorization();
+app.UseAuthorization();
 
-//app.MapControllers();
+app.MapControllers();
 
 app.Run();
