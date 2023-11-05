@@ -20,7 +20,7 @@ builder.Services.AddScoped<IMenuManagementRepository>(x => new MenuManagementRep
 builder.Services.AddScoped<IRevenueService, RevenueService>();
 builder.Services.AddScoped<IWithdrawalService, WithdrawalService>();
 builder.Services.AddScoped<IMealPlanService, MealPlanService>();
-builder.Services.AddScoped<IMenuManagementRepository, MenuManagementService>();
+builder.Services.AddScoped<IMenuManagementService, MenuManagementService>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
