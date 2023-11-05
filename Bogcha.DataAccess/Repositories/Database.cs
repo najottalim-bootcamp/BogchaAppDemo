@@ -1,6 +1,4 @@
-﻿using System.Data.SqlClient;
-
-namespace Bogcha.DataAccess.Repositories;
+﻿namespace Bogcha.DataAccess.Repositories;
 
 public class Database
 {
@@ -8,6 +6,6 @@ public class Database
 
     public Database(string connectionString)
     {
-        this.sqlConnection = new SqlConnection(connectionString);
+        sqlConnection = new SqlConnection(connectionString);
     }
 }

@@ -3,13 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.6.33801.468
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bogcha.API", "Bogcha.API\Bogcha.API.csproj", "{56E2D049-2CC0-43E5-9DA4-8C948259A2BC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bogcha.API", "Bogcha.API\Bogcha.API.csproj", "{56E2D049-2CC0-43E5-9DA4-8C948259A2BC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bogcha.Services", "Bogcha.Services\Bogcha.Services.csproj", "{B145F373-92CF-4064-98FC-C25D9211FF24}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bogcha.Services", "Bogcha.Services\Bogcha.Services.csproj", "{B145F373-92CF-4064-98FC-C25D9211FF24}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bogcha.DataAccess", "Bogcha.DataAccess\Bogcha.DataAccess.csproj", "{34DE9BC6-2346-4CCB-A987-8536DD0BDE8D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bogcha.DataAccess", "Bogcha.DataAccess\Bogcha.DataAccess.csproj", "{34DE9BC6-2346-4CCB-A987-8536DD0BDE8D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bogcha.Domain", "Bogcha.Domain\Bogcha.Domain.csproj", "{DAD2E80B-35B1-46E3-B924-29E9415FDD8D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bogcha.Domain", "Bogcha.Domain\Bogcha.Domain.csproj", "{DAD2E80B-35B1-46E3-B924-29E9415FDD8D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
