@@ -51,7 +51,7 @@ public class AssessmentRecKGRepository:Database,IAssessmentRecKGRepository
             await sqlConnection.CloseAsync() ;
         }
     }
-    public async ValueTask<IEnumerable<AssessmentRecKG>>GetAllAsync()
+    public async ValueTask<IEnumerable<AssessmentRecKG>> GetAllAsync()
     {
         try
         {
