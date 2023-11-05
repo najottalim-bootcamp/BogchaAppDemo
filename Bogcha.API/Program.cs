@@ -1,5 +1,7 @@
 
 
+using Bogcha.DataAccess.Repositories.Accident_RecordsRepositories;
+using Bogcha.Services.Services.Accident_RecordsServices;
 using Bogcha.Services.Services.RevenueServices;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -16,10 +18,12 @@ string connectionString = builder.Configuration.GetConnectionString("DefaultConn
 //adding repositories
 builder.Services.AddScoped<IRevenueRepository>(x => new RevenueRepository(connectionString));
 builder.Services.AddScoped<IWithdrawalRepository>(x => new WithdrawalRepository(connectionString));
-
+builder.Services.AddScoped<IAccident_RecordsRepository>(x=> new Accident_RecordsRepository(connectionString));
 
 //adding services
+builder.Services.AddScoped<IAccident_RecordsService, Accident_RecordsService>();
 builder.Services.AddScoped<IRevenueService, RevenueService>();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
