@@ -8,3 +8,5 @@ global using Bogcha.Services.Services.MealPlanServices;
 global using Bogcha.Services.Services.MenuManagementServices;
 global using Bogcha.Domain.Entities;
 global using Microsoft.AspNetCore.Mvc;
+global using Bogcha.DataAccess.Repositories.StudentRepositories;
+global using Bogcha.Services.Services.StudentServices;
