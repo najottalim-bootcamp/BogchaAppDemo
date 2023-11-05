@@ -7,8 +7,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Interfaces\" />
-    <Folder Include="Services\" />
+    <ProjectReference Include="..\Bogcha.DataAccess\Bogcha.DataAccess.csproj" />
+    <ProjectReference Include="..\Bogcha.Domain\Bogcha.Domain.csproj" />
   </ItemGroup>
 
 </Project>

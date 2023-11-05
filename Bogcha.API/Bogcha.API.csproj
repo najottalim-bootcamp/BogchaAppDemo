@@ -15,6 +15,8 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Bogcha.DataAccess\Bogcha.DataAccess.csproj" />
+    <ProjectReference Include="..\Bogcha.Domain\Bogcha.Domain.csproj" />
+    <ProjectReference Include="..\Bogcha.Services\Bogcha.Services.csproj" />
   </ItemGroup>
 
 </Project>
