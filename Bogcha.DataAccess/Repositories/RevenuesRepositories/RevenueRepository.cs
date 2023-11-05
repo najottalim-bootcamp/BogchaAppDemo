@@ -67,7 +67,7 @@ public class RevenueRepository : Database, IRevenueRepository
             await sqlConnection.OpenAsync();
             string sqlQuery = "SELECT * FROM Revenue WHERE ChId = @ChId";
 
-            Revenue revenue = await sqlConnection.QueryFirstOrDefaultAsync<Revenue>(sqlQuery, new {Id = ChId});
+            Revenue revenue = await sqlConnection.QueryFirstOrDefaultAsync<Revenue>(sqlQuery, new {ChId = ChId});
             return revenue;
         }
         catch (Exception ex)
