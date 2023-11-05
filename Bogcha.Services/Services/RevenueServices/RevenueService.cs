@@ -23,7 +23,6 @@ public class RevenueService : IRevenueService
         return revenueRepository.CreateAsync(revenue);
     }
 
-
     public ValueTask<bool> UpdateAsync(Revenue revenue)
     {
         return revenueRepository.UpdateAsync(revenue);
