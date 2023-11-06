@@ -1,8 +1,6 @@
-﻿using Bogcha.DataAccess.Repositories.ActivityManagementRepositories;
-
-namespace Bogcha.Services.Services.ActivityManagementServices
+﻿namespace Bogcha.Services.Services.ActivityManagementServices
 {
-    public class ActivityManagementService:IActivityManagementService
+    public class ActivityManagementService : IActivityManagementService
     {
         private readonly IActivityManagementRepository _activityManagementRepository;
         public ActivityManagementService(IActivityManagementRepository context)
@@ -22,7 +20,7 @@ namespace Bogcha.Services.Services.ActivityManagementServices
 
         public async ValueTask<IEnumerable<ActivityManagement>> GetAllAsync()
         {
-            return await  _activityManagementRepository.GetAllAsync();
+            return await _activityManagementRepository.GetAllAsync();
         }
 
         public async ValueTask<ActivityManagement> GetByIdAsync(int id)
