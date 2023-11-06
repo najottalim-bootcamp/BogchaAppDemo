@@ -1,12 +1,4 @@
-﻿
-
-using Bogcha.DataAccess.Repositories.ActivityManagementRepositories;
-using Bogcha.DataAccess.Repositories.AttendanceRepositories;
-using Bogcha.DataAccess.Repositories.AuthorizedPickUpRepositories;
-using Bogcha.DataAccess.Repositories.ParentsRepositories;
-using Bogcha.DataAccess.Repositories.StudentRepositories;
-
-namespace Bogcha.API.Configurations;
+﻿namespace Bogcha.API.Configurations;
 
 public static class DataAccessConfiguration
 {
