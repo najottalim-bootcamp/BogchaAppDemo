@@ -12,5 +12,6 @@ public static class InfrastructureLayerConfiguration
         builder.Services.AddScoped<IMenuManagementService, MenuManagementService>();
         builder.Services.AddScoped<IEmployeeService, EmployeeService>();
         builder.Services.AddScoped<IParentsService, ParentsService>();
+        builder.Services.AddScoped<IStudentService, StudentService>();
     }
 }
