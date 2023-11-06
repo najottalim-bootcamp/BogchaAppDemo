@@ -35,9 +35,9 @@ namespace Bogcha.Services.Services.AuthorizedPickUpServices
             return await _authorizedPickUpRepository.GetByIdAsync(ChId);
         }
 
-        public async ValueTask<bool> UpdateAsync(string ChId, AuthorizedPickUp authorizedPickUp)
+        public async ValueTask<bool> UpdateAsync(AuthorizedPickUp authorizedPickUp)
         {
-            return await _authorizedPickUpRepository.UpdateAsync(ChId, authorizedPickUp);
+            return await _authorizedPickUpRepository.UpdateAsync( authorizedPickUp);
         }
     }
 }
