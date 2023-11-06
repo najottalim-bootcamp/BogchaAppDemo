@@ -15,8 +15,7 @@
                 string sqlQuery = $"Insert into Accident_Records values(@AccNo, " +
                     $"@ChId, @AccidentDate,@TypeOfAccident,@Location,@FirstAid)";
                  
-                var command = new SqlCommand(sqlQuery,accident_Records);
-                int result = await command.ExecuteNonQueryAsync();
+                int result = await sqlConnection.ExecuteAsync(sqlQuery,accident_Records);
                 return result > 0;
             }
             catch (Exception ex)
@@ -79,14 +78,15 @@
             {
                 await sqlConnection.OpenAsync();
                 string sqlQuery = $"Select * from Accident_Records where AccNo=@id;";
-                
-                Accident_Records accident_Records = await sqlConnection.QueryFirstAsync<Accident_Records>(sqlQuery, new {id});
+
+                Accident_Records accident_Records = await sqlConnection.QueryFirstOrDefaultAsync<Accident_Records>(sqlQuery, new { id });
 
                 return accident_Records;
             }
             catch (Exception ex)
             {
-                return new Accident_Records();
+                await Console.Out.WriteLineAsync(ex.Message);
+                return null;
             }
             finally
             {
@@ -104,9 +104,8 @@
                     $"@TypeOfAccident,@Location," +
                     $"@FirstAid where AccNo;";
 
-                var command = new SqlCommand(sqlQuery,new { accident_Records, id });
+               int result = await sqlConnection.ExecuteAsync(sqlQuery,new { accident_Records, id });
 
-                int result = await command.ExecuteNonQueryAsync();
                 return result > 0;
 
             }

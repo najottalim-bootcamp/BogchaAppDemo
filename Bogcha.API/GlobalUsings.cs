@@ -10,3 +10,7 @@ global using Bogcha.Domain.Entities;
 global using Microsoft.AspNetCore.Mvc;
 global using Bogcha.DataAccess.Repositories.StudentRepositories;
 global using Bogcha.Services.Services.StudentServices;
+global using Bogcha.DataAccess.Repositories.Accident_RecordsRepositories;
+global using Bogcha.DataAccess.Repositories.EmployeeRepositories;
+global using Bogcha.Services.Services.Accident_RecordsServices;
+global using Bogcha.Services.Services.EmployeeServices;
