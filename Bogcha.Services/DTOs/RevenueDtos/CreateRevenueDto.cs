@@ -1,4 +1,5 @@
-﻿namespace Bogcha.Services.DTOs.RevenueDtos;
+﻿
+namespace Bogcha.Services.DTOs.RevenueDtos;
 
 public class CreateRevenueDto
 {

@@ -14,6 +14,17 @@ global using Bogcha.Services.Services.RevenueServices;
 global using Bogcha.Services.Services.StudentServices;
 global using Bogcha.Services.Services.WithdrawalServices;
 global using Microsoft.AspNetCore.Mvc;
+
+global using Bogcha.DataAccess.Repositories.StudentRepositories;
+global using Bogcha.Services.Services.StudentServices;
+global using Bogcha.DataAccess.Repositories.Accident_RecordsRepositories;
+global using Bogcha.DataAccess.Repositories.EmployeeRepositories;
+global using Bogcha.Services.Services.Accident_RecordsServices;
+global using Bogcha.Services.Services.EmployeeServices;
+global using Bogcha.Services.Services.AttendanceServices;
+global using Bogcha.Services.Services.ActivityManagementServices;
+global using Bogcha.DataAccess.Repositories.ActivityManagementRepositories;
+global using Bogcha.DataAccess.Repositories.AttendanceRepositories;
 global using Bogcha.API.Configurations;
 global using Bogcha.DataAccess.Repositories.ParentsRepositories;
 global using Bogcha.DataAccess.Repositories.AssessmentRecKGRepositories;
@@ -23,3 +34,4 @@ global using Bogcha.Services.Services.AssessmentRecKGServices;
 global using Bogcha.Services.Services.AssessmentRecNurseryServices;
 global using Bogcha.Services.Services.AssessmentRecPreKServices;
 global using Bogcha.Services.Services.ActivityManagementServices;
+

@@ -1,8 +1,10 @@
+
 ﻿namespace Bogcha.API.Controllers.ActivityManagementControllers;
 
 [Route("api/[controller]/[action]")]
 [ApiController]
 public class ActivityManagementController : ControllerBase
+
 {
     private readonly IActivityManagementService _activityManagement;
     public ActivityManagementController(IActivityManagementService context)
@@ -33,5 +35,6 @@ public class ActivityManagementController : ControllerBase
     public async ValueTask<IActionResult> CreateAsync(ActivityManagement activityManagement)
     {
         return Ok(await _activityManagement.CreateAsync(activityManagement));
+
     }
 }
