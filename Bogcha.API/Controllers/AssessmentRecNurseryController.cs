@@ -1,6 +1,4 @@
-﻿using Bogcha.DataAccess.Repositories.AssessmentRecNurseryRepositories;
-
-namespace Bogcha.API.Controllers;
+﻿namespace Bogcha.API.Controllers;
 
 [Route("api/[controller]/[action]")]
 [ApiController]

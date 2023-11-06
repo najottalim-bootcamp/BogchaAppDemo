@@ -1,8 +1,4 @@
-﻿using Bogcha.DataAccess.Repositories.AssessmentRecKGRepositories;
-using Bogcha.Domain.Entities;
-using Bogcha.Services.Services.RevenueServices;
-
-namespace Bogcha.API.Controllers;
+﻿namespace Bogcha.API.Controllers;
 
 [Route("api/[controller]/[action]")]
 [ApiController]
@@ -24,7 +20,7 @@ public class AssessmentRecKGController : ControllerBase
     [HttpGet]
     public async ValueTask<IActionResult> GetAssessmentRecKGByIdAsync(int id)
     {
-        var res=await repository.GetByIdAsync(id);
+        var res = await repository.GetByIdAsync(id);
         return Ok(res);
     }
     [HttpPost]
@@ -34,13 +30,13 @@ public class AssessmentRecKGController : ControllerBase
         return Ok(res);
     }
     [HttpPut]
-    public async ValueTask<IActionResult> UpdateAssessmentRecKGAsync( int id,AssessmentRecKG assessmentRecKG)
+    public async ValueTask<IActionResult> UpdateAssessmentRecKGAsync(int id, AssessmentRecKG assessmentRecKG)
     {
-        var res = await repository.UpdateAsync(id,assessmentRecKG);
+        var res = await repository.UpdateAsync(id, assessmentRecKG);
         return Ok(res);
     }
     [HttpDelete]
-    public async ValueTask<IActionResult> DeleteAssessmentRecKGAsync(int  id)
+    public async ValueTask<IActionResult> DeleteAssessmentRecKGAsync(int id)
     {
         var res = await repository.DeleteAsync(id);
         return Ok(res);

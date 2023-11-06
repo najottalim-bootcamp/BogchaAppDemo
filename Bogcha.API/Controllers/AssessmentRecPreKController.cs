@@ -1,6 +1,4 @@
-﻿using Bogcha.DataAccess.Repositories.AssessmentRecPreKRepositories;
-
-namespace Bogcha.API.Controllers;
+﻿namespace Bogcha.API.Controllers;
 
 [Route("api/[controller]/[action]")]
 [ApiController]
@@ -9,7 +7,7 @@ public class AssessmentRecPreKController : ControllerBase
     private readonly IAssessmentRecPreKRepository assessmentRecPreKRepository;
     public AssessmentRecPreKController(IAssessmentRecPreKRepository assessmentRecPreKRepository)
     {
-        this.assessmentRecPreKRepository = assessmentRecPreKRepository;        
+        this.assessmentRecPreKRepository = assessmentRecPreKRepository;
     }
     [HttpGet]
     public async ValueTask<IActionResult> GetAllAssessmentRecPreKAsync()
