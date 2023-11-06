@@ -1,6 +1,8 @@
 
 using Bogcha.DataAccess.Repositories.ActivityManagementRepositories;
+using Bogcha.DataAccess.Repositories.AttendanceRepositories;
 using Bogcha.Services.Services.ActivityManagementServices;
+using Bogcha.Services.Services.AttendanceServices;
 
 var builder = WebApplication.CreateBuilder(args);
 
