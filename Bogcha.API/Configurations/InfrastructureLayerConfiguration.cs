@@ -1,4 +1,5 @@
-﻿namespace Bogcha.API.Configurations;
+﻿
+namespace Bogcha.API.Configurations;
 
 public static class InfrastructureLayerConfiguration
 {
@@ -22,7 +23,6 @@ public static class InfrastructureLayerConfiguration
         builder.Services.AddScoped<IAssessmentRecKGService, AssessmentRecKGService>();
         builder.Services.AddScoped<IAssessmentRecNurseryService, AssessmentRecNurseryService>();
         builder.Services.AddScoped<IAssessmentRecPreKService, AssessmentRecPreKService>();
-
-
+        builder.Services.AddScoped<IAuthorizedPickUpService, AuthorizedPickUpService>();
     }
 }
