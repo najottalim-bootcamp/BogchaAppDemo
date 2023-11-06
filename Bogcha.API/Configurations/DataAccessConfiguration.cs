@@ -14,8 +14,11 @@ public static class DataAccessConfiguration
         builder.Services.AddScoped<IMealPlanRepository>(x => new MealPlanRepository(connectionString));
         builder.Services.AddScoped<IMenuManagementRepository>(x => new MenuManagementRepository(connectionString));
         builder.Services.AddScoped<IParentRepository>(x => new ParentRepository(connectionString));
+
+        builder.Services.AddScoped<IStudentRepository>(x => new  StudentRepository(connectionString));
         builder.Services.AddScoped<IAssessmentRecKGRepository>(x => new AssessmentRecKGRepository(connectionString));
         builder.Services.AddScoped<IAssessmentRecNurseryRepository>(x => new AssessmentRecNurseryRepository(connectionString));
         builder.Services.AddScoped<IAssessmentRecPreKRepository>(x => new AssessmentRecPreKRepository(connectionString));
+
     }
 }
