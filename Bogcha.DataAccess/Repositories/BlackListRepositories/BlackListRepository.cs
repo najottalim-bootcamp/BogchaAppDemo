@@ -26,14 +26,14 @@
                 await sqlConnection.CloseAsync();
             }
         }
-        public async ValueTask<bool> DeleteAsync(int id)
+        public async ValueTask<bool> DeleteAsync(string ChId)
         {
             try
             {
                 await sqlConnection.OpenAsync();
-                string sqlQuery = "Delete from BlackList where id==Id";
+                string sqlQuery = "Delete from BlackList where ChId==Id";
                 var command = new SqlCommand(sqlQuery, sqlConnection);
-                command.Parameters.AddWithValue("Id", id);
+                command.Parameters.AddWithValue("Id", ChId);
 
                 int result = await command.ExecuteNonQueryAsync();
                 return result > 0;
@@ -66,12 +66,12 @@
             }
         }
 
-        public ValueTask<bool> GetByIdAsync(int id)
+        public ValueTask<BlackList> GetByIdAsync(string ChId)
         {
             throw new NotImplementedException();
         }
 
-        public ValueTask<bool> UpdateAsync(int id, BlackList blackList)
+        public ValueTask<bool> UpdateAsync(string ChId, BlackList blackList)
         {
             throw new NotImplementedException();
         }
