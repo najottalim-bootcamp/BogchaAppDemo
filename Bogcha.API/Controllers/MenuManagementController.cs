@@ -35,7 +35,7 @@ public class MenuManagementController : ControllerBase
         return Ok(res);
     }
     [HttpDelete("{id}")]
-    public async void Delete(string id)
+    public async ValueTask<IActionResult> Delete(string id)
     {
         var res = await menuManagementService.DeleteAsync(id);
         return Ok(res);
