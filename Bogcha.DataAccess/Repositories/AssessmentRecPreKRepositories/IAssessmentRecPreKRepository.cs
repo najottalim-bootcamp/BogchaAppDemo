@@ -1,6 +1,4 @@
-﻿using Bogcha.Domain.Entities;
-
-namespace Bogcha.DataAccess.Repositories.AssessmentRecPreKRepositories;
+﻿namespace Bogcha.DataAccess.Repositories.AssessmentRecPreKRepositories;
 
 public interface IAssessmentRecPreKRepository
 {

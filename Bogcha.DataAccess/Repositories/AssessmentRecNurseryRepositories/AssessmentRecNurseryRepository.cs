@@ -1,8 +1,4 @@
-﻿using Bogcha.Domain.Entities;
-using Dapper;
-using System.Data.SqlClient;
-
-namespace Bogcha.DataAccess.Repositories.AssessmentRecNurseryRepositories;
+﻿namespace Bogcha.DataAccess.Repositories.AssessmentRecNurseryRepositories;
 
 public class AssessmentRecNurseryRepository : Database, IAssessmentRecNurseryRepository
 {
@@ -94,7 +90,7 @@ public class AssessmentRecNurseryRepository : Database, IAssessmentRecNurseryRep
                 "Set AssessmentDate=@AssessmentDate,Reflection_5=@Reflection_5,Social_development_5=@Social_development_5," +
                 "Emotional_development_5=@Emotional_development_5,Conflict_resolution_5=@Conflict_resolution_5 " +
                 "Where Id=@Id";
-            var result = await sqlConnection.ExecuteAsync(sqlQuery, assessmentRecNursery );
+            var result = await sqlConnection.ExecuteAsync(sqlQuery, assessmentRecNursery);
             return result > 0;
 
         }
