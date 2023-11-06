@@ -1,10 +1,6 @@
-﻿using Bogcha.Domain.Entities;
-using Dapper;
-using System.Data.SqlClient;
+﻿namespace Bogcha.DataAccess.Repositories.AssessmentRecKGRepositories;
 
-namespace Bogcha.DataAccess.Repositories.AssessmentRecKGRepositories;
-
-public class AssessmentRecKGRepository:Database,IAssessmentRecKGRepository
+public class AssessmentRecKGRepository : Database, IAssessmentRecKGRepository
 {
     public AssessmentRecKGRepository(string connectionString) : base(connectionString) { }
 
@@ -15,10 +11,9 @@ public class AssessmentRecKGRepository:Database,IAssessmentRecKGRepository
             await sqlConnection.OpenAsync();
             string sqlQuery = "Insert into AssessmentRecKG values(@ChId,@ClassId," +
                 "@AssessmentDate,@Know_100,@Math_100,@Read_100,@Spell_100,@Camera_Reading_100," +
-                "@Camera_spelling_100,@Sentence_assessment_100,@Pattern_assessment_100,@Name_writing_100)";
+                "@Camera_Spelling_100,@Sentence_reading_100,@Pattern_assessment_100,@Name_writing_100)";
 
-            var command = new SqlCommand(sqlQuery, sqlConnection);
-            int result = await command.ExecuteNonQueryAsync();
+            int result = await sqlConnection.ExecuteAsync(sqlQuery, assessmentRecKG);
             return result > 0;
         }
         catch (Exception ex)
@@ -35,7 +30,7 @@ public class AssessmentRecKGRepository:Database,IAssessmentRecKGRepository
         try
         {
             await sqlConnection.OpenAsync();
-            string sqlQuery = "Delete from AssessmentRecKG where id==Id";
+            string sqlQuery = "Delete from AssessmentRecKG where Id=@id";
             var command = new SqlCommand(sqlQuery, sqlConnection);
             command.Parameters.AddWithValue("Id", id);
 
@@ -48,10 +43,10 @@ public class AssessmentRecKGRepository:Database,IAssessmentRecKGRepository
         }
         finally
         {
-            await sqlConnection.CloseAsync() ;
+            await sqlConnection.CloseAsync();
         }
     }
-    public async ValueTask<IEnumerable<AssessmentRecKG>>GetAllAsync()
+    public async ValueTask<IEnumerable<AssessmentRecKG>> GetAllAsync()
     {
         try
         {
@@ -70,14 +65,45 @@ public class AssessmentRecKGRepository:Database,IAssessmentRecKGRepository
         }
     }
 
-    public ValueTask<bool> GetByIdAsync(int id)
+    public async ValueTask<AssessmentRecKG> GetByIdAsync(int id)
     {
-        throw new NotImplementedException();
+        try
+        {
+            await sqlConnection.OpenAsync();
+            string sqlQuery = "Select * from AssessmentRecKG where Id=@id";
+            AssessmentRecKG assessmentRecKG = await sqlConnection.QueryFirstOrDefaultAsync<AssessmentRecKG>(sqlQuery, new { Id = id });
+            return assessmentRecKG;
+        }
+        catch (Exception ex)
+        {
+            await Console.Out.WriteLineAsync(ex.Message);
+            return null;
+        }
+        finally { await sqlConnection.CloseAsync(); }
     }
 
-    public ValueTask<bool> UpdateAsync(int id, AssessmentRecKG assessmentRecKG)
+    public async ValueTask<bool> UpdateAsync(int id, AssessmentRecKG assessmentRecKG)
     {
-        throw new NotImplementedException();
+        try
+        {
+            await sqlConnection.OpenAsync();
+            string sqlQuery = "Update AssessmentRecKG " +
+                "SET AssessmentDate=@AssessmentDate,Know_100=@Know_100,Math_100=@Math_100," +
+                "Read_100=@Read_100,Spell_100=@Spell_100,Camera_Reading_100=@Camera_Reading_100," +
+                "Camera_spelling_100=@Camera_spelling_100,Sentence_reading_100=@Sentence_reading_100," +
+                "Pattern_assessment_100=@Pattern_assessment_100,Name_writing_100=@Name_writing_100 " +
+                "where Id=@Id";
+            var result = await sqlConnection.ExecuteAsync(sqlQuery, assessmentRecKG);
+            return result > 0;
+
+        }
+        catch (Exception ex)
+        {
+            await Console.Out.WriteLineAsync(ex.Message);
+            return false;
+        }
+        finally { await sqlConnection.CloseAsync(); }
+
     }
 }
 

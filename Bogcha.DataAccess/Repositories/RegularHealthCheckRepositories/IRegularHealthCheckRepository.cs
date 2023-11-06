@@ -1,6 +1,4 @@
-﻿using Bogcha.Domain.Entities;
-
-namespace Bogcha.DataAccess.Repositories.RegularHealthCheckRepositories
+﻿namespace Bogcha.DataAccess.Repositories.RegularHealthCheckRepositories
 {
     public interface IRegularHealthCheckRepository
     {
