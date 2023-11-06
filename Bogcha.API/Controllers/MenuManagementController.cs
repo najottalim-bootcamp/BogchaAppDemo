@@ -40,4 +40,5 @@ public class MenuManagementController : ControllerBase
         var res = await menuManagementService.DeleteAsync(id);
         return Ok(res);
     }
+*/
 }
