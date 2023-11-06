@@ -24,9 +24,9 @@ namespace Bogcha.API.Controllers
             return Ok(d);
         }
         [HttpPost]
-        public async ValueTask<IActionResult> UpdateAsync(Accident_Records accident_Records,int id)
+        public async ValueTask<IActionResult> UpdateAsync(Accident_Records accident_Records)
         {
-            var d = await _accident_records_service.UpdateAsync(id, accident_Records);
+            var d = await _accident_records_service.UpdateAsync( accident_Records);
             return Ok(d);
         }
         [HttpGet]

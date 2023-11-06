@@ -1,4 +1,7 @@
 
+using Bogcha.DataAccess.Repositories.ActivityManagementRepositories;
+using Bogcha.Services.Services.ActivityManagementServices;
+
 var builder = WebApplication.CreateBuilder(args);
 
 //Add services to the container.
@@ -7,6 +10,7 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
 
 builder.ConfigureDataAccess();
 builder.ConfigureInfrastructure();
