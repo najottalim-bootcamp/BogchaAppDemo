@@ -1,7 +1,5 @@
-﻿using Bogcha.DataAccess.Repositories.AssessmentRecNurseryRepositories;
+﻿namespace Bogcha.Services.Services.AssessmentRecNurseryServices;
 
-namespace Bogcha.Services.Services.AssessmentRecNurseryServices;
-
-public interface IAssessmentRecNurseryService:IAssessmentRecNurseryRepository
+public interface IAssessmentRecNurseryService : IAssessmentRecNurseryRepository
 {
 }

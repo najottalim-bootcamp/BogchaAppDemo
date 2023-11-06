@@ -1,6 +1,4 @@
-﻿using Bogcha.DataAccess.Repositories.AssessmentRecKGRepositories;
-
-namespace Bogcha.Services.Services.AssessmentRecKGServices;
+﻿namespace Bogcha.Services.Services.AssessmentRecKGServices;
 
 public class AssessmentRecKGService : IAssessmentRecKGService
 {
