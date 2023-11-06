@@ -1,8 +1,4 @@
-﻿using Bogcha.Domain.Entities;
-using Dapper;
-using System.Data.SqlClient;
-
-namespace Bogcha.DataAccess.Repositories.AssessmentRecNurseryRepositories;
+﻿namespace Bogcha.DataAccess.Repositories.AssessmentRecNurseryRepositories;
 
 public class AssessmentRecNurseryRepository : Database, IAssessmentRecNurseryRepository
 {
@@ -16,8 +12,7 @@ public class AssessmentRecNurseryRepository : Database, IAssessmentRecNurseryRep
             string sqlQuery = "Insert into AssessmentRecNursery values(@ChId,@ClassId," +
                 "@AssessmentDate,@Reflection_5,@Social_development_5,@Emotional_development_5,@Conflict_resolution_5)";
 
-            var command = new SqlCommand(sqlQuery, sqlConnection);
-            int result = await command.ExecuteNonQueryAsync();
+            int result = await sqlConnection.ExecuteAsync(sqlQuery, assessmentRecNursery);
             return result > 0;
         }
         catch (Exception ex)
@@ -34,7 +29,7 @@ public class AssessmentRecNurseryRepository : Database, IAssessmentRecNurseryRep
         try
         {
             await sqlConnection.OpenAsync();
-            string sqlQuery = "Delete from AssessmentRecNursery where id==Id";
+            string sqlQuery = "Delete from AssessmentRecNursery where Id=@id";
             var command = new SqlCommand(sqlQuery, sqlConnection);
             command.Parameters.AddWithValue("Id", id);
 
@@ -55,7 +50,7 @@ public class AssessmentRecNurseryRepository : Database, IAssessmentRecNurseryRep
         try
         {
             await sqlConnection.OpenAsync();
-            string sqlQuery = "Select * from AssessmentRecKG;";
+            string sqlQuery = "Select * from AssessmentRecNursery;";
             IEnumerable<AssessmentRecNursery> assessmentRecKGs = await sqlConnection.QueryAsync<AssessmentRecNursery>(sqlQuery);
             return assessmentRecKGs;
         }
@@ -69,13 +64,41 @@ public class AssessmentRecNurseryRepository : Database, IAssessmentRecNurseryRep
         }
     }
 
-    public ValueTask<bool> GetByIdAsync(int id)
+    public async ValueTask<AssessmentRecNursery> GetByIdAsync(int id)
     {
-        throw new NotImplementedException();
+        try
+        {
+            await sqlConnection.OpenAsync();
+            string sqlQuery = "Select * from AssessmentRecNursery where Id=@id";
+            AssessmentRecNursery assessmentRecNursery = await sqlConnection.QueryFirstOrDefaultAsync<AssessmentRecNursery>(sqlQuery, new { Id = id });
+            return assessmentRecNursery;
+        }
+        catch (Exception ex)
+        {
+            await Console.Out.WriteLineAsync(ex.Message);
+            return null;
+        }
+        finally { await sqlConnection.CloseAsync(); }
     }
 
-    public ValueTask<bool> UpdateAsync(int id, AssessmentRecNursery assessmentRecnursery)
+    public async ValueTask<bool> UpdateAsync(int id, AssessmentRecNursery assessmentRecNursery)
     {
-        throw new NotImplementedException();
+        try
+        {
+            await sqlConnection.OpenAsync();
+            string sqlQuery = "Update AssessmentRecNursery " +
+                "Set AssessmentDate=@AssessmentDate,Reflection_5=@Reflection_5,Social_development_5=@Social_development_5," +
+                "Emotional_development_5=@Emotional_development_5,Conflict_resolution_5=@Conflict_resolution_5 " +
+                "Where Id=@Id";
+            var result = await sqlConnection.ExecuteAsync(sqlQuery, assessmentRecNursery);
+            return result > 0;
+
+        }
+        catch (Exception ex)
+        {
+            await Console.Out.WriteLineAsync(ex.Message);
+            return false;
+        }
+        finally { await sqlConnection.CloseAsync(); }
     }
 }

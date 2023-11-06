@@ -11,7 +11,7 @@ public class AssessmentRecKG
     public int Read_100 { get; set; }
     public int Spell_100 { get; set; }
     public int Camera_Reading_100 { get; set; }
-    public int Camere_Spelling_100 { get; set; }
+    public int Camera_Spelling_100 { get; set; }
     public int Sentence_reading_100 { get; set; }
     public int Pattern_assessment_100 { get; set; }
     public int Name_writing_100 { get; set; }

@@ -1,6 +1,4 @@
-﻿using Bogcha.Domain.Entities;
-
-namespace Bogcha.DataAccess.Repositories.ActivityManagementRepositories
+﻿namespace Bogcha.DataAccess.Repositories.ActivityManagementRepositories
 {
     public interface IActivityManagementRepository
     {

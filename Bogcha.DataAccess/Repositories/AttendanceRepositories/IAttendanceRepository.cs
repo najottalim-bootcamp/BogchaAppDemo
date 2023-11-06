@@ -1,6 +1,4 @@
-﻿using Bogcha.Domain.Entities;
-
-namespace Bogcha.DataAccess.Repositories.AttendanceRepositories
+﻿namespace Bogcha.DataAccess.Repositories.AttendanceRepositories
 {
     public interface IAttendanceRepository
     {

@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Bogcha.DataAccess.Repositories.AttendanceRepositories
+﻿namespace Bogcha.DataAccess.Repositories.AttendanceRepositories
 {
+
     public class AttendanceRepository:Database,IAttendanceRepository
     {
         public AttendanceRepository(string connectionString) : base(connectionString){ }

@@ -1,6 +1,4 @@
-﻿using Bogcha.Domain.Entities;
-
-namespace Bogcha.DataAccess.Repositories.Accident_RecordsRepositories
+﻿namespace Bogcha.DataAccess.Repositories.Accident_RecordsRepositories
 {
     public interface IAccident_RecordsRepository
     {
