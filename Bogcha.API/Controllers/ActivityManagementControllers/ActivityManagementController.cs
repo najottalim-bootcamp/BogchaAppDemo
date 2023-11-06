@@ -1,7 +1,4 @@
-﻿using Bogcha.Services.Services.ActivityManagementServices;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-
+﻿
 namespace Bogcha.API.Controllers.ActivityManagementControllers
 {
     [Route("api/[controller]/[action]")]
@@ -9,7 +6,7 @@ namespace Bogcha.API.Controllers.ActivityManagementControllers
     public class ActivityManagementController : ControllerBase
     {
         private readonly IActivityManagementService _activityManagement;
-        public ActivityManagementController(IActivityManagementService context) 
+        public ActivityManagementController(IActivityManagementService context)
         {
             _activityManagement = context;
         }

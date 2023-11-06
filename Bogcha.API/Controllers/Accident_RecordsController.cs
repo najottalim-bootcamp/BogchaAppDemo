@@ -1,8 +1,4 @@
-﻿using Bogcha.Services.Services.Accident_RecordsServices;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-
-namespace Bogcha.API.Controllers
+﻿namespace Bogcha.API.Controllers
 {
     [Route("api/[controller]/[action]")]
     [ApiController]
@@ -12,7 +8,7 @@ namespace Bogcha.API.Controllers
         public Accident_RecordsController(IAccident_RecordsService context) { _accident_records_service = context; }
 
         [HttpGet]
-        public async ValueTask<IActionResult> GetAllAsync() 
+        public async ValueTask<IActionResult> GetAllAsync()
         {
             var d = await _accident_records_service.GetAllAsync();
             return Ok(d);
@@ -26,7 +22,7 @@ namespace Bogcha.API.Controllers
         [HttpPost]
         public async ValueTask<IActionResult> UpdateAsync(Accident_Records accident_Records)
         {
-            var d = await _accident_records_service.UpdateAsync( accident_Records);
+            var d = await _accident_records_service.UpdateAsync(accident_Records);
             return Ok(d);
         }
         [HttpGet]
