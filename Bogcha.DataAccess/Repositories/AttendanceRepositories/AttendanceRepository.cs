@@ -105,8 +105,7 @@ namespace Bogcha.DataAccess.Repositories.AttendanceRepositories
             {
                 await sqlConnection.OpenAsync();
                 string sqlQuery = "update Attendance set  " +
-                    "Time=@Time , Task = @Task, " +
-                    "Led_by=@Led_by " +
+                    "ChId=@ChId,SignIn_Time=@SignIn_Time,SignOut_Time=@SignOut_Time " +
                     "where Id=@Id;";
 
                 int result = await sqlConnection.ExecuteAsync(sqlQuery, activityManagement);

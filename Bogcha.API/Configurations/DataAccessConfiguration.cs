@@ -1,4 +1,5 @@
-﻿namespace Bogcha.API.Configurations;
+﻿
+namespace Bogcha.API.Configurations;
 
 public static class DataAccessConfiguration
 {
@@ -13,5 +14,7 @@ public static class DataAccessConfiguration
         builder.Services.AddScoped<IEmployeeRepository>(x => new EmployeeRepository(connectionString));
         builder.Services.AddScoped<IMealPlanRepository>(x => new MealPlanRepository(connectionString));
         builder.Services.AddScoped<IMenuManagementRepository>(x => new MenuManagementRepository(connectionString));
+        builder.Services.AddScoped<IAttendanceRepository>(x => new AttendanceRepository(connectionString));
+        builder.Services.AddScoped<IActivityManagementRepository>(x => new ActivityManagementRepository(connectionString));
     }
 }

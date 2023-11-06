@@ -7,6 +7,7 @@ global using Bogcha.DataAccess.Repositories.MenuManagementRepositories;
 global using Bogcha.DataAccess.Repositories.AttendanceRepositories;
 global using Bogcha.DataAccess.Repositories.Accident_RecordsRepositories;
 global using Bogcha.DataAccess.Repositories.ActivityManagementRepositories;
+global using System.ComponentModel.DataAnnotations;
 
 global using Bogcha.Domain.Entities;
 

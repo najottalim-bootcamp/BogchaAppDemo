@@ -22,3 +22,5 @@ global using Bogcha.Services.Services.Accident_RecordsServices;
 global using Bogcha.Services.Services.EmployeeServices;
 global using Bogcha.Services.Services.AttendanceServices;
 global using Bogcha.Services.Services.ActivityManagementServices;
+global using Bogcha.DataAccess.Repositories.ActivityManagementRepositories;
+global using Bogcha.DataAccess.Repositories.AttendanceRepositories;
