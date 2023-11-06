@@ -1,16 +1,19 @@
 ﻿namespace Bogcha.DataAccess.Repositories.AttendanceRepositories
 {
-    public class AttendanceRepository : Database
+
+    public class AttendanceRepository:Database,IAttendanceRepository
     {
-        public AttendanceRepository(string connectionString) : base(connectionString) { }
+        public AttendanceRepository(string connectionString) : base(connectionString){ }
+
+
         public async ValueTask<bool> CreateAsync(Attendance attendance)
         {
 
             try
             {
                 await sqlConnection.OpenAsync();
-                string sqlQuery = $"Insert into Accident_Records values(@Time, " +
-                    $"@Task,@Led_by)";
+                string sqlQuery = $"Insert into Attendance values( " +
+                    $"@ChId,@SignIn_Time,@SignOut_Time) SELECT CAST(SCOPE_IDENTITY() as int)";
 
                 int result = await sqlConnection.ExecuteAsync(sqlQuery, attendance);
                 return result > 0;
@@ -32,7 +35,7 @@
             try
             {
                 await sqlConnection.OpenAsync();
-                string sqlQuery = "Delete from Accident_Records where Id = @Id";
+                string sqlQuery = "Delete from Attendance where Id = @Id";
 
                 var command = new SqlCommand(sqlQuery, sqlConnection);
                 command.Parameters.AddWithValue("@Id", id);
@@ -50,18 +53,18 @@
             }
         }
 
-        public async ValueTask<IEnumerable<ActivityManagement>> GetAllAsync()
+        public async ValueTask<IEnumerable<Attendance>> GetAllAsync()
         {
             try
             {
                 await sqlConnection.OpenAsync();
-                string sqlQuery = "Select * from ActivityManagement;";
-                IEnumerable<ActivityManagement> activityManagements = await sqlConnection.QueryAsync<ActivityManagement>(sqlQuery);
-                return activityManagements;
+                string sqlQuery = "Select * from Attendance;";
+                IEnumerable<Attendance> attendance = await sqlConnection.QueryAsync<Attendance>(sqlQuery);
+                return attendance;
             }
             catch (Exception ex)
             {
-                return Enumerable.Empty<ActivityManagement>();
+                return Enumerable.Empty<Attendance>();
             }
             finally
             {
@@ -69,16 +72,16 @@
             }
         }
 
-        public async ValueTask<ActivityManagement> GetByIdAsync(int id)
+        public async ValueTask<Attendance> GetByIdAsync(int id)
         {
             try
             {
                 await sqlConnection.OpenAsync();
-                string sqlQuery = $"Select * from ActivityManagement where Id=@id;";
+                string sqlQuery = $"Select * from Attendance where Id=@id;";
 
-                ActivityManagement activityManagement = await sqlConnection.QueryFirstOrDefaultAsync<ActivityManagement>(sqlQuery, new { id });
+                Attendance attendance = await sqlConnection.QueryFirstOrDefaultAsync<Attendance>(sqlQuery, new { id });
 
-                return activityManagement;
+                return attendance;
             }
             catch (Exception ex)
             {
@@ -91,15 +94,14 @@
             }
         }
 
-        public async ValueTask<bool> UpdateAsync(ActivityManagement activityManagement)
+        public async ValueTask<bool> UpdateAsync(Attendance activityManagement)
         {
             try
             {
                 await sqlConnection.OpenAsync();
-                string sqlQuery = $"update Accident_Records set  " +
-                    $"Time=@Time , Task = @Task" +
-                    $"Led_by=@Led_by" +
-                    $"where id=@id;";
+                string sqlQuery = "update Attendance set  " +
+                    "ChId=@ChId,SignIn_Time=@SignIn_Time,SignOut_Time=@SignOut_Time " +
+                    "where Id=@Id;";
 
                 int result = await sqlConnection.ExecuteAsync(sqlQuery, activityManagement);
 
