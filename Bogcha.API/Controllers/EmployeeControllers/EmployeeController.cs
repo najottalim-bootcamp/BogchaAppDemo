@@ -1,9 +1,4 @@
-﻿using Bogcha.Services.Services.EmployeeServices;
-using Bogcha.Services.Services.RevenueServices;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-
-namespace Bogcha.API.Controllers.EmployeeControllers;
+﻿namespace Bogcha.API.Controllers.EmployeeControllers;
 
 [Route("api/[controller]/[action]")]
 [ApiController]
@@ -11,13 +6,13 @@ public class EmployeeController : ControllerBase
 {
     private IEmployeeService _employee;
 
-    public EmployeeController(IEmployeeService employee) 
+    public EmployeeController(IEmployeeService employee)
     {
         _employee = employee;
     }
 
 
-  
+
     [HttpGet]
     public async ValueTask<IActionResult> GetAllEmployeesAsync()
     {

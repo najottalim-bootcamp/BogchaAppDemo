@@ -1,14 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Bogcha.DataAccess.Repositories.AttendanceRepositories
+﻿namespace Bogcha.DataAccess.Repositories.AttendanceRepositories
 {
-    public class AttendanceRepository:Database
+    public class AttendanceRepository : Database
     {
-        public AttendanceRepository(string connectionString) : base(connectionString){ }
+        public AttendanceRepository(string connectionString) : base(connectionString) { }
         public async ValueTask<bool> CreateAsync(Attendance attendance)
         {
 

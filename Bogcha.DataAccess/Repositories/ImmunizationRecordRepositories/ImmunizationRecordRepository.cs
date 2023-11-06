@@ -1,12 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Bogcha.DataAccess.Repositories.ImmunizationRecordRepositories
+﻿namespace Bogcha.DataAccess.Repositories.ImmunizationRecordRepositories
 {
     public class ImmunizationRecordRepository : Database, IImmunizationRecordRepository
     {

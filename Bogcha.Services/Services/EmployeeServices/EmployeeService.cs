@@ -1,12 +1,4 @@
-﻿using Bogcha.DataAccess.Repositories.EmployeeRepositories;
-using Microsoft.Identity.Client;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Bogcha.Services.Services.EmployeeServices;
+﻿namespace Bogcha.Services.Services.EmployeeServices;
 
 public class EmployeeService : IEmployeeService
 {
@@ -14,7 +6,7 @@ public class EmployeeService : IEmployeeService
 
     public EmployeeService(IEmployeeRepository employee)
     {
-        _employee = employee;   
+        _employee = employee;
     }
     public async ValueTask<bool> CreateAsync(Employee entity)
     {
@@ -23,21 +15,21 @@ public class EmployeeService : IEmployeeService
 
     public async ValueTask<bool> DeleteAsync(string id)
     {
-       return await _employee.DeleteAsync(id);
+        return await _employee.DeleteAsync(id);
     }
 
     public async ValueTask<IEnumerable<Employee>> GetAllAsync()
     {
-        return await  _employee.GetAllAsync(); 
+        return await _employee.GetAllAsync();
     }
 
-    public async  ValueTask<Employee> GetByIdAsync(string id)
+    public async ValueTask<Employee> GetByIdAsync(string id)
     {
         return await _employee.GetByIdAsync(id);
     }
 
     public async ValueTask<bool> UpdateAsync(Employee entity)
     {
-        return await _employee.UpdateAsync(entity);   
+        return await _employee.UpdateAsync(entity);
     }
 }

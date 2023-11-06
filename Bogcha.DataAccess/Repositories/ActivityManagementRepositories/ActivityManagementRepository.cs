@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Bogcha.DataAccess.Repositories.ActivityManagementRepositories
+﻿namespace Bogcha.DataAccess.Repositories.ActivityManagementRepositories
 {
     public class ActivityManagementRepository : Database, IActivityManagementRepository
     {
@@ -85,7 +79,7 @@ namespace Bogcha.DataAccess.Repositories.ActivityManagementRepositories
                 await sqlConnection.OpenAsync();
                 string sqlQuery = $"Select * from ActivityManagement where Id=@id;";
 
-                ActivityManagement activityManagement = await sqlConnection.QueryFirstOrDefaultAsync<ActivityManagement>(sqlQuery,new { id } );
+                ActivityManagement activityManagement = await sqlConnection.QueryFirstOrDefaultAsync<ActivityManagement>(sqlQuery, new { id });
 
                 return activityManagement;
             }
@@ -110,7 +104,7 @@ namespace Bogcha.DataAccess.Repositories.ActivityManagementRepositories
                     "Led_by=@Led_by " +
                     "where Id=@Id;";
 
-                int result = await sqlConnection.ExecuteAsync(sqlQuery,  activityManagement);
+                int result = await sqlConnection.ExecuteAsync(sqlQuery, activityManagement);
 
                 return result > 0;
 

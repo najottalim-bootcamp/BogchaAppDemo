@@ -1,7 +1,4 @@
 
-using Bogcha.DataAccess.Repositories.ActivityManagementRepositories;
-using Bogcha.Services.Services.ActivityManagementServices;
-
 var builder = WebApplication.CreateBuilder(args);
 
 //Add services to the container.
