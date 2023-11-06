@@ -10,5 +10,7 @@ global using Bogcha.Services.Services.WithdrawalServices;
 global using Bogcha.Services.Services.RevenueServices;
 global using Bogcha.Services.Services.MealPlanServices;
 global using Bogcha.Services.Services.MenuManagementServices;
+global using Bogcha.API.Configurations;
+
 global using Bogcha.Domain.Entities;
 global using Microsoft.AspNetCore.Mvc;
