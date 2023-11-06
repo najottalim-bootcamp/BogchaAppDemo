@@ -1,5 +1,5 @@
 
-﻿namespace Bogcha.API.Controllers.ActivityManagementControllers;
+namespace Bogcha.API.Controllers.ActivityManagementControllers;
 
 [Route("api/[controller]/[action]")]
 [ApiController]
