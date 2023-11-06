@@ -1,4 +1,7 @@
 
+using Bogcha.DataAccess.Repositories.ActivityManagementRepositories;
+using Bogcha.Services.Services.ActivityManagementServices;
+
 var builder = WebApplication.CreateBuilder(args);
 
 //Add services to the container.
@@ -18,7 +21,7 @@ builder.Services.AddScoped<IEmployeeRepository>(x => new EmployeeRepository(conn
 builder.Services.AddScoped<IMealPlanRepository>(x => new MealPlanRepository(connectionString));
 builder.Services.AddScoped<IMenuManagementRepository>(x => new MenuManagementRepository(connectionString));
 builder.Services.AddScoped<IStudentRepository>(x => new StudentRepository(connectionString));
-
+builder.Services.AddScoped<IActivityManagementRepository>(x=>new ActivityManagementRepository(connectionString));
 
 
 //adding services
@@ -29,6 +32,7 @@ builder.Services.AddScoped<IMealPlanService, MealPlanService>();
 builder.Services.AddScoped<IMenuManagementService, MenuManagementService>();
 builder.Services.AddScoped<IEmployeeService, EmployeeService>();
 builder.Services.AddScoped<IStudentService, StudentService>();
+builder.Services.AddScoped<IActivityManagementService, ActivityManagementService>();
 var app = builder.Build();
 
 

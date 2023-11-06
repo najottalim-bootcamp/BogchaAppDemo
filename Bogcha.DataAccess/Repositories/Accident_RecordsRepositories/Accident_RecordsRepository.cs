@@ -79,7 +79,7 @@
                 await sqlConnection.OpenAsync();
                 string sqlQuery = $"Select * from Accident_Records where AccNo=@id;";
 
-                Accident_Records accident_Records = await sqlConnection.QueryFirstOrDefaultAsync<Accident_Records>(sqlQuery, new { id });
+                Accident_Records accident_Records = await sqlConnection.QueryFirstOrDefaultAsync<Accident_Records>(sqlQuery, new { id } );
 
                 return accident_Records;
             }
@@ -94,17 +94,17 @@
             }
         }
 
-        public async ValueTask<bool> UpdateAsync(int id, Accident_Records accident_Records)
+        public async ValueTask<bool> UpdateAsync( Accident_Records accident_Records)
         {
             try
             {
                 await sqlConnection.OpenAsync();
-                string sqlQuery = $"update Accident_Records set @AccNo, " +
-                    $"@ChId , @AccidentDate," +
-                    $"@TypeOfAccident,@Location," +
-                    $"@FirstAid where AccNo;";
+                string sqlQuery = $"update Accident_Records set " +
+                    $"ChId=@ChId ,AccidentDate= @AccidentDate," +
+                    $"TypeOfAccident = @TypeOfAccident,Location =  @Location," +
+                    $"FirstAid=@FirstAid where AccNo=@AccNo;";
 
-               int result = await sqlConnection.ExecuteAsync(sqlQuery,new { accident_Records, id });
+               int result = await sqlConnection.ExecuteAsync(sqlQuery, accident_Records);
 
                 return result > 0;
 
