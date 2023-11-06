@@ -1,3 +1,4 @@
+
 var builder = WebApplication.CreateBuilder(args);
 
 //Add services to the container.
@@ -7,25 +8,9 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-string connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+builder.ConfigureDataAccess();
+builder.ConfigureInfrastructure();
 
-//adding repositories
-builder.Services.AddScoped<IRevenueRepository>(x => new RevenueRepository(connectionString));
-builder.Services.AddScoped<IWithdrawalRepository>(x => new WithdrawalRepository(connectionString));
-builder.Services.AddScoped<IEmployeeRepository>(x => new EmployeeRepository(connectionString));
-builder.Services.AddScoped<IMealPlanRepository>(x => new MealPlanRepository(connectionString));
-builder.Services.AddScoped<IMenuManagementRepository>(x => new MenuManagementRepository(connectionString));
-
-
-
-
-//adding services
-builder.Services.AddScoped<IRevenueService, RevenueService>();
-builder.Services.AddScoped<IWithdrawalService, WithdrawalService>();
-builder.Services.AddScoped<IMealPlanService, MealPlanService>();
-builder.Services.AddScoped<IMenuManagementRepository, MenuManagementService>();
-builder.Services.AddScoped<IEmployeeService, EmployeeService>();
-builder.Services.AddScoped<IStudentService, StudentService>();
 var app = builder.Build();
 
 
