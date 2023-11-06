@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Bogcha.DataAccess.Repositories.StudentRepositories
+namespace Bogcha.Services.DTOs.WithdrawalDtos;
+
+public class UpdateWithdrawalDto
 {
-    internal class SudentRepository
-    {
-    }
+
 }

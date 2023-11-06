@@ -1,6 +1,6 @@
 
-
-using Bogcha.Services.Services.RevenueServices;
+using Bogcha.DataAccess.Repositories.ActivityManagementRepositories;
+using Bogcha.Services.Services.ActivityManagementServices;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -11,16 +11,12 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-string connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 
-//adding repositories
-builder.Services.AddScoped<IRevenueRepository>(x => new RevenueRepository(connectionString));
-builder.Services.AddScoped<IWithdrawalRepository>(x => new WithdrawalRepository(connectionString));
+builder.ConfigureDataAccess();
+builder.ConfigureInfrastructure();
 
-
-//adding services
-builder.Services.AddScoped<IRevenueService, RevenueService>();
 var app = builder.Build();
+
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())

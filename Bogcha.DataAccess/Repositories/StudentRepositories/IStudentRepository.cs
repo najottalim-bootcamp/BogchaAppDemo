@@ -1,12 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿namespace Bogcha.DataAccess.Repositories.StudentRepositories;
 
-namespace Bogcha.DataAccess.Repositories.StudentRepositories
+public interface IStudentRepository
 {
-    internal interface IStudentRepository
-    {
-    }
+    public ValueTask<bool> CreateAsync(Student entity);
+
+    public ValueTask<bool> UpdateAsync(Student entity);
+
+    public ValueTask<bool> DeleteAsync(string id);
+
+    public ValueTask<Student> GetByIdAsync(string id);
+    public ValueTask<IEnumerable<Student>> GetAllAsync();
+
 }

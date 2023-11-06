@@ -1,12 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿namespace Bogcha.DataAccess.Repositories.ParentsRepositories;
 
-namespace Bogcha.DataAccess.Repositories.ParentsRepositories
+public interface IParentRepository
 {
-    internal interface IParentRepository
-    {
-    }
+    public ValueTask<bool> CreateAsync(Parents entity);
+
+    public ValueTask<bool> UpdateAsync(Parents entity);
+
+    public ValueTask<bool> DeleteAsync(string id);
+
+    public ValueTask<Parents> GetByIdAsync(string id);
+    public ValueTask<IEnumerable<Parents>> GetAllAsync();
 }

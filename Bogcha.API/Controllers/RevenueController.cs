@@ -1,8 +1,4 @@
-﻿
-
-using Bogcha.Services.Services.RevenueServices;
-
-namespace Bogcha.API.Controllers
+﻿namespace Bogcha.API.Controllers
 {
     [Route("api/[controller]/[action]")]
     [ApiController]

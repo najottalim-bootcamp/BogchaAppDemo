@@ -1,19 +1,20 @@
-﻿namespace Bogcha.DataAccess.Repositories.EmployeeRepositories;
+﻿namespace Bogcha.DataAccess.Repositories.StudentRepositories;
 
-public class EmployeeRepository : Database, IEmployeeRepository
+public class StudentRepository : Database, IStudentRepository
 {
-    public EmployeeRepository(string connectionString) : base(connectionString) { }
-
-    public async ValueTask<bool> CreateAsync(Employee entity)
+    public StudentRepository(string connectionString) : base(connectionString)
     {
+    }
 
+    public async ValueTask<bool> CreateAsync(Student entity)
+    {
         try
         {
             await sqlConnection.OpenAsync();
 
-            string Query = "Insert into Employee values(@EmpId,@EmpFName,@EmpLName,@Passport," +
-                "@DoB,@Gender,@Salary,@EmployedDate,@StrAddress,@Apt,@City,@Region," +
-                "@ZipCode,@PhoneNo,@Email,@EmpType,@Department)";
+            string Query = "Insert into Student values(@CHId,@ChFName,@ChLName,@Gender," +
+                "@ChDoB,@RegisteredDate,@EnrollmentDate,@StAddress,@City,@Region,@ZipCode," +
+                "@PhyImpairment,@AllergyType,@AllergySymptom)";
 
             int result = await sqlConnection.ExecuteAsync(Query, entity);
             return result > 0;
@@ -27,8 +28,6 @@ public class EmployeeRepository : Database, IEmployeeRepository
         {
             await sqlConnection.CloseAsync();
         }
-
-
     }
 
     public async ValueTask<bool> DeleteAsync(string id)
@@ -36,7 +35,7 @@ public class EmployeeRepository : Database, IEmployeeRepository
         try
         {
             await sqlConnection.OpenAsync();
-            string Query = "Delete from Employee where Empid =@id";
+            string Query = "Delete from Student where CHId =@id";
 
             var command = new SqlCommand(Query, sqlConnection);
             command.Parameters.AddWithValue("@id", id);
@@ -53,40 +52,38 @@ public class EmployeeRepository : Database, IEmployeeRepository
         {
             await sqlConnection.CloseAsync();
         }
-
     }
 
-    public async ValueTask<IEnumerable<Employee>> GetAllAsync()
+    public async ValueTask<IEnumerable<Student>> GetAllAsync()
     {
         try
         {
             await sqlConnection.OpenAsync();
-            string Query = "Select * from Employee";
+            string Query = "Select * from Student";
 
-            IEnumerable<Employee> employees = await sqlConnection.QueryAsync<Employee>(Query);
-            return employees;
+            IEnumerable<Student> student = await sqlConnection.QueryAsync<Student>(Query);
+            return student;
         }
         catch (Exception ex)
         {
             await Console.Out.WriteLineAsync(ex.Message);
-            return Enumerable.Empty<Employee>();
+            return Enumerable.Empty<Student>();
         }
         finally
         {
             await sqlConnection.CloseAsync();
         }
-
     }
 
-    public async ValueTask<Employee> GetByIdAsync(string id)
+    public async ValueTask<Student> GetByIdAsync(string id)
     {
         try
         {
             await sqlConnection.OpenAsync();
-            string Query = "Select * from Employee Where EmpId = @id ";
+            string Query = "Select * from Student Where CHId = @id ";
 
-            Employee employee = await sqlConnection.QueryFirstOrDefaultAsync<Employee>(Query, new { id = id });
-            return employee;
+            Student student = await sqlConnection.QueryFirstOrDefaultAsync<Student>(Query, new { id = id });
+            return student;
         }
         catch (Exception ex)
         {
@@ -99,17 +96,17 @@ public class EmployeeRepository : Database, IEmployeeRepository
         }
     }
 
-    public async ValueTask<bool> UpdateAsync(Employee entity)
+    public async ValueTask<bool> UpdateAsync(Student entity)
     {
         try
         {
             await sqlConnection.OpenAsync();
-            string Query = "Update Employee set " +
-                "EmpFName=@EmpFName,EmpLName=@EmpLName,Passport=@Passport," +
-                "DoB=@DoB,Gender=@Gender,Salary=@Salary,EmployedDate=@EmployedDate,StrAddress=@StrAddress,Apt=@Apt,City=@City," +
-                "Region=@Region,ZipCode=@ZipCode,PhoneNo=@PhoneNo,Email=@Email," +
-                "EmpType=@EmpType,Department=@Department" +
-                " where EmpId =@EmpId ";
+            string Query = "Update Student set " +
+                "ChFName=@ChFName,ChLName=@ChLName,Gender=@Gender," +
+                "ChDoB=@ChDoB,RegisteredDate=@RegisteredDate,EnrollmentDate=@EnrollmentDate," +
+                "StAddress=@StAddress,City=@City,Region=@Region,ZipCode=@ZipCode," +
+                "PhyImpairment=@PhyImpairment,AllergyType=@AllergyType,AllergySymptom=@AllergySymptom" +
+                " where CHId =@CHId ";
 
             int result = await sqlConnection.ExecuteAsync(Query, entity);
             return result > 0;
@@ -126,12 +123,6 @@ public class EmployeeRepository : Database, IEmployeeRepository
         }
     }
 }
-
-
-
-
-
-
 
 
 
