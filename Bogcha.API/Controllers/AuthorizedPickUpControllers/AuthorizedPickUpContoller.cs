@@ -34,9 +34,9 @@ namespace Bogcha.API.Controllers.AuthorizedPickUpControllers
             return Ok(res);
         }
         [HttpPut]
-        public async ValueTask<IActionResult> UpdateStudentAsync(string ChId, AuthorizedPickUp str)
+        public async ValueTask<IActionResult> UpdateStudentAsync(AuthorizedPickUp str)
         {
-            var res = await _authorizedPickUp.UpdateAsync(ChId, str);
+            var res = await _authorizedPickUp.UpdateAsync(str);
             return Ok(res);
         }
         [HttpDelete]
