@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Bogcha.Domain.Entities;
+﻿namespace Bogcha.Domain.Entities;
 
 public class Student
 {
@@ -18,9 +12,9 @@ public class Student
     public string StAddress { get; set; }
     public string City { get; set; }
     public string Region { get; set; }
-    public string ZipeCode { get; set; }
-    public string PhyImpairment { get; set; }
-    public string AllergyType { get; set; }
-    public string AllergySymptom { get; set; }
+    public string? ZipCode { get; set; }
+    public string? PhyImpairment { get; set; }
+    public string? AllergyType { get; set; }
+    public string? AllergySymptom { get; set; }
 
 }
