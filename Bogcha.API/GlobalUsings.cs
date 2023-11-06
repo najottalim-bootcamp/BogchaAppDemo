@@ -12,6 +12,7 @@ global using Bogcha.Services.Services.MenuManagementServices;
 global using Bogcha.Services.Services.ParentsServices;
 global using Bogcha.Services.Services.RevenueServices;
 global using Bogcha.Services.Services.StudentServices;
+global using Bogcha.Services.Services.AuthorizedPickUpServices;
 global using Bogcha.Services.Services.WithdrawalServices;
 global using Microsoft.AspNetCore.Mvc;
 
@@ -35,3 +36,4 @@ global using Bogcha.Services.Services.AssessmentRecNurseryServices;
 global using Bogcha.Services.Services.AssessmentRecPreKServices;
 global using Bogcha.Services.Services.ActivityManagementServices;
 
+global using Bogcha.DataAccess.Repositories.AuthorizedPickUpRepositories;
