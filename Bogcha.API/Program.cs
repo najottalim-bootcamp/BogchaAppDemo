@@ -1,10 +1,15 @@
 
+using Bogcha.Services.Services.Common.AutoMapper;
+
 var builder = WebApplication.CreateBuilder(args);
 
 //Add services to the container.
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+builder.Services.AddAutoMapper(typeof(ApplicationProfile));
+
+
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
