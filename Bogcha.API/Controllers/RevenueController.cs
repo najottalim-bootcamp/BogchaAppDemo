@@ -1,4 +1,6 @@
-﻿namespace Bogcha.API.Controllers;
+﻿using Microsoft.AspNetCore.Http.Extensions;
+
+namespace Bogcha.API.Controllers;
 
 [Route("api/[controller]/[action]")]
 [ApiController]
@@ -11,33 +13,47 @@ public class RevenueController : ControllerBase
         this.revenueService = revenueService;
     }
     [HttpGet]
-    public async ValueTask<IActionResult> GetAllRevenuesAsync() 
+    public async ValueTask<IActionResult> GetAllRevenuesAsync()
     {
-        var res =await revenueService.GetAllAsync();
-        return Ok(res);
+        IEnumerable<ViewRevenueDto> viewRevenues = await revenueService.GetAllRevenuesAsync();
+
+        return Ok(viewRevenues);
     }
     [HttpGet]
-    public async ValueTask<IActionResult> GetRevenueByIdAsync(string ChId) 
+    public async ValueTask<IActionResult> GetRevenueByIdAsync(string ChId)
     {
-        var res = await revenueService.GetByIdAsync(ChId);
-        return Ok(res);
+        ViewRevenueDto viewRevenue = await revenueService.GetRevenueByIdAsync(ChId);
+
+        if (viewRevenue is null)
+            return NotFound(ChId);
+
+        return Ok(viewRevenue);
     }
     [HttpPost]
-    public async ValueTask<IActionResult> CreateRevenueAsync(Revenue revenue)
+    public async ValueTask<IActionResult> CreateRevenueAsync(CreateRevenueDto revenue)
     {
-        var res = await revenueService.CreateAsync(revenue);
-        return Ok(res);
+        bool result = await revenueService.CreateAsync(revenue);
+        if (result)
+        {
+            return Created(Request.GetDisplayUrl(), revenue);
+        }
+        return BadRequest(revenue);
     }
     [HttpPut]
-    public async ValueTask<IActionResult> UpdateRevenueAsync(Revenue revenue)
+    public async ValueTask<IActionResult> UpdateRevenueAsync(string chId, UpdateRevenueDto revenue)
     {
-        var res = await revenueService.UpdateAsync(revenue);
-        return Ok(res);
+        bool result = await revenueService.UpdateAsync(chId, revenue);
+
+        if(result)
+            return NoContent();
+        return BadRequest(revenue);
     }
     [HttpDelete]
     public async ValueTask<IActionResult> DeleteRevenueAsync(string ChId)
     {
-        var res = await revenueService.DeleteAsync(ChId);
-        return Ok(res);
+        bool result = await revenueService.DeleteAsync(ChId);
+        if(result)
+            return NoContent();
+        return BadRequest(result);
     }
 }
