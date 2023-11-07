@@ -1,30 +1,34 @@
-﻿namespace Bogcha.DataAccess.Repositories.RegularHealthCheckRepositories;
+namespace Bogcha.DataAccess.Repositories.RegularHealthCheckRepositories;
 
 public class RegularHealthCheckRepository:Database,IRegularHealthCheckRepository
 {
+
+    
+
     public RegularHealthCheckRepository(string connectionString) : base(connectionString) { }
 
 
     public async ValueTask<bool> CreateAsync(RegularHealthCheck regularHealthCheck)
+
     {
 
-        try
-        {
-            await sqlConnection.OpenAsync();
-            string sqlQuery = $"Insert into RegularHeathCheck values( " +
-                $"@ChId,@checKupDate,@Symptom,@ActionRequired) SELECT CAST(SCOPE_IDENTITY() as int)";
+            try
+            {
+                await sqlConnection.OpenAsync();
+                string sqlQuery = "Insert into RegularHealthCheck values(" +
+                    "@ChId,@checKupDate,@Symptom,@ActionRequired) SELECT CAST(SCOPE_IDENTITY() as int)";
 
-            int result = await sqlConnection.ExecuteAsync(sqlQuery, regularHealthCheck);
-            return result > 0;
-        }
-        catch (Exception ex)
-        {
-            return false;
-        }
-        finally
-        {
-            await sqlConnection.CloseAsync();
-        }
+                int result = await sqlConnection.ExecuteAsync(sqlQuery, regularHealthCheck);
+                return result > 0;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+            finally
+            {
+                await sqlConnection.CloseAsync();
+            }
 
 
     }
@@ -73,47 +77,52 @@ public class RegularHealthCheckRepository:Database,IRegularHealthCheckRepository
 
     public async ValueTask<RegularHealthCheck> GetByIdAsync(int id)
     {
-        try
-        {
-            await sqlConnection.OpenAsync();
-            string sqlQuery = $"Select * from RegularHealthCheck where Id=@id;";
 
-            RegularHealthCheck regularHealthCheck = await sqlConnection.QueryFirstOrDefaultAsync<RegularHealthCheck>(sqlQuery, new { id });
+            try
+            {
+                await sqlConnection.OpenAsync();
+                string sqlQuery = "Select * from RegularHealthCheck where Id=@id;";
 
-            return regularHealthCheck;
-        }
-        catch (Exception ex)
-        {
-            await Console.Out.WriteLineAsync(ex.Message);
-            return null;
-        }
-        finally
-        {
-            await sqlConnection.CloseAsync();
-        }
+                RegularHealthCheck regularHealthCheck = await sqlConnection.QueryFirstOrDefaultAsync<RegularHealthCheck>(sqlQuery, new { id });
+
+                return regularHealthCheck;
+            }
+            catch (Exception ex)
+            {
+                await Console.Out.WriteLineAsync(ex.Message);
+                return null;
+            }
+            finally
+            {
+                await sqlConnection.CloseAsync();
+            }
+
+         
     }
 
     public async ValueTask<bool> UpdateAsync(RegularHealthCheck regularHealthCheck)
     {
-        try
-        {
-            await sqlConnection.OpenAsync();
-            string sqlQuery = "update RegularHealthCheck set  " +
-                "ChId=@ChId,checKupDate=@checKupDate,Symptom=@Symptom,ActionRequired = @ActionRrequired" +
-                "where Id=@Id;";
+     
+            try
+            {
+                await sqlConnection.OpenAsync();
+                string sqlQuery = "update RegularHealthCheck set  " +
+                    "ChId=@ChId,checKupDate=@checKupDate,Symptom=@Symptom,ActionRequired = @ActionRequired " +
+                    "where Id=@Id;";
 
-            int result = await sqlConnection.ExecuteAsync(sqlQuery, regularHealthCheck);
+                int result = await sqlConnection.ExecuteAsync(sqlQuery, regularHealthCheck);
 
-            return result > 0;
+                return result > 0;
 
-        }
-        catch (Exception ex)
-        {
-            return false;
-        }
-        finally
-        {
-            await sqlConnection.CloseAsync();
-        }
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+            finally
+            {
+                await sqlConnection.CloseAsync();
+            }
+
     }
 }
