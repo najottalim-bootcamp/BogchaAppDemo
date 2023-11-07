@@ -1,6 +1,9 @@
-﻿namespace Bogcha.Services.DTOs.RevenueDtos;
-public class UpdateRevenueDto
+﻿namespace Bogcha.Services.Services.RevenueServices.RevenueDtos;
+
+public class CreateRevenueDto
 {
+    [RegularExpression(@"^[A-Z]{2}[0-9]{3}$", ErrorMessage = "ChId must match the format 'XX999'")]
+    public string ChId { get; set; }
     public decimal? RegistrationFee { get; set; }
     public decimal? Term1 { get; set; }
     public decimal? Term2 { get; set; }

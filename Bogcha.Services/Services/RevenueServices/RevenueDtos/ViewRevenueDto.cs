@@ -1,4 +1,4 @@
-﻿namespace Bogcha.Services.DTOs.RevenueDtos;
+﻿namespace Bogcha.Services.Services.RevenueServices.RevenueDtos;
 public class ViewRevenueDto
 {
     public string CHId { get; set; }
