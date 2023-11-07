@@ -1,7 +1,4 @@
-﻿using AutoMapper;
-using Bogcha.Infrastructure.Services.RevenueServices.RevenueDtos;
-
-namespace Bogcha.Infrastructure.Services.RevenueServices;
+﻿namespace Bogcha.Infrastructure.Services.RevenueServices;
 
 public class RevenueService : IRevenueService
 {
@@ -37,6 +34,10 @@ public class RevenueService : IRevenueService
         var students = await _studentRepository.GetAllAsync();
         var revenues = await _revenueRepository.GetAllAsync();
 
+        if(!(students.Any() && revenues.Any()))
+        {
+            return Enumerable.Empty<ViewRevenueDto>();
+        }
         var revenueViews = revenues.Join(students,
             rev => rev.ChId,
             st => st.CHId,
