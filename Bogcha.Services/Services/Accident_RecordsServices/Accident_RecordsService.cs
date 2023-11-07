@@ -44,7 +44,6 @@
                 (accident_rec, student) => new ViewAccident_RecordsDto()
                 {
                     AccNo = accident_rec.AccNo,
-                    ChID = accident_rec.ChId,
                     ChFName = student.ChFName,
                     ChLName = student.ChLName,
                     AccidentDate = accident_rec.AccidentDate,
@@ -67,7 +66,6 @@
             ViewAccident_RecordsDto viewAccident_records =  new ViewAccident_RecordsDto()
                 {
                     AccNo = accident_rec.AccNo,
-                    ChID = accident_rec.ChId,
                     ChFName = student.ChFName,
                     ChLName = student.ChLName,
                     AccidentDate = accident_rec.AccidentDate,
