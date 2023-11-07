@@ -8,6 +8,7 @@ global using Bogcha.DataAccess.Repositories.AuthorizedPickUpRepositories;
 global using Bogcha.DataAccess.Repositories.BlackListRepositories;
 global using Bogcha.DataAccess.Repositories.ClassInfoRepositories;
 global using Bogcha.DataAccess.Repositories.EmployeeRepositories;
+global using Bogcha.DataAccess.Repositories.ImmunizationRecordRepositories;
 global using Bogcha.DataAccess.Repositories.MealPlanRepositories;
 global using Bogcha.DataAccess.Repositories.MenuManagementRepositories;
 global using Bogcha.DataAccess.Repositories.ParentsRepositories;
