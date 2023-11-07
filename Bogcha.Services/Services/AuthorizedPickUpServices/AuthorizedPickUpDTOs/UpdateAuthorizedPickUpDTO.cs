@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 namespace Bogcha.Infrastructure.Services.AuthorizedPickUpServices.AuthorizedPickUpDTOs;
 public class UpdateAuthorizedPickUpDTO
 {
+    public string ChId { get; set; }
     public string AuthFName { get; set; }
     public string AuthLName { get; set; }
     public string gender { get; set; }
