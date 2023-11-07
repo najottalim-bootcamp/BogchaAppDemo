@@ -10,5 +10,5 @@ public interface IStudentRepository
 
     public ValueTask<Student> GetByIdAsync(string id);
     public ValueTask<IEnumerable<Student>> GetAllAsync();
-
+    T Map<T>(Bogcha.Infrastructure.Services.StudentServices.StudensDtos.CreateStudentsDto viewEmployeeDto);
 }
