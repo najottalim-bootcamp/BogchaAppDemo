@@ -1,3 +1,4 @@
+using Bogcha.Infrastructure.Services.BlackListServices;
 
 ﻿using Bogcha.Infrastructure.Services.BlackListServices;
 
@@ -26,6 +27,6 @@ public static class InfrastructureLayerConfiguration
         builder.Services.AddScoped<IRegularHealthCheckService,RegularHealthCheckService>();
 
         builder.Services.AddScoped<IBlackListService, BlackListService>();
-
+        builder.Services.AddScoped<IImmunizationRecordService, ImmunizationRecordService>();
     }
 }

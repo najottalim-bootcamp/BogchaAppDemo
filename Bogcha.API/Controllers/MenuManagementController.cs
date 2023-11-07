@@ -1,44 +1,59 @@
-﻿namespace Bogcha.API.Controllers;
+﻿
+namespace Bogcha.API.Controllers;
 
 [Route("api/[controller]/[action]")]
 [ApiController]
 public class MenuManagementController : ControllerBase
 {
-    private readonly IMenuManagementService menuManagementService;
+    private readonly IMenuManagementService _menuManagementService;
 
     public MenuManagementController(IMenuManagementService menuManagementService)
     {
-        this.menuManagementService = menuManagementService;
+        _menuManagementService = menuManagementService;
     }
     [HttpGet]
-    public async ValueTask<IActionResult> Get()
+    public async ValueTask<IActionResult> GetAllMenuManagementAsync()
     {
-        var res = await menuManagementService.GetAllAsync();
-        return Ok(res);
+        IEnumerable<ViewMenuManagementDto> menuManagementDtos = await _menuManagementService.GetAllMenusAsync();
+        return Ok(menuManagementDtos);
     }
     [HttpGet("{id}")]
-    public async ValueTask<IActionResult> Get(string id)
+    public async ValueTask<IActionResult> GetMenuManagementById(string id)
     {
-        var res = await menuManagementService.GetByIdAsync(id);
-        return Ok(res);
+        ViewMenuManagementDto menuManagementDto = await _menuManagementService.GetMenuManagementByIdAsync(id);
+        if(menuManagementDto is null)
+        {
+            return BadRequest(id);
+        }
+        return Ok(menuManagementDto);
     }
     [HttpPost]
-    public async ValueTask<IActionResult> Post([FromBody] MenuManagement value)
+    public async ValueTask<IActionResult> CreateMenuManagementAsync(CreateMenuManagementDto createMenuManagement)
     {
-        var res = await menuManagementService.CreateAsync(value);
-        return Ok(res);
+        bool result = await _menuManagementService.CreateMenuManagement(createMenuManagement);
+        if(result)
+        {
+            return Created(Request.GetDisplayUrl(), createMenuManagement);
+        }
+        return BadRequest();
     }
     [HttpPut("{id}")]
-    public async ValueTask<IActionResult> Put([FromBody] MenuManagement value)
+    public async ValueTask<IActionResult> UpdateMenuManagementAsync(string id, UpdateMenuManagementDto updateMenu)
     {
-        var res = await menuManagementService.UpdateAsync(value);
-        return Ok(res);
+        bool result = await _menuManagementService.UpdateMenuManagementAsync(id, updateMenu);
+        if( result)
+        {
+            return Ok(updateMenu);
+        }
+        return BadRequest();
     }
     [HttpDelete("{id}")]
-    public async ValueTask<IActionResult> Delete(string id)
+    public async ValueTask<IActionResult> DeleteMenuManagementAsync(string id)
     {
-        var res = await menuManagementService.DeleteAsync(id);
-        return Ok(res);
+        bool result = await _menuManagementService.DeleteMenuManagementAsync(id);
+        if(result)
+            return Ok(result);
+        return BadRequest();
     }
 
 }

@@ -2,34 +2,46 @@
 
 public class MealPlanService : IMealPlanService
 {
-    private readonly IMealPlanRepository mealPlanRepository;
+    private readonly IMealPlanRepository _mealPlanRepository;
+    private readonly IMapper _mapper;
 
-    public MealPlanService(IMealPlanRepository mealPlanRepository)
+    public MealPlanService(IMealPlanRepository mealPlanRepository, IMapper mapper)
     {
-        this.mealPlanRepository = mealPlanRepository;
+        _mealPlanRepository = mealPlanRepository;
+        _mapper = mapper;
     }
-    public async ValueTask<bool> CreateAsync(MealPlan mealPlan)
+    public async ValueTask<MealPlan> GetMealPlanByIdAsync(string mealNo)
     {
-        return await mealPlanRepository.CreateAsync(mealPlan);
+        MealPlan? mealPlan = await _mealPlanRepository.GetByIdAsync(mealNo);
+        return mealPlan;
     }
+    public async ValueTask<IEnumerable<MealPlan>> GetAllMealPlansAsync()
+    {
+        IEnumerable<MealPlan> mealPlans = await _mealPlanRepository.GetAllAsync();
+        return mealPlans;
+    }
+    public async ValueTask<bool> CreateMealPlanAsync(CreateMealPlanDto mealPlanDto)
+    {
+        MealPlan mealPlan = _mapper.Map<MealPlan>(mealPlanDto);
+        bool result = await _mealPlanRepository.CreateAsync(mealPlan);
+        return result;
+    }
+    public async ValueTask<bool> UpdateMealPlanAsync(string mealNo, UpdateMealPlanDto updateMealPlanDto)
+    {
+        MealPlan mealPlan = await _mealPlanRepository.GetByIdAsync(mealNo);
+        if (mealPlan is null)
+        {
+            return false;
+        }
+        mealPlan = _mapper.Map<MealPlan>(updateMealPlanDto);
+        mealPlan.MealNo = mealNo;
 
-    public async ValueTask<bool> DeleteAsync(string MealNo)
-    {
-        return await mealPlanRepository.DeleteAsync(MealNo);
+        bool result = await _mealPlanRepository.UpdateAsync(mealPlan);
+        return result;
     }
-
-    public ValueTask<IEnumerable<MealPlan>> GetAllAsync()
+    public async ValueTask<bool> DeleteMealPlanAsync(string mealNo)
     {
-        return mealPlanRepository.GetAllAsync();
-    }
-
-    public ValueTask<MealPlan> GetByIdAsync(string MealNo)
-    {
-        return mealPlanRepository.GetByIdAsync(MealNo);
-    }
-
-    public ValueTask<bool> UpdateAsync(MealPlan mealPlan)
-    {
-        return mealPlanRepository.UpdateAsync(mealPlan);
+        bool result = await _mealPlanRepository.DeleteAsync(mealNo);
+        return result;
     }
 }
