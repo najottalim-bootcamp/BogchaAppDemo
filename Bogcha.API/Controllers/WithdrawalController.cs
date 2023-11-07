@@ -4,7 +4,7 @@
 [ApiController]
 public class WithdrawalController : ControllerBase
 {
-    private readonly IWithdrawalService withdrawalService;
+/*    private readonly IWithdrawalService withdrawalService;
 
     public WithdrawalController(IWithdrawalService withdrawalService)
     {
@@ -39,5 +39,5 @@ public class WithdrawalController : ControllerBase
     public async ValueTask<bool> Delete(int id)
     {
         return await withdrawalService.DeleteAsync(id);
-    }
+    }*/
 }

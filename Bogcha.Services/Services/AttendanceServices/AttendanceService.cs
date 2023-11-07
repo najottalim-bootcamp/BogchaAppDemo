@@ -24,7 +24,7 @@ namespace Bogcha.Infrastructure.Services.AttendanceServices
         {
             IEnumerable<Attendance> attendances = await _attendanceService.GetAllAsync();
             IEnumerable<Student> students = await studentService.GetAllAsync();
-            if(!(students.Any() &&  students.Any())) return Enumerable.Empty<ViewAttendanceDto>();
+            if(!(students.Any() &&  att.Any())) return Enumerable.Empty<ViewAttendanceDto>();
             IEnumerable<ViewAttendanceDto> viewAttendanceDtos =
                 attendances.Join(students, attendance => attendance.ChId, student => student.CHId,
                 (attandence, student) => new ViewAttendanceDto{
@@ -59,8 +59,13 @@ namespace Bogcha.Infrastructure.Services.AttendanceServices
 
         public async ValueTask<bool> UpdateAsync(int id,UpdateAttendanceDto UpdateAttendance)
         {
+            Attendance attendances = await _attendanceService.GetByIdAsync(id);
+            
             Attendance attendance = mapper.Map<Attendance>(UpdateAttendance);
             attendance.Id = id;
+            attendance.SignIn_Time=attendances.SignIn_Time;
+            attendance.ChId = attendances.ChId;
+            
             return await _attendanceService.UpdateAsync(attendance);
         }
     }

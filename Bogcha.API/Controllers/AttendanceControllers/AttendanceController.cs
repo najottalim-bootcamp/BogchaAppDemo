@@ -1,4 +1,6 @@
 ﻿
+using Bogcha.Infrastructure.Services.AttendanceServices.AttendanceDto;
+
 namespace Bogcha.API.Controllers.AttendanceControllers
 {
     [Route("api/[controller]/[action]")]
@@ -10,28 +12,28 @@ namespace Bogcha.API.Controllers.AttendanceControllers
         {
             _attendanceService = context;
         }
-        [HttpPost]
+        [HttpGet]
         public async ValueTask<IActionResult> GetAll()
         {
             return Ok(await _attendanceService.GetAllAsync());
         }
-        [HttpPost]
+        [HttpGet("{id}")]
         public async ValueTask<IActionResult> GetById(int id)
         {
             return Ok(await _attendanceService.GetByIdAsync(id));
         }
-        [HttpPost]
-        public async ValueTask<IActionResult> UpdateAsync(Attendance attendance)
+        [HttpPut("{id}")]
+        public async ValueTask<IActionResult> UpdateAsync(int id,UpdateAttendanceDto attendance)
         {
-            return Ok(await _attendanceService.UpdateAsync(attendance));
+            return Ok(await _attendanceService.UpdateAsync(id,attendance));
         }
-        [HttpPost]
+        [HttpDelete("{id}")]
         public async ValueTask<IActionResult> DeleteAsync(int id)
         {
             return Ok(await _attendanceService.DeleteAsync(id));
         }
         [HttpPost]
-        public async ValueTask<IActionResult> CreateAsync(Attendance attendance)
+        public async ValueTask<IActionResult> CreateAsync(CreateAttendanceDto attendance)
         {
             return Ok(await _attendanceService.CreateAsync(attendance));
         }

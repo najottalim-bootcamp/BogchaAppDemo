@@ -12,22 +12,22 @@ public class ActivityManagementController : ControllerBase
     {
         _activityManagement = context;
     }
-    [HttpPost]
+    [HttpGet]
     public async ValueTask<IActionResult> GetAll()
     {
         return Ok(await _activityManagement.GetAllAsync());
     }
-    [HttpPost]
+    [HttpGet("{id}")]
     public async ValueTask<IActionResult> GetById(int id)
     {
         return Ok(await _activityManagement.GetByIdAsync(id));
     }
-    [HttpPost]
-    public async ValueTask<IActionResult> UpdateAsync(ActivityManagement activityManagement)
+    [HttpPut("{id}")]
+    public async ValueTask<IActionResult> UpdateAsync(int id, UpdateActivityManagementDto activityManagement)
     {
-        return Ok(await _activityManagement.UpdateAsync(activityManagement));
+        return Ok(await _activityManagement.UpdateAsync(id, activityManagement));
     }
-    [HttpPost]
+    [HttpDelete("{id}")]
     public async ValueTask<IActionResult> DeleteAsync(int id)
     {
         return Ok(await _activityManagement.DeleteAsync(id));
