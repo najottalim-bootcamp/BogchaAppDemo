@@ -1,4 +1,4 @@
-﻿namespace Bogcha.Services.Services.EmployeeServices;
+﻿namespace Bogcha.Infrastructure.Services.EmployeeServices;
 
 public class EmployeeService : IEmployeeService
 {

@@ -1,4 +1,4 @@
-﻿namespace Bogcha.Services.Services.AssessmentRecPreKServices;
+﻿namespace Bogcha.Infrastructure.Services.AssessmentRecPreKServices;
 
 public class AssessmentRecPreKService : IAssessmentRecPreKService
 {

@@ -5,9 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Bogcha.Services.Services.AuthorizedPickUpServices
+namespace Bogcha.Infrastructure.Services.AuthorizedPickUpServices
 {
-    public class AuthorizedPickUpService:IAuthorizedPickUpService
+    public class AuthorizedPickUpService : IAuthorizedPickUpService
     {
         private IAuthorizedPickUpRepository _authorizedPickUpRepository;
 
@@ -37,7 +37,7 @@ namespace Bogcha.Services.Services.AuthorizedPickUpServices
 
         public async ValueTask<bool> UpdateAsync(AuthorizedPickUp authorizedPickUp)
         {
-            return await _authorizedPickUpRepository.UpdateAsync( authorizedPickUp);
+            return await _authorizedPickUpRepository.UpdateAsync(authorizedPickUp);
         }
     }
 }

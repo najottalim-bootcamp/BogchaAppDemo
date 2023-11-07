@@ -5,7 +5,7 @@ VisualStudioVersion = 17.6.33801.468
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bogcha.API", "Bogcha.API\Bogcha.API.csproj", "{56E2D049-2CC0-43E5-9DA4-8C948259A2BC}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bogcha.Services", "Bogcha.Services\Bogcha.Services.csproj", "{B145F373-92CF-4064-98FC-C25D9211FF24}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bogcha.Infrastructure", "Bogcha.Services\Bogcha.Infrastructure.csproj", "{B145F373-92CF-4064-98FC-C25D9211FF24}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bogcha.DataAccess", "Bogcha.DataAccess\Bogcha.DataAccess.csproj", "{34DE9BC6-2346-4CCB-A987-8536DD0BDE8D}"
 EndProject

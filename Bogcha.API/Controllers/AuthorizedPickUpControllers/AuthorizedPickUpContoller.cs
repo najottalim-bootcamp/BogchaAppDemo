@@ -1,9 +1,4 @@
-﻿using Bogcha.Domain.Entities;
-using Bogcha.Services.Services.AuthorizedPickUpServices;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-
-namespace Bogcha.API.Controllers.AuthorizedPickUpControllers
+﻿namespace Bogcha.API.Controllers.AuthorizedPickUpControllers
 {
     [Route("api/[controller]/[action]")]
     [ApiController]
