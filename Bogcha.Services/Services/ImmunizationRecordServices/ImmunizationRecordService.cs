@@ -1,5 +1,5 @@
 ﻿namespace Bogcha.Infrastructure.Services.ImmunizationRecordServices;
-public class ImmunizationRecordService : IImmunizationRecordService
+public class ImmunizationRecordService //: IImmunizationRecordService
 {
     private IImmunizationRecordRepository _immunizationRecordRepository;
 

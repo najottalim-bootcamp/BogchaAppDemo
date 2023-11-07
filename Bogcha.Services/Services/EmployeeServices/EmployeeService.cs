@@ -1,15 +1,11 @@
-﻿using Bogcha.Domain.Entities;
-using Bogcha.Infrastructure.Services.EmployeeServices.EmployeeDtos;
-using Bogcha.Infrastructure.Services.ParentsServices.ParentsDtos;
-
-namespace Bogcha.Infrastructure.Services.EmployeeServices;
+﻿namespace Bogcha.Infrastructure.Services.EmployeeServices;
 
 public class EmployeeService : IEmployeeService
 {
     private IEmployeeRepository _employee;
     private IMapper _mapper;
 
-    public EmployeeService(IEmployeeRepository employee,IMapper mapper)
+    public EmployeeService(IEmployeeRepository employee, IMapper mapper)
     {
         _employee = employee;
         _mapper = mapper;
@@ -32,7 +28,7 @@ public class EmployeeService : IEmployeeService
     {
         var res = await _employee.GetAllAsync();
         return res;
-        
+
     }
 
     public async ValueTask<Employee> GetEmployeeByIdAsync(string id)

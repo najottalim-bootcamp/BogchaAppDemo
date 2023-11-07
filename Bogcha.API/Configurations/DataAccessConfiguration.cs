@@ -1,3 +1,4 @@
+
 namespace Bogcha.API.Configurations;
 
 public static class DataAccessConfiguration
