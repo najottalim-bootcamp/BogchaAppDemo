@@ -6,7 +6,9 @@ public class ViewWithdrawalDto
     public decimal Amount { get; set; }
     public DateTime DatePaid { get; set; }
     public string WithDrawnBy { get; set; }
+    [DisplayName("Employee Firstname")]
     public string EmployeeFName { get; set; }
+    [DisplayName("Employee Lastname")]
     public string EmployeeLName { get; set; }
     public string Department { get; set; }
 }
