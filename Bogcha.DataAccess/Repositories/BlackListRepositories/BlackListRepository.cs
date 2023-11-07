@@ -1,4 +1,6 @@
-﻿namespace Bogcha.DataAccess.Repositories.BlackListRepositories
+﻿using Bogcha.Domain.Entities;
+
+namespace Bogcha.DataAccess.Repositories.BlackListRepositories
 {
     public class BlackListRepository : Database, IBlackListRepository
     {
@@ -31,9 +33,9 @@
             try
             {
                 await sqlConnection.OpenAsync();
-                string sqlQuery = "Delete from BlackList where ChId==Id";
+                string sqlQuery = "Delete from BlackList where ChId=@Id";
                 var command = new SqlCommand(sqlQuery, sqlConnection);
-                command.Parameters.AddWithValue("Id", ChId);
+                command.Parameters.AddWithValue("@Id", ChId);
 
                 int result = await command.ExecuteNonQueryAsync();
                 return result > 0;
@@ -66,14 +68,52 @@
             }
         }
 
-        public ValueTask<BlackList> GetByIdAsync(string ChId)
+        public async ValueTask<BlackList> GetByIdAsync(string ChId)
         {
-            throw new NotImplementedException();
+            try
+            {
+                await sqlConnection.OpenAsync();
+                string sqlQuery = $"Select * from BlackList where ChId=@ChId;";
+
+                BlackList blackList = await sqlConnection.QueryFirstOrDefaultAsync<BlackList>(sqlQuery, new { ChId });
+
+                return blackList;
+            }
+            catch (Exception ex)
+            {
+                await Console.Out.WriteLineAsync(ex.Message);
+                return null;
+            }
+            finally
+            {
+                await sqlConnection.CloseAsync();
+            }
         }
 
-        public ValueTask<bool> UpdateAsync(string ChId, BlackList blackList)
+        public async ValueTask<bool> UpdateAsync(BlackList blackList)
         {
-            throw new NotImplementedException();
+            try
+            {
+                await sqlConnection.OpenAsync();
+                string sqlQuery = $"update BlackList set " +
+                    "UnauthAuthFName = @UnauthAuthFName, " +
+                    "UnauthAuthLName = @UnauthAuthLName,gender = @gender,Passport = @Passport," +
+                    "strAddress = @strAddress,city = @city,state= @state,zipCode = @zipCode,phoneNo = @phoneNo " +
+                "where ChId=@chId";
+
+                int result = await sqlConnection.ExecuteAsync(sqlQuery, blackList);
+
+                return result > 0;
+
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+            finally
+            {
+                await sqlConnection.CloseAsync();
+            }
         }
     }
 }
