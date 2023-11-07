@@ -1,23 +1,20 @@
-﻿using Bogcha.DataAccess.Repositories.AuthorizedPickUpRepositories;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Bogcha.Infrastructure.Services.AuthorizedPickUpServices.AuthorizedPickUpDTOs;
 
 namespace Bogcha.Infrastructure.Services.AuthorizedPickUpServices
 {
     public class AuthorizedPickUpService : IAuthorizedPickUpService
     {
         private IAuthorizedPickUpRepository _authorizedPickUpRepository;
-
-        public AuthorizedPickUpService(IAuthorizedPickUpRepository authorizedPickUpRepository)
+        private IMapper mapper;
+        public AuthorizedPickUpService(IAuthorizedPickUpRepository authorizedPickUpRepository, IMapper mapper)
         {
             _authorizedPickUpRepository = authorizedPickUpRepository;
+            this.mapper = mapper;
         }
-        public async ValueTask<bool> CreateAsync(AuthorizedPickUp authorizedPickUp)
+        public async ValueTask<bool> CreateAsync(CreateAuthorizedPickUpDTO authorizedPickUp)
         {
-            return await _authorizedPickUpRepository.CreateAsync(authorizedPickUp);
+            AuthorizedPickUp authorizedPickUp1 = mapper.Map<AuthorizedPickUp>(authorizedPickUp);
+            return await _authorizedPickUpRepository.CreateAsync(authorizedPickUp1);
         }
 
         public async ValueTask<bool> DeleteAsync(string ChId)
@@ -25,19 +22,24 @@ namespace Bogcha.Infrastructure.Services.AuthorizedPickUpServices
             return await _authorizedPickUpRepository.DeleteAsync(ChId);
         }
 
-        public async ValueTask<IEnumerable<AuthorizedPickUp>> GetAllAsync()
+        public async ValueTask<IEnumerable<ViewAuthorizedPickUpDTO>> GetAllAsync()
         {
-            return await _authorizedPickUpRepository.GetAllAsync();
+            IEnumerable<ViewAuthorizedPickUpDTO> authorizedPickUpDTOs = mapper.Map<IEnumerable<ViewAuthorizedPickUpDTO>>(await _authorizedPickUpRepository.GetAllAsync());
+
+            return authorizedPickUpDTOs;
         }
 
-        public async ValueTask<AuthorizedPickUp> GetByIdAsync(string ChId)
+        public async ValueTask<ViewAuthorizedPickUpDTO> GetByIdAsync(string ChId)
         {
-            return await _authorizedPickUpRepository.GetByIdAsync(ChId);
+            ViewAuthorizedPickUpDTO viewAuthorizedPickUpDTO = mapper.Map<ViewAuthorizedPickUpDTO>(_authorizedPickUpRepository.GetByIdAsync(ChId));
+            return viewAuthorizedPickUpDTO;
         }
 
-        public async ValueTask<bool> UpdateAsync(AuthorizedPickUp authorizedPickUp)
+        public async ValueTask<bool> UpdateAsync(string id, UpdateAuthorizedPickUpDTO authorizedPickUp)
         {
-            return await _authorizedPickUpRepository.UpdateAsync(authorizedPickUp);
+            AuthorizedPickUp authorizedPickUp1 = mapper.Map<AuthorizedPickUp>(authorizedPickUp);
+            authorizedPickUp1.ChId = id;
+            return await _authorizedPickUpRepository.UpdateAsync(authorizedPickUp1);
         }
     }
 }
