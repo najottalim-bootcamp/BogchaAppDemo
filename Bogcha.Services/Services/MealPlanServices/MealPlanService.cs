@@ -1,4 +1,4 @@
-﻿namespace Bogcha.Services.Services.MealPlanServices;
+﻿namespace Bogcha.Infrastructure.Services.MealPlanServices;
 
 public class MealPlanService : IMealPlanService
 {

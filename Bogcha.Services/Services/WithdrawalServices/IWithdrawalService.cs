@@ -1,4 +1,4 @@
-﻿namespace Bogcha.Services.Services.WithdrawalServices;
+﻿namespace Bogcha.Infrastructure.Services.WithdrawalServices;
 
 public interface IWithdrawalService : IWithdrawalRepository
 {
