@@ -1,6 +1,7 @@
 ﻿using Bogcha.Domain.Entities;
 using Bogcha.Infrastructure.Services.BlackListServices;
 using Bogcha.Infrastructure.Services.ImmunizationRecordServices;
+using Bogcha.Infrastructure.Services.ImmunizationRecordServices.ImmunizationRecordDTOs;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -16,27 +17,27 @@ public class ImmunizationRecordController : ControllerBase
         _immunizationRecord = immunizationRecord;
     }
     [HttpGet]
-    public async ValueTask<IActionResult> GetAllStudentsAsync()
+    public async ValueTask<IActionResult> GetAllAsync()
     {
         var res = await _immunizationRecord.GetAllAsync();
         return Ok(res);
     }
     [HttpGet]
-    public async ValueTask<IActionResult> GetStudentByIdAsync(int Id)
+    public async ValueTask<IActionResult> GetByIdAsync(int Id)
     {
         var res = await _immunizationRecord.GetByIdAsync(Id);
         return Ok(res);
     }
     [HttpPost]
-    public async ValueTask<IActionResult> CreateStudentAsync(ImmunizationRecord str)
+    public async ValueTask<IActionResult> CreateAsync(CreateImmunizationRecordDTO str)
     {
         var res = await _immunizationRecord.CreateAsync(str);
         return Ok(res);
     }
     [HttpPut]
-    public async ValueTask<IActionResult> UpdateStudentAsync(ImmunizationRecord str)
+    public async ValueTask<IActionResult> UpdateAsync(int Id ,UpdateImmunizationRecordDTO str)
     {
-        var res = await _immunizationRecord.UpdateAsync(str);
+        var res = await _immunizationRecord.UpdateAsync(Id,str);
         return Ok(res);
     }
     [HttpDelete]
