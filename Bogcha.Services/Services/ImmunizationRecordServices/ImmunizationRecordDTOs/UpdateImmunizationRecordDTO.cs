@@ -1,7 +1,7 @@
 ﻿namespace Bogcha.Infrastructure.Services.ImmunizationRecordServices.ImmunizationRecordDTOs;
 public class UpdateImmunizationRecordDTO
 {
-
+    public int Id { get; set; }
     public string? Chickenpox { get; set; }
     public string? Diphtheria_Tetanus_WhoopingCough { get; set; }
     public string? Haemophilus_influenza_typeB { get; set; }
