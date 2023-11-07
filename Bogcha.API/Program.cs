@@ -1,6 +1,4 @@
 
-using Bogcha.Services.Services.Common.AutoMapper;
-
 var builder = WebApplication.CreateBuilder(args);
 
 //Add services to the container.
