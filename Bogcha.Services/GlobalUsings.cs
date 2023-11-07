@@ -20,6 +20,9 @@ global using Bogcha.Infrastructure.Services.RevenueServices.RevenueDtos;
 global using Bogcha.Infrastructure.Services.WithdrawalServices.WithdrawalDtos;
 
 global using Bogcha.Infrastructure.Services.Accident_RecordsServices.Accident_RecordsDtos;
+global using Bogcha.Infrastructure.Services.AttendanceServices.AttendanceDto;
+global using Bogcha.Infrastructure.Services.ActivityManagementServices.ActivityManagemntDtos;
+global using Bogcha.Infrastructure.Services.RegularHealthCheckServices.RegularHealthCheckDtos;
 global using Bogcha.Infrastructure.Services.MealPlanServices.MealPlanDtos;
 global using Bogcha.Infrastructure.Services.MenuManagementServices.MenuManagementDtos;
 
