@@ -1,6 +1,6 @@
 ﻿namespace Bogcha.DataAccess.Repositories.RegularHealthCheckRepositories
 {
-    public class RegularHealthCheckRepository:Database,IRegularHealthCheckRepository
+    public class RegularHealthCheckRepository : Database, IRegularHealthCheckRepository
     {
         public RegularHealthCheckRepository(string connectionString) : base(connectionString) { }
 
@@ -11,8 +11,8 @@
             try
             {
                 await sqlConnection.OpenAsync();
-                string sqlQuery = $"Insert into RegularHeathCheck values( " +
-                    $"@ChId,@checKupDate,@Symptom,@ActionRequired) SELECT CAST(SCOPE_IDENTITY() as int)";
+                string sqlQuery = "Insert into RegularHealthCheck values(" +
+                    "@ChId,@checKupDate,@Symptom,@ActionRequired) SELECT CAST(SCOPE_IDENTITY() as int)";
 
                 int result = await sqlConnection.ExecuteAsync(sqlQuery, regularHealthCheck);
                 return result > 0;
@@ -76,7 +76,7 @@
             try
             {
                 await sqlConnection.OpenAsync();
-                string sqlQuery = $"Select * from RegularHealthCheck where Id=@id;";
+                string sqlQuery = "Select * from RegularHealthCheck where Id=@id;";
 
                 RegularHealthCheck regularHealthCheck = await sqlConnection.QueryFirstOrDefaultAsync<RegularHealthCheck>(sqlQuery, new { id });
 
@@ -99,7 +99,7 @@
             {
                 await sqlConnection.OpenAsync();
                 string sqlQuery = "update RegularHealthCheck set  " +
-                    "ChId=@ChId,checKupDate=@checKupDate,Symptom=@Symptom,ActionRequired = @ActionRrequired" +
+                    "ChId=@ChId,checKupDate=@checKupDate,Symptom=@Symptom,ActionRequired = @ActionRequired " +
                     "where Id=@Id;";
 
                 int result = await sqlConnection.ExecuteAsync(sqlQuery, regularHealthCheck);
