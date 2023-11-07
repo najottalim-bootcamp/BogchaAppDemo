@@ -11,47 +11,47 @@ public class MenuManagementController : ControllerBase
     {
         _menuManagementService = menuManagementService;
     }
-    [HttpGet]
+    [HttpGet(Name = "getAllfromenu")]
     public async ValueTask<IActionResult> GetAllMenuManagementAsync()
     {
         IEnumerable<ViewMenuManagementDto> menuManagementDtos = await _menuManagementService.GetAllMenusAsync();
         return Ok(menuManagementDtos);
     }
-    [HttpGet("{id}")]
+    [HttpGet(Name = "getmenubyid")]
     public async ValueTask<IActionResult> GetMenuManagementById(string id)
     {
         ViewMenuManagementDto menuManagementDto = await _menuManagementService.GetMenuManagementByIdAsync(id);
-        if(menuManagementDto is null)
+        if (menuManagementDto is null)
         {
             return BadRequest(id);
         }
         return Ok(menuManagementDto);
     }
-    [HttpPost]
+    [HttpPost(Name = "createMenu")]
     public async ValueTask<IActionResult> CreateMenuManagementAsync(CreateMenuManagementDto createMenuManagement)
     {
         bool result = await _menuManagementService.CreateMenuManagement(createMenuManagement);
-        if(result)
+        if (result)
         {
             return Created(Request.GetDisplayUrl(), createMenuManagement);
         }
         return BadRequest();
     }
-    [HttpPut("{id}")]
+    [HttpPut(Name = "updateMenu")]
     public async ValueTask<IActionResult> UpdateMenuManagementAsync(string id, UpdateMenuManagementDto updateMenu)
     {
         bool result = await _menuManagementService.UpdateMenuManagementAsync(id, updateMenu);
-        if( result)
+        if (result)
         {
             return Ok(updateMenu);
         }
         return BadRequest();
     }
-    [HttpDelete("{id}")]
+    [HttpDelete(Name = "deleteMnu")]
     public async ValueTask<IActionResult> DeleteMenuManagementAsync(string id)
     {
         bool result = await _menuManagementService.DeleteMenuManagementAsync(id);
-        if(result)
+        if (result)
             return Ok(result);
         return BadRequest();
     }

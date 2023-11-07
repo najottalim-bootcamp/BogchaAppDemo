@@ -1,4 +1,6 @@
-﻿namespace Bogcha.API.Controllers.AuthorizedPickUpControllers
+﻿using Bogcha.Infrastructure.Services.AuthorizedPickUpServices.AuthorizedPickUpDTOs;
+
+namespace Bogcha.API.Controllers
 {
     [Route("api/[controller]/[action]")]
     [ApiController]
@@ -10,31 +12,31 @@
         {
             _authorizedPickUp = authorizedPickUp;
         }
-        [HttpGet]
+        [HttpGet(Name = "hello")]
         public async ValueTask<IActionResult> GetAllStudentsAsync()
         {
             var res = await _authorizedPickUp.GetAllAsync();
             return Ok(res);
         }
-        [HttpGet]
+        [HttpGet(Name = "getbyidstd")]
         public async ValueTask<IActionResult> GetStudentByIdAsync(string ChId)
         {
             var res = await _authorizedPickUp.GetByIdAsync(ChId);
             return Ok(res);
         }
-        [HttpPost]
-        public async ValueTask<IActionResult> CreateStudentAsync(AuthorizedPickUp str)
+        [HttpPost(Name = "createStudent")]
+        public async ValueTask<IActionResult> CreateStudentAsync(CreateAuthorizedPickUpDTO str)
         {
             var res = await _authorizedPickUp.CreateAsync(str);
             return Ok(res);
         }
-        [HttpPut]
-        public async ValueTask<IActionResult> UpdateStudentAsync(AuthorizedPickUp str)
+        [HttpPut(Name = "updatestd")]
+        public async ValueTask<IActionResult> UpdateStudentAsync(string id, UpdateAuthorizedPickUpDTO str)
         {
-            var res = await _authorizedPickUp.UpdateAsync(str);
+            var res = await _authorizedPickUp.UpdateAsync(id, str);
             return Ok(res);
         }
-        [HttpDelete]
+        [HttpDelete(Name = "delstd")]
         public async ValueTask<IActionResult> DeleteStudentAsync(string ChId)
         {
             var res = await _authorizedPickUp.DeleteAsync(ChId);

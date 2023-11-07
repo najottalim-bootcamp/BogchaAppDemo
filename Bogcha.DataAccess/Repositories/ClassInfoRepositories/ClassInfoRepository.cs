@@ -88,7 +88,12 @@ public class ClassInfoRepository : Database, IClassInfoRepository
             }
         }
 
-        public async ValueTask<bool> UpdateAsync(ClassInfo classInfo)
+    public ValueTask<bool> GetByIdAsync(int id)
+    {
+        throw new NotImplementedException();
+    }
+
+    public async ValueTask<bool> UpdateAsync(ClassInfo classInfo)
         {
             try
             {
@@ -113,6 +118,11 @@ public class ClassInfoRepository : Database, IClassInfoRepository
                 await sqlConnection.CloseAsync();
             }
         }
+
+    public ValueTask<bool> UpdateAsync(string ClassId, ClassInfo classInfo)
+    {
+        throw new NotImplementedException();
     }
 }
+
 

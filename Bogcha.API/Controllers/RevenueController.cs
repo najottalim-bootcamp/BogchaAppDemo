@@ -10,14 +10,14 @@ public class RevenueController : ControllerBase
     {
         _revenueService = revenueService;
     }
-    [HttpGet]
+    [HttpGet(Name = "getRevenue")]
     public async ValueTask<IActionResult> GetAllRevenuesAsync()
     {
         IEnumerable<ViewRevenueDto> viewRevenues = await _revenueService.GetAllRevenuesAsync();
 
         return Ok(viewRevenues);
     }
-    [HttpGet]
+    [HttpGet(Name = "getrevenueByid")]
     public async ValueTask<IActionResult> GetRevenueByIdAsync(string ChId)
     {
         ViewRevenueDto viewRevenue = await _revenueService.GetRevenueByIdAsync(ChId);
@@ -27,7 +27,7 @@ public class RevenueController : ControllerBase
 
         return Ok(viewRevenue);
     }
-    [HttpPost]
+    [HttpPost(Name = "createRevenue")]
     public async ValueTask<IActionResult> CreateRevenueAsync(CreateRevenueDto revenue)
     {
         bool result = await _revenueService.CreateAsync(revenue);
@@ -37,20 +37,20 @@ public class RevenueController : ControllerBase
         }
         return BadRequest(revenue);
     }
-    [HttpPut]
+    [HttpPut(Name = "updateRevenue")]
     public async ValueTask<IActionResult> UpdateRevenueAsync(string chId, UpdateRevenueDto revenue)
     {
         bool result = await _revenueService.UpdateAsync(chId, revenue);
 
-        if(result)
+        if (result)
             return NoContent();
         return BadRequest(revenue);
     }
-    [HttpDelete]
+    [HttpDelete(Name = "deleteRevenue")]
     public async ValueTask<IActionResult> DeleteRevenueAsync(string ChId)
     {
         bool result = await _revenueService.DeleteAsync(ChId);
-        if(result)
+        if (result)
             return NoContent();
         return BadRequest(result);
     }

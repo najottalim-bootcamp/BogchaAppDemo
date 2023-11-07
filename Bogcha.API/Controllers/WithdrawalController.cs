@@ -10,14 +10,14 @@ public class WithdrawalController : ControllerBase
     {
         _withdrawalService = withdrawalService;
     }
-    [HttpGet]
+    [HttpGet(Name ="GetAllWithdrawal")]
     public async ValueTask<IActionResult> GetAllWithdrawalsAsync()
     {
         IEnumerable<ViewWithdrawalDto> viewWithdrawalDtos = await _withdrawalService.GetAllAsync();
         return Ok(viewWithdrawalDtos);
     }
 
-    [HttpGet("{id}")]
+    [HttpGet(Name ="getbyidwith")]
     public async ValueTask<IActionResult> GetWithdrawalByIdAsync(int id)
     {
         ViewWithdrawalDto viewWithdrawalDto = await _withdrawalService.GetByIdAsync(id);
@@ -28,7 +28,7 @@ public class WithdrawalController : ControllerBase
         return Ok(viewWithdrawalDto);
     }
 
-    [HttpPost]
+    [HttpPost(Name = "createWithDrawal")]
     public async ValueTask<IActionResult> CreateWithdrawalAsync(CreateWithdrawalDto createWithdrawal)
     {
         bool result = await _withdrawalService.CreateAsync(createWithdrawal);
@@ -37,7 +37,7 @@ public class WithdrawalController : ControllerBase
         return BadRequest(createWithdrawal);
     }
 
-    [HttpPut("{id}")]
+    [HttpPut(Name = "updateWithDrawal")]
     public async ValueTask<IActionResult> UpdateWithdrawalAsync(int id, UpdateWithdrawalDto updateWithdrawal)
     {
         bool result = await _withdrawalService.UpdateAsync(id, updateWithdrawal);
@@ -45,7 +45,7 @@ public class WithdrawalController : ControllerBase
             return NoContent();
         return BadRequest();
     }
-    [HttpDelete("{id}")]
+    [HttpDelete(Name = "deleteWithDrawal")]
     public async ValueTask<IActionResult> DeleteWithdrawalAsync(int id)
     {
         bool result = await _withdrawalService.DeleteAsync(id);
