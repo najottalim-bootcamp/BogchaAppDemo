@@ -1,4 +1,6 @@
-﻿namespace Bogcha.API.Configurations;
+﻿using Bogcha.Infrastructure.Services.BlackListServices;
+
+namespace Bogcha.API.Configurations;
 
 public static class InfrastructureLayerConfiguration
 {
@@ -19,5 +21,6 @@ public static class InfrastructureLayerConfiguration
         builder.Services.AddScoped<IAssessmentRecNurseryService, AssessmentRecNurseryService>();
         builder.Services.AddScoped<IAssessmentRecPreKService, AssessmentRecPreKService>();
         builder.Services.AddScoped<IAuthorizedPickUpService, AuthorizedPickUpService>();
+        builder.Services.AddScoped<IBlackListService, BlackListService>();
     }
 }

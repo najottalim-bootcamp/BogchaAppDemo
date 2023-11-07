@@ -21,5 +21,6 @@ public static class DataAccessConfiguration
         builder.Services.AddScoped<IAssessmentRecNurseryRepository>(x => new AssessmentRecNurseryRepository(connectionString));
         builder.Services.AddScoped<IAssessmentRecPreKRepository>(x => new AssessmentRecPreKRepository(connectionString));
         builder.Services.AddScoped<IAuthorizedPickUpRepository>(x => new AuthorizedPickUpRepository(connectionString));
+        builder.Services.AddScoped<IBlackListRepository>(x => new BlackListRepository(connectionString));
     }
 }
