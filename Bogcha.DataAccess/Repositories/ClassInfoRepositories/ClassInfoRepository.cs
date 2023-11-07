@@ -13,27 +13,27 @@ public class ClassInfoRepository : Database, IClassInfoRepository
                 "@AgeGroup,@RoomNo,@HeadTeacher," +
                 "@AssistantTeacher)";
 
-            var command = new SqlCommand(sqlQuery, sqlConnection);
-            int result = await command.ExecuteNonQueryAsync();
-            return result > 0;
+                var command = new SqlCommand(sqlQuery, sqlConnection);
+                int result = await command.ExecuteNonQueryAsync();
+                return result > 0;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+            finally
+            {
+                await sqlConnection.CloseAsync();
+            }
         }
-        catch (Exception ex)
+        public async ValueTask<bool> DeleteAsync(string id)
         {
-            return false;
-        }
-        finally
-        {
-            await sqlConnection.CloseAsync();
-        }
-    }
-    public async ValueTask<bool> DeleteAsync(int id)
-    {
-        try
-        {
-            await sqlConnection.OpenAsync();
-            string sqlQuery = "Delete from ClassInfo where id==Id";
-            var command = new SqlCommand(sqlQuery, sqlConnection);
-            command.Parameters.AddWithValue("Id", id);
+            try
+            {
+                await sqlConnection.OpenAsync();
+                string sqlQuery = "Delete from ClassInfo where id==Id";
+                var command = new SqlCommand(sqlQuery, sqlConnection);
+                command.Parameters.AddWithValue("Id", id);
 
             int result = await command.ExecuteNonQueryAsync();
             return result > 0;
@@ -66,14 +66,53 @@ public class ClassInfoRepository : Database, IClassInfoRepository
         }
     }
 
-    public ValueTask<bool> GetByIdAsync(int id)
-    {
-        throw new NotImplementedException();
-    }
+        public async ValueTask<ClassInfo> GetByIdAsync(string Id)
+        {
+            try
+            {
+                await sqlConnection.OpenAsync();
+                string sqlQuery = $"Select * from ClassInfo where ChId=@Id;";
 
-    public ValueTask<bool> UpdateAsync(int id, ClassInfo classInfo)
-    {
-        throw new NotImplementedException();
+                ClassInfo classInfo = await sqlConnection.QueryFirstOrDefaultAsync<ClassInfo>(sqlQuery, new { Id });
+
+                return classInfo;
+            }
+            catch (Exception ex)
+            {
+                await Console.Out.WriteLineAsync(ex.Message);
+                return null;
+            }
+            finally
+            {
+                await sqlConnection.CloseAsync();
+            }
+        }
+
+        public async ValueTask<bool> UpdateAsync(ClassInfo classInfo)
+        {
+            try
+            {
+                await sqlConnection.OpenAsync();
+                string sqlQuery = $"update ClassInfo set " +
+                    "AuthFName = @AuthFName, " +
+                    "AuthLName = @AuthLName,gender = @gender,Passport = @Passport," +
+                    "strAddress = @strAddress,city = @city,region = @region,zipCode = @zipCode,phoneNo = @phoneNo " +
+                    "where ChId=@chId";
+
+                int result = await sqlConnection.ExecuteAsync(sqlQuery, classInfo);
+
+                return result > 0;
+
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+            finally
+            {
+                await sqlConnection.CloseAsync();
+            }
+        }
     }
 }
 

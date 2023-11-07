@@ -26,6 +26,6 @@ public static class DataAccessConfiguration
         builder.Services.AddScoped<IRegularHealthCheckRepository>(x=>new RegularHealthCheckRepository(connectionString));
 
         builder.Services.AddScoped<IBlackListRepository>(x => new BlackListRepository(connectionString));
-
+        builder.Services.AddScoped<IImmunizationRecordRepository>(x => new ImmunizationRecordRepository(connectionString));
     }
 }
