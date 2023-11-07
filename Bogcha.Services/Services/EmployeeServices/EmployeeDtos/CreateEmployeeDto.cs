@@ -4,10 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Bogcha.Domain.Entities;
-
-public class Employee
+namespace Bogcha.Infrastructure.Services.EmployeeServices.EmployeeDtos;
+public class CreateEmployeeDto
 {
+
+    [RegularExpression(@"^[A-Z]{2}[0-9]{3}$", ErrorMessage = "EmpId must match the format 'XX999'")]
+ 
     public string EmpId { get; set; }
     public string EmpFName { get; set; }
     public string EmpLName { get; set; }
@@ -25,14 +27,4 @@ public class Employee
     public string Email { get; set; }
     public string EmpType { get; set; }
     public string Department { get; set; }
-
-   
 }
-
-
-
-
-
-
-
-
