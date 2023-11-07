@@ -19,16 +19,19 @@ namespace Bogcha.Infrastructure.Services.ActivityManagementServices
             this.mapper = mapper;
         }
 
+
         public async ValueTask<bool> CreateAsync(CreateActivityManagementDto activityManagementDto)
         {
             var activityManagement = mapper.Map<ActivityManagement>(activityManagementDto);
             return await _activityManagementRepository.CreateAsync(activityManagement);
         }
 
-        public async ValueTask<bool> DeleteAsync(int id)
-        {
-            return await _activityManagementRepository.DeleteAsync(id);
-        }
+
+    public async ValueTask<bool> DeleteAsync(int id)
+    {
+        return await _activityManagementRepository.DeleteAsync(id);
+    }
+
 
         public async ValueTask<IEnumerable<ViewActivityManagementDto>> GetAllAsync()
         {

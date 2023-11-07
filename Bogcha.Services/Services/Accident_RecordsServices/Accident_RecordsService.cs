@@ -21,7 +21,8 @@
             var accidentRecords = await accident_RecordsRepository.CreateAsync(accident_Records);
             return accidentRecords;
 
-        }
+    }
+
 
         public async ValueTask<bool> DeleteAsync(int id)
         {
@@ -84,5 +85,5 @@
             accident_.AccNo = id;
             return await accident_RecordsRepository.UpdateAsync(accident_);
         }
-    }
+
 }

@@ -1,12 +1,16 @@
-﻿namespace Bogcha.DataAccess.Repositories.RegularHealthCheckRepositories
+namespace Bogcha.DataAccess.Repositories.RegularHealthCheckRepositories;
+
+public class RegularHealthCheckRepository:Database,IRegularHealthCheckRepository
 {
-    public class RegularHealthCheckRepository : Database, IRegularHealthCheckRepository
+
+    
+
+    public RegularHealthCheckRepository(string connectionString) : base(connectionString) { }
+
+
+    public async ValueTask<bool> CreateAsync(RegularHealthCheck regularHealthCheck)
+
     {
-        public RegularHealthCheckRepository(string connectionString) : base(connectionString) { }
-
-
-        public async ValueTask<bool> CreateAsync(RegularHealthCheck regularHealthCheck)
-        {
 
             try
             {
@@ -27,52 +31,53 @@
             }
 
 
-        }
+    }
 
-        public async ValueTask<bool> DeleteAsync(int id)
+    public async ValueTask<bool> DeleteAsync(int id)
+    {
+        try
         {
-            try
-            {
-                await sqlConnection.OpenAsync();
-                string sqlQuery = "Delete from RegularHealthCheck where Id = @Id";
+            await sqlConnection.OpenAsync();
+            string sqlQuery = "Delete from RegularHealthCheck where Id = @Id";
 
-                var command = new SqlCommand(sqlQuery, sqlConnection);
-                command.Parameters.AddWithValue("@Id", id);
+            var command = new SqlCommand(sqlQuery, sqlConnection);
+            command.Parameters.AddWithValue("@Id", id);
 
-                int result = await command.ExecuteNonQueryAsync();
-                return result > 0;
-            }
-            catch
-            {
-                return false;
-            }
-            finally
-            {
-                await sqlConnection.CloseAsync();
-            }
+            int result = await command.ExecuteNonQueryAsync();
+            return result > 0;
         }
-
-        public async ValueTask<IEnumerable<RegularHealthCheck>> GetAllAsync()
+        catch
         {
-            try
-            {
-                await sqlConnection.OpenAsync();
-                string sqlQuery = "Select * from RegularHealthCheck;";
-                IEnumerable<RegularHealthCheck> regularHealthChecks = await sqlConnection.QueryAsync<RegularHealthCheck>(sqlQuery);
-                return regularHealthChecks;
-            }
-            catch (Exception ex)
-            {
-                return Enumerable.Empty<RegularHealthCheck>();
-            }
-            finally
-            {
-                await sqlConnection.CloseAsync();
-            }
+            return false;
         }
-
-        public async ValueTask<RegularHealthCheck> GetByIdAsync(int id)
+        finally
         {
+            await sqlConnection.CloseAsync();
+        }
+    }
+
+    public async ValueTask<IEnumerable<RegularHealthCheck>> GetAllAsync()
+    {
+        try
+        {
+            await sqlConnection.OpenAsync();
+            string sqlQuery = "Select * from RegularHealthCheck;";
+            IEnumerable<RegularHealthCheck> regularHealthChecks = await sqlConnection.QueryAsync<RegularHealthCheck>(sqlQuery);
+            return regularHealthChecks;
+        }
+        catch (Exception ex)
+        {
+            return Enumerable.Empty<RegularHealthCheck>();
+        }
+        finally
+        {
+            await sqlConnection.CloseAsync();
+        }
+    }
+
+    public async ValueTask<RegularHealthCheck> GetByIdAsync(int id)
+    {
+
             try
             {
                 await sqlConnection.OpenAsync();
@@ -91,10 +96,13 @@
             {
                 await sqlConnection.CloseAsync();
             }
-        }
 
-        public async ValueTask<bool> UpdateAsync(RegularHealthCheck regularHealthCheck)
-        {
+         
+    }
+
+    public async ValueTask<bool> UpdateAsync(RegularHealthCheck regularHealthCheck)
+    {
+     
             try
             {
                 await sqlConnection.OpenAsync();
@@ -115,6 +123,6 @@
             {
                 await sqlConnection.CloseAsync();
             }
-        }
+
     }
 }

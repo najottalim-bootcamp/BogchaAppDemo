@@ -16,7 +16,8 @@ public static class DataAccessConfiguration
         builder.Services.AddScoped<IAttendanceRepository>(x => new AttendanceRepository(connectionString));
         builder.Services.AddScoped<IActivityManagementRepository>(x => new ActivityManagementRepository(connectionString));
         builder.Services.AddScoped<IParentRepository>(x => new ParentRepository(connectionString));
-        builder.Services.AddScoped<IStudentRepository>(x => new  StudentRepository(connectionString));
+
+        builder.Services.AddScoped<IStudentRepository>(x => new StudentRepository(connectionString));
         builder.Services.AddScoped<IAssessmentRecKGRepository>(x => new AssessmentRecKGRepository(connectionString));
         builder.Services.AddScoped<IAssessmentRecNurseryRepository>(x => new AssessmentRecNurseryRepository(connectionString));
         builder.Services.AddScoped<IAssessmentRecPreKRepository>(x => new AssessmentRecPreKRepository(connectionString));
@@ -25,6 +26,6 @@ public static class DataAccessConfiguration
         builder.Services.AddScoped<IRegularHealthCheckRepository>(x=>new RegularHealthCheckRepository(connectionString));
 
         builder.Services.AddScoped<IBlackListRepository>(x => new BlackListRepository(connectionString));
-
+        builder.Services.AddScoped<IImmunizationRecordRepository>(x => new ImmunizationRecordRepository(connectionString));
     }
 }

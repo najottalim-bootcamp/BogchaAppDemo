@@ -1,8 +1,7 @@
 using Bogcha.Infrastructure.Services.ActivityManagementServices.ActivityManagemntDtos;
 
-namespace Bogcha.Infrastructure.Services.ActivityManagementServices
+namespace Bogcha.Infrastructure.Services.ActivityManagementServices;
 
-{
     public interface IActivityManagementService 
     {
         public ValueTask<bool> CreateAsync(CreateActivityManagementDto activityManagementDto);
@@ -12,4 +11,4 @@ namespace Bogcha.Infrastructure.Services.ActivityManagementServices
         public ValueTask<IEnumerable<ViewActivityManagementDto>> GetAllAsync();
 
     }
-}
+
