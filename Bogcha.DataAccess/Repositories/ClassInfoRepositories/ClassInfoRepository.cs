@@ -26,7 +26,7 @@
                 await sqlConnection.CloseAsync();
             }
         }
-        public async ValueTask<bool> DeleteAsync(int id)
+        public async ValueTask<bool> DeleteAsync(string id)
         {
             try
             {
@@ -66,14 +66,52 @@
             }
         }
 
-        public ValueTask<bool> GetByIdAsync(int id)
+        public async ValueTask<ClassInfo> GetByIdAsync(string Id)
         {
-            throw new NotImplementedException();
+            try
+            {
+                await sqlConnection.OpenAsync();
+                string sqlQuery = $"Select * from ClassInfo where ChId=@Id;";
+
+                ClassInfo classInfo = await sqlConnection.QueryFirstOrDefaultAsync<ClassInfo>(sqlQuery, new { Id });
+
+                return classInfo;
+            }
+            catch (Exception ex)
+            {
+                await Console.Out.WriteLineAsync(ex.Message);
+                return null;
+            }
+            finally
+            {
+                await sqlConnection.CloseAsync();
+            }
         }
 
-        public ValueTask<bool> UpdateAsync(int id, ClassInfo classInfo)
+        public async ValueTask<bool> UpdateAsync(ClassInfo classInfo)
         {
-            throw new NotImplementedException();
+            try
+            {
+                await sqlConnection.OpenAsync();
+                string sqlQuery = $"update ClassInfo set " +
+                    "AuthFName = @AuthFName, " +
+                    "AuthLName = @AuthLName,gender = @gender,Passport = @Passport," +
+                    "strAddress = @strAddress,city = @city,region = @region,zipCode = @zipCode,phoneNo = @phoneNo " +
+                    "where ChId=@chId";
+
+                int result = await sqlConnection.ExecuteAsync(sqlQuery, classInfo);
+
+                return result > 0;
+
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+            finally
+            {
+                await sqlConnection.CloseAsync();
+            }
         }
     }
 }
