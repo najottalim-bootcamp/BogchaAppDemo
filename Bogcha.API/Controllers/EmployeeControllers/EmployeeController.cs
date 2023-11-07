@@ -1,4 +1,6 @@
-﻿namespace Bogcha.API.Controllers.EmployeeControllers;
+﻿using Bogcha.Infrastructure.Services.EmployeeServices.EmployeeDtos;
+
+namespace Bogcha.API.Controllers.EmployeeControllers;
 
 [Route("api/[controller]/[action]")]
 [ApiController]
@@ -12,35 +14,52 @@ public class EmployeeController : ControllerBase
     }
 
 
-
-    [HttpGet]
-    public async ValueTask<IActionResult> GetAllEmployeesAsync()
+    public async ValueTask<IActionResult> GetAllEmployeeAsync()
     {
-        var res = await _employee.GetAllAsync();
-        return Ok(res);
+        IEnumerable<Employee> employee = await _employee.GetAllEmployeeAsync();
+
+        return Ok(employee);
     }
     [HttpGet]
-    public async ValueTask<IActionResult> GetEmployeeByIdAsync(string ChId)
+    public async ValueTask<IActionResult> GetEmployeeByIdAsync(string EmpId)
     {
-        var res = await _employee.GetByIdAsync(ChId);
-        return Ok(res);
+        Employee employee = await _employee.GetEmployeeByIdAsync(EmpId);
+
+        if (employee is null)
+            return NotFound(EmpId);
+
+        return Ok(employee);
     }
     [HttpPost]
-    public async ValueTask<IActionResult> CreateEmployeeAsync(Employee emp)
+    public async ValueTask<IActionResult> CreateAsync(CreateEmployeeDto createEmployeeDto)
     {
-        var res = await _employee.CreateAsync(emp);
-        return Ok(res);
+        bool result = await _employee.CreateAsync(createEmployeeDto);
+        if (result)
+        {
+            return Created(Request.GetDisplayUrl(), createEmployeeDto);
+        }
+        return BadRequest(createEmployeeDto);
     }
     [HttpPut]
-    public async ValueTask<IActionResult> UpdateEmployeeAsync(Employee emp)
+    public async ValueTask<IActionResult> UpdateAsync(string EmpId, UpdateEmployeeDto updateEmployeeDto)
     {
-        var res = await _employee.UpdateAsync(emp);
-        return Ok(res);
+        bool result = await _employee.UpdateAsync(EmpId, updateEmployeeDto);
+
+        if (result)
+            return NoContent();
+        return BadRequest(updateEmployeeDto);
     }
     [HttpDelete]
-    public async ValueTask<IActionResult> DeleteEmployeeAsync(string ChId)
+    public async ValueTask<IActionResult> DeleteAsync(string EmpId)
     {
-        var res = await _employee.DeleteAsync(ChId);
-        return Ok(res);
+        bool result = await _employee.DeleteAsync(EmpId);
+        if (result)
+            return NoContent();
+        return BadRequest(result);
     }
+
+
+
+
+
 }
