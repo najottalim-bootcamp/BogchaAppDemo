@@ -13,7 +13,7 @@ public class AttendanceRepository:Database,IAttendanceRepository
         {
             await sqlConnection.OpenAsync();
             string sqlQuery = $"Insert into Attendance values( " +
-                $"@ChId,@SignIn_Time,@SignOut_Time) SELECT CAST(SCOPE_IDENTITY() as int)";
+                $"@ChId,@SignIn_Time,@SignOut_Time)";
 
             int result = await sqlConnection.ExecuteAsync(sqlQuery, attendance);
             return result > 0;
@@ -100,7 +100,7 @@ public class AttendanceRepository:Database,IAttendanceRepository
         {
             await sqlConnection.OpenAsync();
             string sqlQuery = "update Attendance set  " +
-                "ChId=@ChId,SignIn_Time=@SignIn_Time,SignOut_Time=@SignOut_Time " +
+                "SignOut_Time=@SignOut_Time " +
                 "where Id=@Id;";
 
             int result = await sqlConnection.ExecuteAsync(sqlQuery, activityManagement);

@@ -63,7 +63,7 @@ namespace Bogcha.Infrastructure.Services.ActivityManagementServices
         {
             ActivityManagement activityManagement = await _activityManagementRepository.GetByIdAsync(id);
             Employee employee = await employeeRepository.GetByIdAsync(activityManagement.Led_by);
-            if (activityManagement is null && employee is null)
+            if (activityManagement is null || employee is null)
             {
                 return null;
             }

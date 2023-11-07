@@ -16,7 +16,7 @@ public class RegularHealthCheckRepository:Database,IRegularHealthCheckRepository
             {
                 await sqlConnection.OpenAsync();
                 string sqlQuery = "Insert into RegularHealthCheck values(" +
-                    "@ChId,@checKupDate,@Symptom,@ActionRequired) SELECT CAST(SCOPE_IDENTITY() as int)";
+                    "@ChId,@checKupDate,@Symptom,@ActionRequired)";
 
                 int result = await sqlConnection.ExecuteAsync(sqlQuery, regularHealthCheck);
                 return result > 0;
@@ -107,7 +107,7 @@ public class RegularHealthCheckRepository:Database,IRegularHealthCheckRepository
             {
                 await sqlConnection.OpenAsync();
                 string sqlQuery = "update RegularHealthCheck set  " +
-                    "ChId=@ChId,checKupDate=@checKupDate,Symptom=@Symptom,ActionRequired = @ActionRequired " +
+                    "checKupDate=@checKupDate,Symptom=@Symptom,ActionRequired = @ActionRequired " +
                     "where Id=@Id;";
 
                 int result = await sqlConnection.ExecuteAsync(sqlQuery, regularHealthCheck);

@@ -1,12 +1,13 @@
-﻿namespace Bogcha.Infrastructure.Services.AttendanceServices
+﻿
+namespace Bogcha.Infrastructure.Services.AttendanceServices
 {
     public interface IAttendanceService 
     {
 
-        public ValueTask<bool> CreateAsync(Attendance attendance);
-        public ValueTask<bool> UpdateAsync(Attendance attendance);
+        public ValueTask<bool> CreateAsync(CreateAttendanceDto attendance);
+        public ValueTask<bool> UpdateAsync(int id,UpdateAttendanceDto UpdateAttendance);
         public ValueTask<bool> DeleteAsync(int id);
-        public ValueTask<Attendance> GetByIdAsync(int id);
-        public ValueTask<IEnumerable<Attendance>> GetAllAsync();
+        public ValueTask<ViewAttendanceDto> GetByIdAsync(int id);
+        public ValueTask<IEnumerable<ViewAttendanceDto>> GetAllAsync();
     }
 }
