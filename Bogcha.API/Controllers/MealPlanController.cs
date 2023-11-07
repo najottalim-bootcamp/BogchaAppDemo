@@ -13,7 +13,7 @@ public class MealPlanController : ControllerBase
     [HttpGet]
     public async ValueTask<IActionResult> GetAll()
     {
-        var res =await mealPlanService.GetAllAsync();
+        var res = await mealPlanService.GetAllAsync();
         return Ok(res);
     }
     [HttpGet]

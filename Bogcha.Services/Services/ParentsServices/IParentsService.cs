@@ -1,4 +1,4 @@
-﻿namespace Bogcha.Services.Services.ParentsServices;
+﻿namespace Bogcha.Infrastructure.Services.ParentsServices;
 
 public interface IParentsService : IParentRepository
 {

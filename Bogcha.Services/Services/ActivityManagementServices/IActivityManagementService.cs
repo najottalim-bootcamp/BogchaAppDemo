@@ -1,6 +1,5 @@
-﻿namespace Bogcha.Services.Services.ActivityManagementServices
+namespace Bogcha.Infrastructure.Services.ActivityManagementServices
+
+public interface IActivityManagementService : IActivityManagementRepository
 {
-    public interface IActivityManagementService : IActivityManagementRepository
-    {
-    }
 }

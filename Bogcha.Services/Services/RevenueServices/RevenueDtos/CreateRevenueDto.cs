@@ -1,4 +1,4 @@
-﻿namespace Bogcha.Services.DTOs.RevenueDtos;
+﻿namespace Bogcha.Infrastructure.Services.RevenueServices.RevenueDtos;
 
 public class CreateRevenueDto
 {
@@ -11,6 +11,6 @@ public class CreateRevenueDto
     public decimal? Book { get; set; }
     [RegularExpression(@"^[0-9]{8}-[0-9]{3}-[0-9]{3}$", ErrorMessage = "InvoiceNo must match the format 'XXXXXXXX-XXX-XXX'")]
     public string? InvoiceNo { get; set; }
-    [RegularExpression(@"^[A-Z]{3}[0-9]{3}$", ErrorMessage = "RecieptNo must match the format 'AAAXXX'")]
+    [RegularExpression(@"^[A-Z]{3}[0-9]{3}$", ErrorMessage = "RecieptNo must match the format 'XXX999'")]
     public string? RecieptNo { get; set; }
 }

@@ -1,4 +1,4 @@
-﻿namespace Bogcha.Services.Services.StudentServices;
+﻿namespace Bogcha.Infrastructure.Services.StudentServices;
 
 public interface IStudentService : IStudentRepository
 {
