@@ -1,5 +1,5 @@
-﻿namespace Bogcha.Infrastructure.Services.Accident_RecordsServices
-{
+﻿namespace Bogcha.Infrastructure.Services.Accident_RecordsServices;
+
     public class Accident_RecordsService : IAccident_RecordsService
     {
         private readonly IAccident_RecordsRepository accident_RecordsRepository;
@@ -21,7 +21,7 @@
             var accidentRecords = await accident_RecordsRepository.CreateAsync(accident_Records);
             return accidentRecords;
 
-    }
+        }
 
 
         public async ValueTask<bool> DeleteAsync(int id)
@@ -45,7 +45,6 @@
                 (accident_rec, student) => new ViewAccident_RecordsDto()
                 {
                     AccNo = accident_rec.AccNo,
-                    ChID = accident_rec.ChId,
                     ChFName = student.ChFName,
                     ChLName = student.ChLName,
                     AccidentDate = accident_rec.AccidentDate,
@@ -65,27 +64,27 @@
             {
                 return null;
             }
-            ViewAccident_RecordsDto viewAccident_records =  new ViewAccident_RecordsDto()
-                {
-                    AccNo = accident_rec.AccNo,
-                    ChID = accident_rec.ChId,
-                    ChFName = student.ChFName,
-                    ChLName = student.ChLName,
-                    AccidentDate = accident_rec.AccidentDate,
-                    TypeOfAccident = accident_rec.TypeOfAccident,
-                    Location = accident_rec.Location,
-                    FirstAid = accident_rec.FirstAid
-                };
+            ViewAccident_RecordsDto viewAccident_records = new ViewAccident_RecordsDto()
+            {
+                AccNo = accident_rec.AccNo,
+                ChFName = student.ChFName,
+                ChLName = student.ChLName,
+                AccidentDate = accident_rec.AccidentDate,
+                TypeOfAccident = accident_rec.TypeOfAccident,
+                Location = accident_rec.Location,
+                FirstAid = accident_rec.FirstAid
+            };
 
             return viewAccident_records;
 
         }
 
-        public async ValueTask<bool> UpdateAsync(int id,UpdateAccident_RecordsDto updateAccident_Records)
+        public async ValueTask<bool> UpdateAsync(int id, UpdateAccident_RecordsDto updateAccident_Records)
         {
             Accident_Records accident_ = mapper.Map<Accident_Records>(updateAccident_Records);
             accident_.AccNo = id;
             return await accident_RecordsRepository.UpdateAsync(accident_);
         }
 
-}
+    }
+

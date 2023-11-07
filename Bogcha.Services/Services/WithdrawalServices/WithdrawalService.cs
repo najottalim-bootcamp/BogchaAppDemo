@@ -50,6 +50,7 @@ public class WithdrawalService : IWithdrawalService
                 Expense = withdrawal.Expense,
                 Amount = withdrawal.Amount,
                 DatePaid = withdrawal.DatePaid,
+                WithDrawnBy = withdrawal.WithDrawnBy,
                 EmployeeFName = employee.EmpFName,
                 EmployeeLName = employee.EmpLName,
                 Department = employee.Department
@@ -57,11 +58,15 @@ public class WithdrawalService : IWithdrawalService
         return viewWithdrawalDtos;
     }
 
-    public async ValueTask<Withdrawal> GetByIdAsync(int id)
+    public async ValueTask<ViewWithdrawalDto> GetByIdAsync(int id)
     {
         Withdrawal withdrawal = await _withdrawalRepository.GetByIdAsync(id);
+        if(withdrawal is null)
+        {
+            return null;
+        }
         Employee employee = await _employeeRepository.GetByIdAsync(withdrawal.WithDrawnBy);
-        if (employee is null || withdrawal is null)
+        if (employee is null)
         {
             return null;
         }
@@ -71,11 +76,12 @@ public class WithdrawalService : IWithdrawalService
             Expense = withdrawal.Expense,
             Amount = withdrawal.Amount,
             DatePaid = withdrawal.DatePaid,
+            WithDrawnBy = withdrawal.WithDrawnBy,
             EmployeeFName = employee.EmpFName,
             EmployeeLName = employee.EmpLName,
             Department = employee.Department
         };
-        return withdrawal;
+        return veiwWithdrawal;
 
     }
 

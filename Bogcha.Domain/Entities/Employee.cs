@@ -26,10 +26,7 @@ public class Employee
     public string EmpType { get; set; }
     public string Department { get; set; }
 
-    public static implicit operator Employee?(Student? v)
-    {
-        throw new NotImplementedException();
-    }
+   
 }
 
 

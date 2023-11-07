@@ -1,4 +1,6 @@
-﻿namespace Bogcha.API.Controllers.ParentsContollers;
+﻿using Bogcha.Infrastructure.Services.ParentsServices.ParentsDtos;
+
+namespace Bogcha.API.Controllers.ParentsContollers;
 
 [Route("api/[controller]/[action]")]
 [ApiController]
@@ -10,34 +12,47 @@ public class ParentsController : ControllerBase
     {
         _parents = parents;
     }
-    [HttpGet]
     public async ValueTask<IActionResult> GetAllParentsAsync()
     {
-        var res = await _parents.GetAllAsync();
-        return Ok(res);
+        IEnumerable<ViewParentDto> viewParentDtos = await _parents.GetAllParentsAsync();
+
+        return Ok(viewParentDtos);
     }
     [HttpGet]
     public async ValueTask<IActionResult> GetParentsByIdAsync(string ChId)
     {
-        var res = await _parents.GetByIdAsync(ChId);
-        return Ok(res);
+        ViewParentDto viewParentDtos = await _parents.GetParentsByIdAsync(ChId);
+
+        if (viewParentDtos is null)
+            return NotFound(ChId);
+
+        return Ok(viewParentDtos);
     }
     [HttpPost]
-    public async ValueTask<IActionResult> CreateParentsAsync(Parents par)
+    public async ValueTask<IActionResult> CreateAsync(CreateParentsDto createParentsDto)
     {
-        var res = await _parents.CreateAsync(par);
-        return Ok(res);
+        bool result = await _parents.CreateAsync(createParentsDto);
+        if (result)
+        {
+            return Created(Request.GetDisplayUrl(), createParentsDto);
+        }
+        return BadRequest(createParentsDto);
     }
     [HttpPut]
-    public async ValueTask<IActionResult> UpdateParentsAsync(Parents par)
+    public async ValueTask<IActionResult> UpdateAsync(string chId, UpdateParentsDto updateParentsDto)
     {
-        var res = await _parents.UpdateAsync(par);
-        return Ok(res);
+        bool result = await _parents.UpdateAsync(chId, updateParentsDto);
+
+        if (result)
+            return NoContent();
+        return BadRequest(updateParentsDto);
     }
     [HttpDelete]
-    public async ValueTask<IActionResult> DeleteParentsAsync(string ChId)
+    public async ValueTask<IActionResult> DeleteAsync(string ChId)
     {
-        var res = await _parents.DeleteAsync(ChId);
-        return Ok(res);
+        bool result = await _parents.DeleteAsync(ChId);
+        if (result)
+            return NoContent();
+        return BadRequest(result);
     }
 }
