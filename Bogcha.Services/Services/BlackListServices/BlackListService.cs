@@ -1,5 +1,4 @@
 ﻿using Bogcha.Infrastructure.Services.BlackListServices.BlackListDTOs;
-using Bogcha.Infrastructure.Services.RevenueServices.RevenueDtos;
 
 namespace Bogcha.Infrastructure.Services.BlackListServices;
 public class BlackListService : IBlackListService
