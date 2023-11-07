@@ -37,83 +37,45 @@ namespace Bogcha.DataAccess.Repositories.ImmunizationRecordRepositories
                 var command = new SqlCommand(sqlQuery, sqlConnection);
                 command.Parameters.AddWithValue("@Id", Id);
 
-                int result = await command.ExecuteNonQueryAsync();
-                return result > 0;
-            }
-            catch
-            {
-                return false;
-            }
-            finally
-            {
-                await sqlConnection.CloseAsync();
-            }
+            int result = await command.ExecuteNonQueryAsync();
+            return result > 0;
         }
-        public async ValueTask<IEnumerable<ImmunizationRecord>> GetAllAsync()
+        catch
         {
-            try
-            {
-                await sqlConnection.OpenAsync();
-                string sqlQuery = "Select * from ImmunizationRecord;";
-                IEnumerable<ImmunizationRecord> immunizationRecord = await sqlConnection.QueryAsync<ImmunizationRecord>(sqlQuery);
-                return immunizationRecord;
-            }
-            catch (Exception ex)
-            {
-                return Enumerable.Empty<ImmunizationRecord>();
-            }
-            finally
-            {
-                await sqlConnection.CloseAsync();
-            }
+            return false;
         }
-
-        public async ValueTask<ImmunizationRecord> GetByIdAsync(int Id)
+        finally
         {
-            try
-            {
-                await sqlConnection.OpenAsync();
-                string sqlQuery = $"Select * from ImmunizationRecord where Id=@Id;";
+            await sqlConnection.CloseAsync();
+        }
+    }
+    public async ValueTask<IEnumerable<ImmunizationRecord>> GetAllAsync()
+    {
+        try
+        {
+            await sqlConnection.OpenAsync();
+            string sqlQuery = "Select * from ImmunizationRecord;";
+            IEnumerable<ImmunizationRecord> immunizationRecord = await sqlConnection.QueryAsync<ImmunizationRecord>(sqlQuery);
+            return immunizationRecord;
+        }
+        catch (Exception ex)
+        {
+            return Enumerable.Empty<ImmunizationRecord>();
+        }
+        finally
+        {
+            await sqlConnection.CloseAsync();
+        }
+    }
 
-                ImmunizationRecord immunizationRecord = await sqlConnection.QueryFirstOrDefaultAsync<ImmunizationRecord>(sqlQuery, new { Id });
-
-                return immunizationRecord;
-            }
-            catch (Exception ex)
-            {
-                await Console.Out.WriteLineAsync(ex.Message);
-                return null;
-            }
-            finally
-            {
-                await sqlConnection.CloseAsync();
-            }
+        public ValueTask<bool> GetByIdAsync(int id)
+        {
+            throw new NotImplementedException();
         }
 
-        public async ValueTask<bool> UpdateAsync(ImmunizationRecord immunizationRecord)
+        public ValueTask<bool> UpdateAsync(int id, ImmunizationRecord immunizationRecord)
         {
-            try
-            {
-                await sqlConnection.OpenAsync();
-                string sqlQuery = $"update ImmunizationRecord set " +
-                    "Chickenpox = @Chickenpox, " +
-                    "Diphtheria_Tetanus_WhoopingCough = @Diphtheria_Tetanus_WhoopingCough,Haemophilus_influenza_typeB = @Haemophilus_influenza_typeB,Hepatsis_A = @Hepatsis_A," +
-                    "Hepatsis_B = @Hepatsis_B,Influenza = @Influenza,Measles = @Measles,Meningococcal = @Meningococcal,Pneumococcal = @Pneumococcal, Polio = @Polio, Rotavirus = @Rotavirus " +
-                "where Id=@Id";
-
-                int result = await sqlConnection.ExecuteAsync(sqlQuery, immunizationRecord);
-
-                return result > 0;
-
-            }
-            catch (Exception ex)
-            {
-                return false;
-            }
-            finally
-            {
-                await sqlConnection.CloseAsync();
-            }
+            throw new NotImplementedException();
         }
     }
 }

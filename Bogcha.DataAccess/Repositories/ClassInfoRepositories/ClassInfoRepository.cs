@@ -1,17 +1,17 @@
-﻿namespace Bogcha.DataAccess.Repositories.ClassInfoRepositories
-{
-    public class ClassInfoRepository : Database, IClassInfoRepository
-    {
-        public ClassInfoRepository(string connectionString) : base(connectionString) { }
+﻿namespace Bogcha.DataAccess.Repositories.ClassInfoRepositories;
 
-        public async ValueTask<bool> CreateAsync(ClassInfo classInfo)
+public class ClassInfoRepository : Database, IClassInfoRepository
+{
+    public ClassInfoRepository(string connectionString) : base(connectionString) { }
+
+    public async ValueTask<bool> CreateAsync(ClassInfo classInfo)
+    {
+        try
         {
-            try
-            {
-                await sqlConnection.OpenAsync();
-                string sqlQuery = "Insert into ClassInfo values(@ClassId,@ClassName," +
-                    "@AgeGroup,@RoomNo,@HeadTeacher," +
-                    "@AssistantTeacher)";
+            await sqlConnection.OpenAsync();
+            string sqlQuery = "Insert into ClassInfo values(@ClassId,@ClassName," +
+                "@AgeGroup,@RoomNo,@HeadTeacher," +
+                "@AssistantTeacher)";
 
                 var command = new SqlCommand(sqlQuery, sqlConnection);
                 int result = await command.ExecuteNonQueryAsync();
@@ -35,36 +35,36 @@
                 var command = new SqlCommand(sqlQuery, sqlConnection);
                 command.Parameters.AddWithValue("Id", id);
 
-                int result = await command.ExecuteNonQueryAsync();
-                return result > 0;
-            }
-            catch
-            {
-                return false;
-            }
-            finally
-            {
-                await sqlConnection.CloseAsync();
-            }
+            int result = await command.ExecuteNonQueryAsync();
+            return result > 0;
         }
-        public async ValueTask<IEnumerable<ClassInfo>> GetAllAsync()
+        catch
         {
-            try
-            {
-                await sqlConnection.OpenAsync();
-                string sqlQuery = "Select * from ClassInfo;";
-                IEnumerable<ClassInfo> classInfo = await sqlConnection.QueryAsync<ClassInfo>(sqlQuery);
-                return classInfo;
-            }
-            catch (Exception ex)
-            {
-                return Enumerable.Empty<ClassInfo>();
-            }
-            finally
-            {
-                await sqlConnection.CloseAsync();
-            }
+            return false;
         }
+        finally
+        {
+            await sqlConnection.CloseAsync();
+        }
+    }
+    public async ValueTask<IEnumerable<ClassInfo>> GetAllAsync()
+    {
+        try
+        {
+            await sqlConnection.OpenAsync();
+            string sqlQuery = "Select * from ClassInfo;";
+            IEnumerable<ClassInfo> classInfo = await sqlConnection.QueryAsync<ClassInfo>(sqlQuery);
+            return classInfo;
+        }
+        catch (Exception ex)
+        {
+            return Enumerable.Empty<ClassInfo>();
+        }
+        finally
+        {
+            await sqlConnection.CloseAsync();
+        }
+    }
 
         public async ValueTask<ClassInfo> GetByIdAsync(string Id)
         {
