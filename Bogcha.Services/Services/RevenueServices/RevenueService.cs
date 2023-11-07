@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
-using Bogcha.Services.Services.RevenueServices.RevenueDtos;
+using Bogcha.Infrastructure.Services.RevenueServices.RevenueDtos;
 
-namespace Bogcha.Services.Services.RevenueServices;
+namespace Bogcha.Infrastructure.Services.RevenueServices;
 
 public class RevenueService : IRevenueService
 {
@@ -22,13 +22,13 @@ public class RevenueService : IRevenueService
     public async ValueTask<bool> CreateAsync(CreateRevenueDto createRevenueDto)
     {
         var revenue = _mapper.Map<Revenue>(createRevenueDto);
-        bool result =await _revenueRepository.CreateAsync(revenue);
+        bool result = await _revenueRepository.CreateAsync(revenue);
         return result;
     }
 
     public async ValueTask<bool> DeleteAsync(string chId)
     {
-        bool result =await _revenueRepository.DeleteAsync(chId);
+        bool result = await _revenueRepository.DeleteAsync(chId);
         return result;
     }
 
@@ -59,9 +59,9 @@ public class RevenueService : IRevenueService
     public async ValueTask<ViewRevenueDto> GetRevenueByIdAsync(string id)
     {
         Student? student = await _studentRepository.GetByIdAsync(id);
-        
+
         Revenue? revenue = await _revenueRepository.GetByIdAsync(id);
-        if(student is null || revenue is null)
+        if (student is null || revenue is null)
         {
             return null;
         }
@@ -83,7 +83,7 @@ public class RevenueService : IRevenueService
 
     public async ValueTask<bool> UpdateAsync(string chId, UpdateRevenueDto updateRevenueDto)
     {
-        var revenue =await _revenueRepository.GetByIdAsync(chId);
+        var revenue = await _revenueRepository.GetByIdAsync(chId);
         if (revenue is null)
         {
             return false;

@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
-using Bogcha.Services.Services.RevenueServices.RevenueDtos;
+using Bogcha.Infrastructure.Services.RevenueServices.RevenueDtos;
 
-namespace Bogcha.Services.Services.Common.AutoMapper;
+namespace Bogcha.Infrastructure.Services.Common.AutoMapper;
 public class ApplicationProfile : Profile
 {
     public ApplicationProfile()

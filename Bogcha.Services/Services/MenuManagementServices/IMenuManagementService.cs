@@ -1,4 +1,4 @@
-﻿namespace Bogcha.Services.Services.MenuManagementServices;
+﻿namespace Bogcha.Infrastructure.Services.MenuManagementServices;
 
 public interface IMenuManagementService : IMenuManagementRepository
 {

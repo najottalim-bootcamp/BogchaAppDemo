@@ -1,6 +1,6 @@
-﻿namespace Bogcha.Services.Services.RegularHealthCheckServices
+﻿namespace Bogcha.Infrastructure.Services.RegularHealthCheckServices
 {
-    public class RegularHealthCheckService:IRegularHealthCheckService
+    public class RegularHealthCheckService : IRegularHealthCheckService
     {
         private readonly IRegularHealthCheckRepository _repository;
         public RegularHealthCheckService(IRegularHealthCheckRepository repository)
@@ -14,7 +14,7 @@
 
         public async ValueTask<bool> DeleteAsync(int id)
         {
-            return await (_repository.DeleteAsync(id));
+            return await _repository.DeleteAsync(id);
         }
 
         public async ValueTask<IEnumerable<RegularHealthCheck>> GetAllAsync()

@@ -1,4 +1,4 @@
-﻿namespace Bogcha.Services.Services.RevenueServices.RevenueDtos;
+﻿namespace Bogcha.Infrastructure.Services.RevenueServices.RevenueDtos;
 public class UpdateRevenueDto
 {
     public decimal? RegistrationFee { get; set; }

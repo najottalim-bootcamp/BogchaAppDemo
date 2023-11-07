@@ -1,6 +1,6 @@
-﻿using Bogcha.Services.Services.RevenueServices.RevenueDtos;
+﻿using Bogcha.Infrastructure.Services.RevenueServices.RevenueDtos;
 
-namespace Bogcha.Services.Services.RevenueServices;
+namespace Bogcha.Infrastructure.Services.RevenueServices;
 
 public interface IRevenueService
 {
