@@ -1,3 +1,5 @@
+using Bogcha.Infrastructure.Services.ActivityManagementServices.ActivityManagemntDtos;
+
 namespace Bogcha.API.Controllers.ActivityManagementControllers;
 
 [Route("api/[controller]/[action]")]
@@ -31,7 +33,7 @@ public class ActivityManagementController : ControllerBase
         return Ok(await _activityManagement.DeleteAsync(id));
     }
     [HttpPost]
-    public async ValueTask<IActionResult> CreateAsync(ActivityManagement activityManagement)
+    public async ValueTask<IActionResult> CreateAsync(CreateActivityManagementDto activityManagement)
     {
         return Ok(await _activityManagement.CreateAsync(activityManagement));
 
