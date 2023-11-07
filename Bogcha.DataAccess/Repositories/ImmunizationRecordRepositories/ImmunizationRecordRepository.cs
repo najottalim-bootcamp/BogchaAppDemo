@@ -68,14 +68,52 @@ namespace Bogcha.DataAccess.Repositories.ImmunizationRecordRepositories
         }
     }
 
-        public ValueTask<bool> GetByIdAsync(int id)
+        public async ValueTask<ImmunizationRecord> GetByIdAsync(int Id)
         {
-            throw new NotImplementedException();
+            try
+            {
+                await sqlConnection.OpenAsync();
+                string sqlQuery = $"Select * from ImmunizationRecord where ChId=@Id;";
+
+                ImmunizationRecord immunizationRecord = await sqlConnection.QueryFirstOrDefaultAsync<ImmunizationRecord>(sqlQuery, new { Id });
+
+                return immunizationRecord;
+            }
+            catch (Exception ex)
+            {
+                await Console.Out.WriteLineAsync(ex.Message);
+                return null;
+            }
+            finally
+            {
+                await sqlConnection.CloseAsync();
+            }
         }
 
-        public ValueTask<bool> UpdateAsync(int id, ImmunizationRecord immunizationRecord)
+        public async ValueTask<bool> UpdateAsync(ImmunizationRecord immunizationRecord)
         {
-            throw new NotImplementedException();
+            try
+            {
+                await sqlConnection.OpenAsync();
+                string sqlQuery = $"update ImmunizationRecord set " +
+                    "ChId = @ChId, " +
+                    "Chickenpox = @Chickenpox,gender = @Diphtheria_Tetanus_WhoopingCough,Passport = @Diphtheria_Tetanus_WhoopingCough," +
+                    "Haemophilus_influenza_typeB = @Haemophilus_influenza_typeB,Hepatsis_A = @Hepatsis_A,Hepatsis_B = @Hepatsis_B,Influenza = @Influenza,Measles = @Measles, Meningococcal = @Meningococcal, Pneumococcal = @Pneumococcal, Polio = @Polio, Rotavirus = @Rotavirus " +
+                    "where ChId=@chId";
+
+                int result = await sqlConnection.ExecuteAsync(sqlQuery, immunizationRecord);
+
+                return result > 0;
+
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+            finally
+            {
+                await sqlConnection.CloseAsync();
+            }
         }
     }
 }
