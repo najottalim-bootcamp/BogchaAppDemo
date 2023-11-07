@@ -1,4 +1,3 @@
-
 namespace Bogcha.Infrastructure.Services.Accident_RecordsServices
 
 {
@@ -13,3 +12,4 @@ namespace Bogcha.Infrastructure.Services.Accident_RecordsServices
 
     }
 }
+

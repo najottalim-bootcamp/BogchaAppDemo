@@ -17,19 +17,18 @@
             return await _repository.DeleteAsync(id);
         }
 
-        public async ValueTask<IEnumerable<RegularHealthCheck>> GetAllAsync()
-        {
-            return await _repository.GetAllAsync();
-        }
+    public async ValueTask<IEnumerable<RegularHealthCheck>> GetAllAsync()
+    {
+        return await _repository.GetAllAsync();
+    }
 
-        public async ValueTask<RegularHealthCheck> GetByIdAsync(int id)
-        {
-            return await _repository.GetByIdAsync(id);
-        }
+    public async ValueTask<RegularHealthCheck> GetByIdAsync(int id)
+    {
+        return await _repository.GetByIdAsync(id);
+    }
 
-        public async ValueTask<bool> UpdateAsync(RegularHealthCheck regularHealthCheck)
-        {
-            return await _repository.UpdateAsync(regularHealthCheck);
-        }
+    public async ValueTask<bool> UpdateAsync(RegularHealthCheck regularHealthCheck)
+    {
+        return await _repository.UpdateAsync(regularHealthCheck);
     }
 }
