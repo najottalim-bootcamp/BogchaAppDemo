@@ -18,7 +18,7 @@ public class RevenueService : IRevenueService
 
     public async ValueTask<bool> CreateAsync(CreateRevenueDto createRevenueDto)
     {
-        var revenue = _mapper.Map<Revenue>(createRevenueDto);
+        Revenue revenue = _mapper.Map<Revenue>(createRevenueDto);
         bool result = await _revenueRepository.CreateAsync(revenue);
         return result;
     }
@@ -31,14 +31,14 @@ public class RevenueService : IRevenueService
 
     public async ValueTask<IEnumerable<ViewRevenueDto>> GetAllRevenuesAsync()
     {
-        var students = await _studentRepository.GetAllAsync();
-        var revenues = await _revenueRepository.GetAllAsync();
+        IEnumerable<Student> students = await _studentRepository.GetAllAsync();
+        IEnumerable<Revenue> revenues = await _revenueRepository.GetAllAsync();
 
         if(!(students.Any() && revenues.Any()))
         {
             return Enumerable.Empty<ViewRevenueDto>();
         }
-        var revenueViews = revenues.Join(students,
+        IEnumerable<ViewRevenueDto> revenueViews = revenues.Join(students,
             rev => rev.ChId,
             st => st.CHId,
             (rev, std) => new ViewRevenueDto()
@@ -84,7 +84,7 @@ public class RevenueService : IRevenueService
 
     public async ValueTask<bool> UpdateAsync(string chId, UpdateRevenueDto updateRevenueDto)
     {
-        var revenue = await _revenueRepository.GetByIdAsync(chId);
+        Revenue revenue = await _revenueRepository.GetByIdAsync(chId);
         if (revenue is null)
         {
             return false;

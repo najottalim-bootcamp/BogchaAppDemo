@@ -4,40 +4,53 @@
 [ApiController]
 public class WithdrawalController : ControllerBase
 {
-    private readonly IWithdrawalService withdrawalService;
+    private readonly IWithdrawalService _withdrawalService;
 
     public WithdrawalController(IWithdrawalService withdrawalService)
     {
-        this.withdrawalService = withdrawalService;
+        _withdrawalService = withdrawalService;
     }
     [HttpGet]
-    public async ValueTask<IActionResult> Get()
+    public async ValueTask<IActionResult> GetAllWithdrawalsAsync()
     {
-        var res = await withdrawalService.GetAllAsync();
-        return Ok(res);
+        IEnumerable<ViewWithdrawalDto> viewWithdrawalDtos = await _withdrawalService.GetAllAsync();
+        return Ok(viewWithdrawalDtos);
     }
 
     [HttpGet("{id}")]
-    public async ValueTask<IActionResult> Get(int id)
+    public async ValueTask<IActionResult> GetWithdrawalByIdAsync(int id)
     {
-        var res = await withdrawalService.GetByIdAsync(id);
-        return Ok(res);
+        ViewWithdrawalDto viewWithdrawalDto = await _withdrawalService.GetByIdAsync(id);
+        if(viewWithdrawalDto is null) 
+        {
+            return BadRequest(id);
+        }
+        return Ok(viewWithdrawalDto);
     }
 
     [HttpPost]
-    public async ValueTask<bool> Post([FromBody] Withdrawal withdrawal)
+    public async ValueTask<IActionResult> CreateWithdrawalAsync(CreateWithdrawalDto createWithdrawal)
     {
-        return await withdrawalService.CreateAsync(withdrawal);
+        bool result = await _withdrawalService.CreateAsync(createWithdrawal);
+        if (result)
+            return Created(Request.GetDisplayUrl(), createWithdrawal);
+        return BadRequest(createWithdrawal);
     }
 
     [HttpPut("{id}")]
-    public async ValueTask<bool> Put(int id, [FromBody] Withdrawal withdrawal)
+    public async ValueTask<IActionResult> UpdateWithdrawalAsync(int id, UpdateWithdrawalDto updateWithdrawal)
     {
-        return await withdrawalService.UpdateAsync(withdrawal);
+        bool result = await _withdrawalService.UpdateAsync(id, updateWithdrawal);
+        if (result)
+            return NoContent();
+        return BadRequest();
     }
     [HttpDelete("{id}")]
-    public async ValueTask<bool> Delete(int id)
+    public async ValueTask<IActionResult> DeleteWithdrawalAsync(int id)
     {
-        return await withdrawalService.DeleteAsync(id);
+        bool result = await _withdrawalService.DeleteAsync(id);
+        if (result)
+            return NoContent();
+        return BadRequest(result);
     }
 }
