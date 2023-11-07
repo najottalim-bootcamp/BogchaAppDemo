@@ -1,10 +1,11 @@
-﻿namespace Bogcha.DataAccess.Repositories.BlackListRepositories;
-
-public interface IBlackListRepository
+﻿namespace Bogcha.DataAccess.Repositories.BlackListRepositories
 {
-    public ValueTask<bool> CreateAsync(BlackList blackList);
-    public ValueTask<bool> UpdateAsync(int id, BlackList blackList);
-    public ValueTask<bool> DeleteAsync(int id);
-    public ValueTask<bool> GetByIdAsync(int id);
-    public ValueTask<IEnumerable<BlackList>> GetAllAsync();
+    public interface IBlackListRepository
+    {
+        public ValueTask<bool> CreateAsync(BlackList blackList);
+        public ValueTask<bool> UpdateAsync(BlackList blackList);
+        public ValueTask<bool> DeleteAsync(string ChId);
+        public ValueTask<BlackList> GetByIdAsync(string ChId);
+        public ValueTask<IEnumerable<BlackList>> GetAllAsync();
+    }
 }

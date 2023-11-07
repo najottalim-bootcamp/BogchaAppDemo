@@ -1,6 +1,6 @@
-﻿
-namespace Bogcha.Services.Services.RegularHealthCheckServices;
-
-public interface IRegularHealthCheckService:IRegularHealthCheckRepository
+﻿namespace Bogcha.Infrastructure.Services.RegularHealthCheckServices
 {
+    public interface IRegularHealthCheckService : IRegularHealthCheckRepository
+    {
+    }
 }

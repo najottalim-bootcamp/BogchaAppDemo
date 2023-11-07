@@ -1,16 +1,16 @@
-﻿namespace Bogcha.Services.Services.Accident_RecordsServices;
-
-public class Accident_RecordsService : IAccident_RecordsService
+﻿namespace Bogcha.Infrastructure.Services.Accident_RecordsServices
 {
-    private readonly IAccident_RecordsRepository _context;
-    public Accident_RecordsService(IAccident_RecordsRepository context)
+    public class Accident_RecordsService : IAccident_RecordsService
     {
-        _context = context;
-    }
-    public async ValueTask<bool> CreateAsync(Accident_Records accident_Records)
-    {
-        var accidentRecords = await _context.CreateAsync(accident_Records);
-        return accidentRecords;
+        private readonly IAccident_RecordsRepository _context;
+        public Accident_RecordsService(IAccident_RecordsRepository context)
+        {
+            _context = context;
+        }
+        public async ValueTask<bool> CreateAsync(Accident_Records accident_Records)
+        {
+            var accidentRecords = await _context.CreateAsync(accident_Records);
+            return accidentRecords;
 
     }
 

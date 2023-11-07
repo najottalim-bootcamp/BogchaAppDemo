@@ -1,12 +1,12 @@
-﻿namespace Bogcha.Services.Services.ActivityManagementServices;
-
-public class ActivityManagementService : IActivityManagementService
+﻿namespace Bogcha.Infrastructure.Services.ActivityManagementServices
 {
-    private readonly IActivityManagementRepository _activityManagementRepository;
-    public ActivityManagementService(IActivityManagementRepository context)
+    public class ActivityManagementService : IActivityManagementService
     {
-        _activityManagementRepository = context;
-    }
+        private readonly IActivityManagementRepository _activityManagementRepository;
+        public ActivityManagementService(IActivityManagementRepository context)
+        {
+            _activityManagementRepository = context;
+        }
 
     public async ValueTask<bool> CreateAsync(ActivityManagement activityManagement)
     {

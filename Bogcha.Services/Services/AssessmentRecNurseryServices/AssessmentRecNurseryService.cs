@@ -1,4 +1,4 @@
-﻿namespace Bogcha.Services.Services.AssessmentRecNurseryServices;
+﻿namespace Bogcha.Infrastructure.Services.AssessmentRecNurseryServices;
 
 public class AssessmentRecNurseryService : IAssessmentRecNurseryService
 {

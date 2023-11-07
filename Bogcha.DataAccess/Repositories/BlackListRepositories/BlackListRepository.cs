@@ -1,8 +1,8 @@
-﻿namespace Bogcha.DataAccess.Repositories.BlackListRepositories;
-
-public class BlackListRepository : Database, IBlackListRepository
+﻿namespace Bogcha.DataAccess.Repositories.BlackListRepositories
 {
-    public BlackListRepository(string connectionString) : base(connectionString) { }
+    public class BlackListRepository : Database, IBlackListRepository
+    {
+        public BlackListRepository(string connectionString) : base(connectionString) { }
 
     public async ValueTask<bool> CreateAsync(BlackList blackList)
     {
@@ -13,27 +13,27 @@ public class BlackListRepository : Database, IBlackListRepository
                 "@UnauthLName,@gender,@Passport," +
                 "@strAddress,@city,@state,@zipCode,@phoneNo)";
 
-            var command = new SqlCommand(sqlQuery, sqlConnection);
-            int result = await command.ExecuteNonQueryAsync();
-            return result > 0;
+                var command = new SqlCommand(sqlQuery, sqlConnection);
+                int result = await command.ExecuteNonQueryAsync();
+                return result > 0;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+            finally
+            {
+                await sqlConnection.CloseAsync();
+            }
         }
-        catch (Exception ex)
+        public async ValueTask<bool> DeleteAsync(string ChId)
         {
-            return false;
-        }
-        finally
-        {
-            await sqlConnection.CloseAsync();
-        }
-    }
-    public async ValueTask<bool> DeleteAsync(int id)
-    {
-        try
-        {
-            await sqlConnection.OpenAsync();
-            string sqlQuery = "Delete from BlackList where id==Id";
-            var command = new SqlCommand(sqlQuery, sqlConnection);
-            command.Parameters.AddWithValue("Id", id);
+            try
+            {
+                await sqlConnection.OpenAsync();
+                string sqlQuery = "Delete from BlackList where ChId=@Id";
+                var command = new SqlCommand(sqlQuery, sqlConnection);
+                command.Parameters.AddWithValue("@Id", ChId);
 
             int result = await command.ExecuteNonQueryAsync();
             return result > 0;
@@ -66,13 +66,52 @@ public class BlackListRepository : Database, IBlackListRepository
         }
     }
 
-    public ValueTask<bool> GetByIdAsync(int id)
-    {
-        throw new NotImplementedException();
-    }
+        public async ValueTask<BlackList> GetByIdAsync(string ChId)
+        {
+            try
+            {
+                await sqlConnection.OpenAsync();
+                string sqlQuery = $"Select * from BlackList where ChId=@ChId;";
 
-    public ValueTask<bool> UpdateAsync(int id, BlackList blackList)
-    {
-        throw new NotImplementedException();
+                BlackList blackList = await sqlConnection.QueryFirstOrDefaultAsync<BlackList>(sqlQuery, new { ChId });
+
+                return blackList;
+            }
+            catch (Exception ex)
+            {
+                await Console.Out.WriteLineAsync(ex.Message);
+                return null;
+            }
+            finally
+            {
+                await sqlConnection.CloseAsync();
+            }
+        }
+
+        public async ValueTask<bool> UpdateAsync(BlackList blackList)
+        {
+            try
+            {
+                await sqlConnection.OpenAsync();
+                string sqlQuery = $"update BlackList set " +
+                    "UnauthAuthFName = @UnauthAuthFName, " +
+                    "UnauthAuthLName = @UnauthAuthLName,gender = @gender,Passport = @Passport," +
+                    "strAddress = @strAddress,city = @city,state= @state,zipCode = @zipCode,phoneNo = @phoneNo " +
+                "where ChId=@chId";
+
+                int result = await sqlConnection.ExecuteAsync(sqlQuery, blackList);
+
+                return result > 0;
+
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+            finally
+            {
+                await sqlConnection.CloseAsync();
+            }
+        }
     }
 }
