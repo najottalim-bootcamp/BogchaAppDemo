@@ -1,5 +1,12 @@
-﻿namespace Bogcha.Services.Services.RevenueServices;
+﻿using Bogcha.Infrastructure.Services.RevenueServices.RevenueDtos;
 
-public interface IRevenueService : IRevenueRepository
+namespace Bogcha.Infrastructure.Services.RevenueServices;
+
+public interface IRevenueService
 {
+    public ValueTask<IEnumerable<ViewRevenueDto>> GetAllRevenuesAsync();
+    public ValueTask<ViewRevenueDto> GetRevenueByIdAsync(string id);
+    public ValueTask<bool> UpdateAsync(string chId, UpdateRevenueDto updateRevenueDto);
+    public ValueTask<bool> DeleteAsync(string chId);
+    public ValueTask<bool> CreateAsync(CreateRevenueDto createRevenueDto);
 }

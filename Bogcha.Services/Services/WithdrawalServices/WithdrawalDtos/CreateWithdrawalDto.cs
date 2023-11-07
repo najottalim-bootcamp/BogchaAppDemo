@@ -1,4 +1,4 @@
-﻿namespace Bogcha.Services.DTOs.WithdrawalDtos;
+﻿namespace Bogcha.Infrastructure.Services.WithdrawalServices.WithdrawalDtos;
 
 public class CreateWithdrawalDto
 {

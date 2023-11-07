@@ -1,5 +1,4 @@
-﻿
-namespace Bogcha.Services.Services.AttendanceServices
+﻿namespace Bogcha.Infrastructure.Services.AttendanceServices
 {
     public interface IAttendanceService : IAttendanceRepository
     {

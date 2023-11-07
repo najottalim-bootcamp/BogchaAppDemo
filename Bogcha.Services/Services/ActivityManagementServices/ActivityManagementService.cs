@@ -1,4 +1,4 @@
-﻿namespace Bogcha.Services.Services.ActivityManagementServices
+﻿namespace Bogcha.Infrastructure.Services.ActivityManagementServices
 {
     public class ActivityManagementService : IActivityManagementService
     {

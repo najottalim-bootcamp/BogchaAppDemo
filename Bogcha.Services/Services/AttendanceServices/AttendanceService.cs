@@ -1,4 +1,4 @@
-﻿namespace Bogcha.Services.Services.AttendanceServices
+﻿namespace Bogcha.Infrastructure.Services.AttendanceServices
 {
     public class AttendanceService : IAttendanceService
     {
@@ -11,7 +11,7 @@
 
         public async ValueTask<bool> DeleteAsync(int id)
         {
-            return await (_attendanceService.DeleteAsync(id));
+            return await _attendanceService.DeleteAsync(id);
         }
 
         public async ValueTask<IEnumerable<Attendance>> GetAllAsync()
@@ -24,7 +24,7 @@
             return await _attendanceService.GetByIdAsync(id);
         }
 
-        public async ValueTask<bool> UpdateAsync( Attendance attendance)
+        public async ValueTask<bool> UpdateAsync(Attendance attendance)
         {
             return await _attendanceService.UpdateAsync(attendance);
         }
