@@ -4,9 +4,9 @@ namespace Bogcha.Infrastructure.Services.ParentsServices;
 
 public interface IParentsService 
 {
-    public ValueTask<IEnumerable<ViewParentDto>> GetAllRevenuesAsync();
-    public ValueTask<ViewParentDto> GetRevenueByIdAsync(string id);
-    public ValueTask<bool> UpdateAsync(string chId, ViewParentDto viewParentDto);
+    public ValueTask<IEnumerable<ViewParentDto>> GetAllParentsAsync();
+    public ValueTask<ViewParentDto> GetParentsByIdAsync(string id);
+    public ValueTask<bool> UpdateAsync(string chId,UpdateParentsDto viewParentDto);
     public ValueTask<bool> DeleteAsync(string chId);
-    public ValueTask<bool> CreateAsync(ViewParentDto viewParentDto);
+    public ValueTask<bool> CreateAsync(CreateParentsDto viewParentDto);
 }
