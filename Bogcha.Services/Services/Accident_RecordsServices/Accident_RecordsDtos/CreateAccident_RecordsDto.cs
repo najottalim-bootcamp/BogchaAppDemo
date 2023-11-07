@@ -3,7 +3,7 @@ public class CreateAccident_RecordsDto
 {
     public int AccNo { get; set; }
 
-    [RegularExpression(@"^[A-Z]{2}[0-9]{3}$", ErrorMessage = "WithDrawnBy must match the format 'XX999'")]
+    [RegularExpression(@"^[A-Z]{2}[0-9]{3}$", ErrorMessage = "ChildId must match the format 'XX999'")]
     public string ChID { get; set; }
     public DateTime AccidentDate { get; set; }
     public string TypeOfAccident { get; set; }
