@@ -1,10 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Bogcha.Infrastructure.Services.RegularHealthCheckServices.RegularHealthCheckDtos;
-internal class ViewRegularHealthCheckDto
+﻿namespace Bogcha.Infrastructure.Services.RegularHealthCheckServices.RegularHealthCheckDtos;
+public class ViewRegularHealthCheckDto
 {
+
 }
