@@ -16,7 +16,7 @@ global using Bogcha.DataAccess.Repositories.RegularHealthCheckRepositories;
 global using Bogcha.DataAccess.Repositories.RevenuesRepositories;
 global using Bogcha.DataAccess.Repositories.StudentRepositories;
 global using Bogcha.DataAccess.Repositories.WithdrawalRepositories;
-global using Bogcha.Services.Services.RevenueServices.RevenueDtos;
+global using Bogcha.Infrastructure.Services.RevenueServices.RevenueDtos;
 
 global using Bogcha.Domain.Entities;
 global using System.ComponentModel.DataAnnotations;
