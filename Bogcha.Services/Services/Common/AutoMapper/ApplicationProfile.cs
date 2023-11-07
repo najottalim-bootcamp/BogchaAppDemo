@@ -1,5 +1,4 @@
-﻿
-namespace Bogcha.Infrastructure.Services.Common.AutoMapper;
+﻿namespace Bogcha.Infrastructure.Services.Common.AutoMapper;
 public class ApplicationProfile : Profile
 {
     public ApplicationProfile()
@@ -9,5 +8,11 @@ public class ApplicationProfile : Profile
 
         CreateMap<CreateWithdrawalDto, Withdrawal>();
         CreateMap<UpdateWithdrawalDto, Withdrawal>();
+
+        CreateMap<CreateMealPlanDto, MealPlan>();
+        CreateMap<UpdateMealPlanDto, MealPlan>();
+
+        CreateMap<CreateMenuManagementDto, MenuManagement>();
+        CreateMap<UpdateMenuManagementDto, MenuManagement>();
     }
 }
