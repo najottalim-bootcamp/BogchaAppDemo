@@ -1,6 +1,5 @@
-﻿using Bogcha.Domain.Entities;
-using Bogcha.Infrastructure.Services.AuthorizedPickUpServices.AuthorizedPickUpDTOs;
-using Bogcha.Infrastructure.Services.BlackListServices.BlackListDTOs;
+﻿using Bogcha.Infrastructure.Services.BlackListServices.BlackListDTOs;
+using Bogcha.Infrastructure.Services.RevenueServices.RevenueDtos;
 
 namespace Bogcha.Infrastructure.Services.BlackListServices;
 public class BlackListService : IBlackListService
@@ -14,7 +13,7 @@ public class BlackListService : IBlackListService
         _blackListRepository = blackListRepository;
         this.mapper = mapper;
     }
-    public async ValueTask<bool> CreateAsync(CreateBlackListDTO  blackList)
+    public async ValueTask<bool> CreateAsync(CreateBlackListDTO blackList)
     {
         BlackList blackList1 = mapper.Map<BlackList>(blackList);
         return await _blackListRepository.CreateAsync(blackList1);
@@ -54,18 +53,47 @@ public class BlackListService : IBlackListService
                 phoneNo = blackList.phoneNo,
             });
         return blackListDTOs;
+    }
 
 
-    public async ValueTask<ViewBlackListDTO> GetByIdAsync(string ChId)
+    public async ValueTask<ViewBlackListDTO> GetByIdAsync(string id)
     {
-        ViewBlackListDTO viewBlackListDTOs = mapper.Map<ViewBlackListDTO>(_blackListRepository.GetByIdAsync(ChId));
-        return viewBlackListDTOs;
+        Student? student = await _studentRepository.GetByIdAsync(id);
+
+        BlackList? blackList = await _blackListRepository.GetByIdAsync(id);
+        if (student is null || blackList is null)
+        {
+            return null;
+        }
+        var blackListView = new ViewBlackListDTO()
+        {
+            CHId = student.CHId,
+            ChFName = student.ChFName,
+            ChLName = student.ChLName,
+            UnauthFName = blackList.UnauthFName,
+            UnauthLName = blackList.UnauthLName,
+            gender = blackList.gender,
+            Passport = blackList.Passport,
+            strAddress = blackList.strAddress,
+            city = blackList.city,
+            state = blackList.state,
+            zipCode = blackList.zipCode,
+            phoneNo = blackList.phoneNo,
+        };
+        return blackListView;
     }
 
     public async ValueTask<bool> UpdateAsync(string id, UpdateBlackListDTO blackList)
     {
-        BlackList blackList1 = mapper.Map<BlackList>(blackList);
+        var blackList1 = await _blackListRepository.GetByIdAsync(id);
+        if (blackList1 is null)
+        {
+            return false;
+        }
+        blackList1 = mapper.Map<BlackList>(blackList);
         blackList1.ChId = id;
-        return await _blackListRepository.UpdateAsync(blackList1);
+
+        bool result = await _blackListRepository.UpdateAsync(blackList1);
+        return result;
     }
 }

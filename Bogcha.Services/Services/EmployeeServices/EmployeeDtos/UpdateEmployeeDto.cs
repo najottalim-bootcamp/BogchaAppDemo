@@ -4,11 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Bogcha.Domain.Entities;
-
-public class Employee
+namespace Bogcha.Infrastructure.Services.EmployeeServices.EmployeeDtos;
+public class UpdateEmployeeDto
 {
-    public string EmpId { get; set; }
     public string EmpFName { get; set; }
     public string EmpLName { get; set; }
     public string Passport { get; set; }
@@ -25,14 +23,4 @@ public class Employee
     public string Email { get; set; }
     public string EmpType { get; set; }
     public string Department { get; set; }
-
-   
 }
-
-
-
-
-
-
-
-

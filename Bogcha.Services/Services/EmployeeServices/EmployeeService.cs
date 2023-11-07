@@ -1,35 +1,59 @@
-﻿namespace Bogcha.Infrastructure.Services.EmployeeServices;
+﻿using Bogcha.Domain.Entities;
+using Bogcha.Infrastructure.Services.EmployeeServices.EmployeeDtos;
+using Bogcha.Infrastructure.Services.ParentsServices.ParentsDtos;
+
+namespace Bogcha.Infrastructure.Services.EmployeeServices;
 
 public class EmployeeService : IEmployeeService
 {
     private IEmployeeRepository _employee;
+    private IMapper _mapper;
 
-    public EmployeeService(IEmployeeRepository employee)
+    public EmployeeService(IEmployeeRepository employee,IMapper mapper)
     {
         _employee = employee;
-    }
-    public async ValueTask<bool> CreateAsync(Employee entity)
-    {
-        return await _employee.CreateAsync(entity);
+        _mapper = mapper;
     }
 
-    public async ValueTask<bool> DeleteAsync(string id)
+    public async ValueTask<bool> CreateAsync(CreateEmployeeDto viewEmployeeDto)
     {
-        return await _employee.DeleteAsync(id);
+        var paren = _mapper.Map<Employee>(viewEmployeeDto);
+        bool res = await _employee.CreateAsync(paren);
+        return res;
     }
 
-    public async ValueTask<IEnumerable<Employee>> GetAllAsync()
+    public async ValueTask<bool> DeleteAsync(string chId)
     {
-        return await _employee.GetAllAsync();
+        bool res = await _employee.DeleteAsync(chId);
+        return res;
     }
 
-    public async ValueTask<Employee> GetByIdAsync(string id)
+    public async ValueTask<IEnumerable<Employee>> GetAllEmployeeAsync()
     {
-        return await _employee.GetByIdAsync(id);
+        var res = await _employee.GetAllAsync();
+        return res;
+        
     }
 
-    public async ValueTask<bool> UpdateAsync(Employee entity)
+    public async ValueTask<Employee> GetEmployeeByIdAsync(string id)
     {
-        return await _employee.UpdateAsync(entity);
+        var res = await _employee.GetByIdAsync(id);
+        return res;
+    }
+
+    public async ValueTask<bool> UpdateAsync(string EmpId, UpdateEmployeeDto viewEmployeeDto)
+    {
+        var repo = await _employee.GetByIdAsync(EmpId);
+
+        if (repo is null)
+        {
+            return false;
+        }
+
+        var parent = _mapper.Map<Employee>(viewEmployeeDto);
+        parent.EmpId = EmpId;
+
+        bool res = await _employee.UpdateAsync(parent);
+        return res;
     }
 }
