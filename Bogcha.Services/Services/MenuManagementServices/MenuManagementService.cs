@@ -76,9 +76,9 @@ public class MenuManagementService : IMenuManagementService
         };
         return menuManagementDto;
     }
-    public async ValueTask<bool> UpdateMenuManagementAsync(string chId, UpdateMealPlanDto updateMealPlanDto)
+    public async ValueTask<bool> UpdateMenuManagementAsync(string chId, UpdateMenuManagementDto updateMenuDto)
     {
-        MenuManagement menuManagement = _mapper.Map<MenuManagement>(updateMealPlanDto);
+        MenuManagement menuManagement = _mapper.Map<MenuManagement>(updateMenuDto);
         menuManagement.ChId = chId;
 
         bool result = await _menuManagementRepository.UpdateAsync(menuManagement);
