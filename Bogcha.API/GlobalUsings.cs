@@ -36,6 +36,11 @@ global using Bogcha.Infrastructure.Services.StudentServices;
 global using Bogcha.Infrastructure.Services.WithdrawalServices;
 global using Microsoft.AspNetCore.Mvc;
 global using Bogcha.Infrastructure.Services.RevenueServices.RevenueDtos;
+global using Bogcha.Infrastructure.Services.WithdrawalServices.WithdrawalDtos;
+global using Bogcha.Infrastructure.Services.MealPlanServices.MealPlanDtos;
+global using Bogcha.Infrastructure.Services.MenuManagementServices.MenuManagementDtos;
+
+global using System.ComponentModel.DataAnnotations;
 global using Microsoft.AspNetCore.Http.Extensions;
 
 global using Bogcha.Infrastructure.Services.Common.AutoMapper;
