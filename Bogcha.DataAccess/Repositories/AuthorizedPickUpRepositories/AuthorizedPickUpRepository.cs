@@ -6,14 +6,14 @@ namespace Bogcha.DataAccess.Repositories.AuthorizedPickUpRepositories
     {
         public AuthorizedPickUpRepository(string connectionString) : base(connectionString) { }
 
-        public async ValueTask<bool> CreateAsync(AuthorizedPickUp authorizedPickUp)
+    public async ValueTask<bool> CreateAsync(AuthorizedPickUp authorizedPickUp)
+    {
+        try
         {
-            try
-            {
-                await sqlConnection.OpenAsync();
-                string sqlQuery = "Insert into AuthorizedPickUp values(@ChId,@AuthFName," +
-                    "@AuthLName,@gender,@Passport," +
-                    "@strAddress,@city,@region,@zipCode,@phoneNo)";
+            await sqlConnection.OpenAsync();
+            string sqlQuery = "Insert into AuthorizedPickUp values(@ChId,@AuthFName," +
+                "@AuthLName,@gender,@Passport," +
+                "@strAddress,@city,@region,@zipCode,@phoneNo)";
 
                 
                 int result = await sqlConnection.ExecuteAsync(sqlQuery,authorizedPickUp);
