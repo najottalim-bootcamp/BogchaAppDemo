@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using Bogcha.Services.DTOs.RevenueDtos;
+using Bogcha.Services.Services.RevenueServices.RevenueDtos;
 
 namespace Bogcha.Services.Services.Common.AutoMapper;
 public class ApplicationProfile : Profile
