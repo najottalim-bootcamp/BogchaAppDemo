@@ -1,4 +1,6 @@
 ﻿
+using Bogcha.Infrastructure.Services.StudentServices.StudensDtos;
+
 namespace Bogcha.Infrastructure.Services.Common.AutoMapper;
 public class ApplicationProfile : Profile
 {
@@ -9,5 +11,6 @@ public class ApplicationProfile : Profile
 
         CreateMap<CreateWithdrawalDto, Withdrawal>();
         CreateMap<UpdateWithdrawalDto, Withdrawal>();
+        CreateMap<CreateStudentsDto, Student>();
     }
 }
