@@ -2,7 +2,6 @@
 {
     public interface IActivityManagementRepository
     {
-
         public ValueTask<bool> CreateAsync(ActivityManagement activityManagement);
         public ValueTask<bool> UpdateAsync(ActivityManagement activityManagement);
         public ValueTask<bool> DeleteAsync(int id);

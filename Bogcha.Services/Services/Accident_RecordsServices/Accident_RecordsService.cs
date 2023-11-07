@@ -1,4 +1,4 @@
-﻿namespace Bogcha.Services.Services.Accident_RecordsServices
+﻿namespace Bogcha.Infrastructure.Services.Accident_RecordsServices
 {
     public class Accident_RecordsService : IAccident_RecordsService
     {
