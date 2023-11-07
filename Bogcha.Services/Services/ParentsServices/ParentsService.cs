@@ -16,7 +16,7 @@ public class ParentsService : IParentsService
         _mapper = mapper;
     }
 
-    public async ValueTask<bool> CreateAsync(ViewParentDto viewParentDto)
+    public async ValueTask<bool> CreateAsync(CreateParentsDto viewParentDto)
     {
         var paren = _mapper.Map<Parents>(viewParentDto);
         bool res = await _parent.CreateAsync(paren);
@@ -29,7 +29,7 @@ public class ParentsService : IParentsService
         return res;
     }
 
-    public async  ValueTask<IEnumerable<ViewParentDto>> GetAllRevenuesAsync()
+    public async  ValueTask<IEnumerable<ViewParentDto>> GetAllParentsAsync()
     {
         var students = await _student.GetAllAsync();
         var parentss = await _parent.GetAllAsync();
@@ -63,7 +63,7 @@ public class ParentsService : IParentsService
         return parentViews;
     }
 
-    public async ValueTask<ViewParentDto> GetRevenueByIdAsync(string id)
+    public async ValueTask<ViewParentDto> GetParentsByIdAsync(string id)
     {
         Student? student = await _student.GetByIdAsync(id);
         Parents? parents = await _parent.GetByIdAsync(id);
@@ -96,7 +96,7 @@ public class ParentsService : IParentsService
     } 
       
 
-    public async ValueTask<bool> UpdateAsync(string chId, ViewParentDto viewParentDto)
+    public async ValueTask<bool> UpdateAsync(string chId, UpdateParentsDto viewParentDto)
     {
         var repo = await _parent.GetByIdAsync(chId);
 
