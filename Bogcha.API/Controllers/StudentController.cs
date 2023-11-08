@@ -1,9 +1,6 @@
-﻿using Bogcha.Domain.Entities;
-using Bogcha.Infrastructure.Services.EmployeeServices.EmployeeDtos;
-using Bogcha.Infrastructure.Services.ParentsServices.ParentsDtos;
-using Bogcha.Infrastructure.Services.StudentServices.StudensDtos;
+﻿using Bogcha.Infrastructure.Services.StudentServices.StudensDtos;
 
-namespace Bogcha.API.Controllers.StudentContollers;
+namespace Bogcha.API.Controllers;
 
 [Route("api/[controller]/[action]")]
 [ApiController]
@@ -15,13 +12,15 @@ public class StudentController : ControllerBase
     {
         _student = student;
     }
+    [HttpGet("GetAll")]
     public async ValueTask<IActionResult> GetAllStudentsAsync()
     {
         IEnumerable<Student> Studentss = await _student.GetAllStudentsAsync();
 
         return Ok(Studentss);
     }
-    [HttpGet]
+
+    [HttpGet("GetById")]
     public async ValueTask<IActionResult> GetStudentsByIdAsync(string ChId)
     {
         Student student = await _student.GetStudentByIdAsync(ChId);

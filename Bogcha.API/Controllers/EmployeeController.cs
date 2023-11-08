@@ -1,6 +1,6 @@
 ﻿using Bogcha.Infrastructure.Services.EmployeeServices.EmployeeDtos;
 
-namespace Bogcha.API.Controllers.EmployeeControllers;
+namespace Bogcha.API.Controllers;
 
 [Route("api/[controller]/[action]")]
 [ApiController]
@@ -14,13 +14,14 @@ public class EmployeeController : ControllerBase
     }
 
 
+    [HttpGet("GetAll")]
     public async ValueTask<IActionResult> GetAllEmployeeAsync()
     {
         IEnumerable<Employee> employee = await _employee.GetAllEmployeeAsync();
 
         return Ok(employee);
     }
-    [HttpGet]
+    [HttpGet(Name = "hi")]
     public async ValueTask<IActionResult> GetEmployeeByIdAsync(string EmpId)
     {
         Employee employee = await _employee.GetEmployeeByIdAsync(EmpId);
@@ -30,7 +31,7 @@ public class EmployeeController : ControllerBase
 
         return Ok(employee);
     }
-    [HttpPost]
+    [HttpPost(Name = "createemp")]
     public async ValueTask<IActionResult> CreateAsync(CreateEmployeeDto createEmployeeDto)
     {
         bool result = await _employee.CreateAsync(createEmployeeDto);
@@ -40,7 +41,7 @@ public class EmployeeController : ControllerBase
         }
         return BadRequest(createEmployeeDto);
     }
-    [HttpPut]
+    [HttpPut(Name = "updateemp")]
     public async ValueTask<IActionResult> UpdateAsync(string EmpId, UpdateEmployeeDto updateEmployeeDto)
     {
         bool result = await _employee.UpdateAsync(EmpId, updateEmployeeDto);
@@ -49,7 +50,7 @@ public class EmployeeController : ControllerBase
             return NoContent();
         return BadRequest(updateEmployeeDto);
     }
-    [HttpDelete]
+    [HttpDelete(Name = "delemp")]
     public async ValueTask<IActionResult> DeleteAsync(string EmpId)
     {
         bool result = await _employee.DeleteAsync(EmpId);

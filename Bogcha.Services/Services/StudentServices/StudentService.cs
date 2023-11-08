@@ -12,12 +12,12 @@ public class StudentService : IStudentService
     private IBlackListRepository _blackListRepository;
     private IImmunizationRecordRepository _immunizationRecordRepository;
     private IRevenueRepository _revenueRepository;
-    private RegularHealthCheckRepository _regularHealthCheckRepository;
+    private IRegularHealthCheckRepository _regularHealthCheckRepository;
     private IMapper _mapper;
 
     public StudentService(IStudentRepository studentRepository,IParentRepository parentRepository,IAccident_RecordsRepository accident_RecordsRepository,
         IAttendanceRepository attendanceRepository,IBlackListRepository blackListRepository,IImmunizationRecordRepository immunizationRecordRepository,
-        IRevenueRepository revenueRepository,RegularHealthCheckRepository regularHealthCheckRepository,IMapper mapper)
+        IRevenueRepository revenueRepository,IRegularHealthCheckRepository regularHealthCheckRepository,IMapper mapper)
     {
         _studentRepository = studentRepository;
         _parentRepository = parentRepository;

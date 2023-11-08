@@ -77,5 +77,15 @@ namespace Bogcha.DataAccess.Repositories.ImmunizationRecordRepositories
         {
             throw new NotImplementedException();
         }
+
+        public ValueTask<bool> UpdateAsync(ImmunizationRecord immunizationRecord)
+        {
+            throw new NotImplementedException();
+        }
+
+        ValueTask<ImmunizationRecord> IImmunizationRecordRepository.GetByIdAsync(int Id)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

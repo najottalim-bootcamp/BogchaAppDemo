@@ -1,6 +1,5 @@
 using Bogcha.Infrastructure.Services.BlackListServices;
-
-﻿using Bogcha.Infrastructure.Services.BlackListServices;
+using Bogcha.Infrastructure.Services.ImmunizationRecordServices;
 
 namespace Bogcha.API.Configurations;
 
@@ -23,9 +22,7 @@ public static class InfrastructureLayerConfiguration
         builder.Services.AddScoped<IAssessmentRecNurseryService, AssessmentRecNurseryService>();
         builder.Services.AddScoped<IAssessmentRecPreKService, AssessmentRecPreKService>();
         builder.Services.AddScoped<IAuthorizedPickUpService, AuthorizedPickUpService>();
-
-        builder.Services.AddScoped<IRegularHealthCheckService,RegularHealthCheckService>();
-
+        builder.Services.AddScoped<IRegularHealthCheckService, RegularHealthCheckService>();
         builder.Services.AddScoped<IBlackListService, BlackListService>();
         builder.Services.AddScoped<IImmunizationRecordService, ImmunizationRecordService>();
     }

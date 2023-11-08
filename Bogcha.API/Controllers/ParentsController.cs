@@ -1,6 +1,6 @@
 ﻿using Bogcha.Infrastructure.Services.ParentsServices.ParentsDtos;
 
-namespace Bogcha.API.Controllers.ParentsContollers;
+namespace Bogcha.API.Controllers;
 
 [Route("api/[controller]/[action]")]
 [ApiController]
@@ -12,13 +12,14 @@ public class ParentsController : ControllerBase
     {
         _parents = parents;
     }
+    [HttpGet("GetAll")]
     public async ValueTask<IActionResult> GetAllParentsAsync()
     {
         IEnumerable<ViewParentDto> viewParentDtos = await _parents.GetAllParentsAsync();
 
         return Ok(viewParentDtos);
     }
-    [HttpGet]
+    [HttpGet(Name = "getparent")]
     public async ValueTask<IActionResult> GetParentsByIdAsync(string ChId)
     {
         ViewParentDto viewParentDtos = await _parents.GetParentsByIdAsync(ChId);
@@ -28,7 +29,7 @@ public class ParentsController : ControllerBase
 
         return Ok(viewParentDtos);
     }
-    [HttpPost]
+    [HttpPost(Name = "createparent")]
     public async ValueTask<IActionResult> CreateAsync(CreateParentsDto createParentsDto)
     {
         bool result = await _parents.CreateAsync(createParentsDto);
@@ -38,7 +39,7 @@ public class ParentsController : ControllerBase
         }
         return BadRequest(createParentsDto);
     }
-    [HttpPut]
+    [HttpPut(Name = "putparent")]
     public async ValueTask<IActionResult> UpdateAsync(string chId, UpdateParentsDto updateParentsDto)
     {
         bool result = await _parents.UpdateAsync(chId, updateParentsDto);
@@ -47,7 +48,7 @@ public class ParentsController : ControllerBase
             return NoContent();
         return BadRequest(updateParentsDto);
     }
-    [HttpDelete]
+    [HttpDelete(Name = "delparent")]
     public async ValueTask<IActionResult> DeleteAsync(string ChId)
     {
         bool result = await _parents.DeleteAsync(ChId);

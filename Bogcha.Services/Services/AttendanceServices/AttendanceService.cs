@@ -24,7 +24,7 @@ namespace Bogcha.Infrastructure.Services.AttendanceServices
         {
             IEnumerable<Attendance> attendances = await _attendanceService.GetAllAsync();
             IEnumerable<Student> students = await studentService.GetAllAsync();
-            if(!(students.Any() &&  att.Any())) return Enumerable.Empty<ViewAttendanceDto>();
+            if(!(students.Any() &&  attendances.Any())) return Enumerable.Empty<ViewAttendanceDto>();
             IEnumerable<ViewAttendanceDto> viewAttendanceDtos =
                 attendances.Join(students, attendance => attendance.ChId, student => student.CHId,
                 (attandence, student) => new ViewAttendanceDto{

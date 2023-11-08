@@ -10,43 +10,43 @@ public class MealPlanController : ControllerBase
     {
         _mealPlanService = mealPlanService;
     }
-    [HttpGet]
+    [HttpGet(Name = "mealget")]
     public async ValueTask<IActionResult> GetAll()
     {
-        IEnumerable<MealPlan> mealPlans =await _mealPlanService.GetAllMealPlansAsync();
+        IEnumerable<MealPlan> mealPlans = await _mealPlanService.GetAllMealPlansAsync();
         return Ok(mealPlans);
     }
-    [HttpGet]
+    [HttpGet(Name = "getbyidmeal")]
     public async ValueTask<IActionResult> GetAsync(string mealno)
     {
         MealPlan mealPlan = await _mealPlanService.GetMealPlanByIdAsync(mealno);
-        if(mealPlan is null)
+        if (mealPlan is null)
         {
             return NotFound();
         }
         return Ok(mealPlan);
     }
-    [HttpPost]
+    [HttpPost(Name = "createmeal")]
     public async ValueTask<IActionResult> CreateAsync(CreateMealPlanDto mealPlan)
     {
         bool result = await _mealPlanService.CreateMealPlanAsync(mealPlan);
-        if(result)
+        if (result)
         {
             return Created(Request.GetDisplayUrl(), mealPlan);
         }
         return BadRequest(mealPlan);
     }
-    [HttpPut]
+    [HttpPut(Name = "putmeal")]
     public async ValueTask<IActionResult> UpdateAsync(string mealNo, UpdateMealPlanDto mealPlan)
     {
         bool result = await _mealPlanService.UpdateMealPlanAsync(mealNo, mealPlan);
-        if(result)
+        if (result)
         {
             return NoContent();
         }
         return BadRequest(mealPlan);
     }
-    [HttpDelete]
+    [HttpDelete(Name = "delmeal")]
     public async ValueTask<IActionResult> DeleteAsync(string mealno)
     {
         bool result = await _mealPlanService.DeleteMealPlanAsync(mealno);

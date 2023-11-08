@@ -9,31 +9,31 @@ public class AssessmentRecPreKController : ControllerBase
     {
         this.assessmentRecPreKRepository = assessmentRecPreKRepository;
     }
-    [HttpGet]
+    [HttpGet(Name = "prek")]
     public async ValueTask<IActionResult> GetAllAssessmentRecPreKAsync()
     {
         var res = await assessmentRecPreKRepository.GetAllAsync();
         return Ok(res);
     }
-    [HttpGet]
+    [HttpGet(Name = "getbyidprek")]
     public async ValueTask<IActionResult> GetAssessmentRecPreKByIdAsync(int id)
     {
         var res = await assessmentRecPreKRepository.GetByIdAsync(id);
         return Ok(res);
     }
-    [HttpPost]
+    [HttpPost(Name = "createprek")]
     public async ValueTask<IActionResult> CreateAssessmentRecPreKAsync(AssessmentRecPreK assessmentRecPreK)
     {
         var res = await assessmentRecPreKRepository.CreateAsync(assessmentRecPreK);
         return Ok(res);
     }
-    [HttpPut]
+    [HttpPut(Name = "putprek")]
     public async ValueTask<IActionResult> UpdateAssessmentRecPreKAsync(int id, AssessmentRecPreK assessmentRecPreK)
     {
         var res = await assessmentRecPreKRepository.UpdateAsync(id, assessmentRecPreK);
         return Ok(res);
     }
-    [HttpDelete]
+    [HttpDelete(Name = "delprek")]
     public async ValueTask<IActionResult> DeleteAssessmentRecPreKAsync(int id)
     {
         var res = await assessmentRecPreKRepository.DeleteAsync(id);

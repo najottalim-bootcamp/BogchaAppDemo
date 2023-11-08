@@ -4,7 +4,7 @@ using Bogcha.Infrastructure.Services.ImmunizationRecordServices;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Bogcha.API.Controllers.ImmunizationRecordControllers;
+namespace Bogcha.API.Controllers;
 [Route("api/[controller]/[action]")]
 [ApiController]
 public class ImmunizationRecordController : ControllerBase
@@ -15,31 +15,31 @@ public class ImmunizationRecordController : ControllerBase
     {
         _immunizationRecord = immunizationRecord;
     }
-    [HttpGet]
+    [HttpGet(Name = "getstds")]
     public async ValueTask<IActionResult> GetAllStudentsAsync()
     {
         var res = await _immunizationRecord.GetAllAsync();
         return Ok(res);
     }
-    [HttpGet]
+    [HttpGet(Name = "getstdbyid")]
     public async ValueTask<IActionResult> GetStudentByIdAsync(int Id)
     {
         var res = await _immunizationRecord.GetByIdAsync(Id);
         return Ok(res);
     }
-    [HttpPost]
+    [HttpPost(Name = "createstd")]
     public async ValueTask<IActionResult> CreateStudentAsync(ImmunizationRecord str)
     {
         var res = await _immunizationRecord.CreateAsync(str);
         return Ok(res);
     }
-    [HttpPut]
+    [HttpPut(Name = "uptimmun")]
     public async ValueTask<IActionResult> UpdateStudentAsync(ImmunizationRecord str)
     {
         var res = await _immunizationRecord.UpdateAsync(str);
         return Ok(res);
     }
-    [HttpDelete]
+    [HttpDelete(Name = "immun")]
     public async ValueTask<IActionResult> DeleteStudentAsync(int ChId)
     {
         var res = await _immunizationRecord.DeleteAsync(ChId);
