@@ -6,7 +6,7 @@ public class Accident_RecordsRepository : Database, IAccident_RecordsRepository
     {
     }
 
-    public async ValueTask<bool> CreateAsync(Accident_Records accident_Records)
+    public async ValueTask<bool> CreateAsync(AccidentRecords accident_Records)
     {
 
         try
@@ -53,18 +53,18 @@ public class Accident_RecordsRepository : Database, IAccident_RecordsRepository
         }
     }
 
-    public async ValueTask<IEnumerable<Accident_Records>> GetAllAsync()
+    public async ValueTask<IEnumerable<AccidentRecords>> GetAllAsync()
     {
         try
         {
             await sqlConnection.OpenAsync();
             string sqlQuery = "Select * from Accident_Records;";
-            IEnumerable<Accident_Records> accident_Records = await sqlConnection.QueryAsync<Accident_Records>(sqlQuery);
+            IEnumerable<AccidentRecords> accident_Records = await sqlConnection.QueryAsync<AccidentRecords>(sqlQuery);
             return accident_Records;
         }
         catch (Exception ex)
         {
-            return Enumerable.Empty<Accident_Records>();
+            return Enumerable.Empty<AccidentRecords>();
         }
         finally
         {
@@ -72,14 +72,14 @@ public class Accident_RecordsRepository : Database, IAccident_RecordsRepository
         }
     }
 
-    public async ValueTask<Accident_Records> GetByIdAsync(int id)
+    public async ValueTask<AccidentRecords> GetByIdAsync(int id)
     {
         try
         {
             await sqlConnection.OpenAsync();
             string sqlQuery = $"Select * from Accident_Records where AccNo=@id;";
 
-            Accident_Records accident_Records = await sqlConnection.QueryFirstOrDefaultAsync<Accident_Records>(sqlQuery, new { id });
+            AccidentRecords accident_Records = await sqlConnection.QueryFirstOrDefaultAsync<AccidentRecords>(sqlQuery, new { id });
 
             return accident_Records;
         }
@@ -94,7 +94,7 @@ public class Accident_RecordsRepository : Database, IAccident_RecordsRepository
         }
     }
 
-    public async ValueTask<bool> UpdateAsync(Accident_Records accident_Records)
+    public async ValueTask<bool> UpdateAsync(AccidentRecords accident_Records)
     {
         try
         {
