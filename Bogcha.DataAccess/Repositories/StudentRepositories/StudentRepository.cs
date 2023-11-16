@@ -12,7 +12,7 @@ public class StudentRepository : Database, IStudentRepository
         {
             await sqlConnection.OpenAsync();
 
-            string Query = "Insert into Student values(@CHId,@ChFName,@ChLName,@Gender," +
+            string Query = "Insert into Students values(@CHId,@ChFName,@ChLName,@Gender," +
                 "@ChDoB,@RegisteredDate,@EnrollmentDate,@StAddress,@City,@Region,@ZipCode," +
                 "@PhyImpairment,@AllergyType,@AllergySymptom)";
 
@@ -35,7 +35,7 @@ public class StudentRepository : Database, IStudentRepository
         try
         {
             await sqlConnection.OpenAsync();
-            string Query = "Delete from Student where CHId =@id";
+            string Query = "Delete from Students where CHId =@id";
 
             var command = new SqlCommand(Query, sqlConnection);
             command.Parameters.AddWithValue("@id", id);
@@ -59,7 +59,7 @@ public class StudentRepository : Database, IStudentRepository
         try
         {
             await sqlConnection.OpenAsync();
-            string Query = "Select * from Student";
+            string Query = "Select * from Students";
 
             IEnumerable<Student> student = await sqlConnection.QueryAsync<Student>(Query);
             return student;
@@ -80,7 +80,7 @@ public class StudentRepository : Database, IStudentRepository
         try
         {
             await sqlConnection.OpenAsync();
-            string Query = "Select * from Student Where CHId = @id ";
+            string Query = "Select * from Students Where CHId = @id ";
 
             Student student = await sqlConnection.QueryFirstOrDefaultAsync<Student>(Query, new { id = id });
             return student;
@@ -101,7 +101,7 @@ public class StudentRepository : Database, IStudentRepository
         try
         {
             await sqlConnection.OpenAsync();
-            string Query = "Update Student set " +
+            string Query = "Update Students set " +
                 "ChFName=@ChFName,ChLName=@ChLName,Gender=@Gender," +
                 "ChDoB=@ChDoB,RegisteredDate=@RegisteredDate,EnrollmentDate=@EnrollmentDate," +
                 "StAddress=@StAddress,City=@City,Region=@Region,ZipCode=@ZipCode," +

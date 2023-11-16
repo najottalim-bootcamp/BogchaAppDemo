@@ -9,7 +9,7 @@ public class MenuManagementRepository : Database, IMenuManagementRepository
         try
         {
             await sqlConnection.OpenAsync();
-            string sqlQuery = "INSERT INTO MenuManagement VALUES" +
+            string sqlQuery = "INSERT INTO MenuManagements VALUES" +
                               "(@ChId, @Monday, @Tuesday, @Wednesday, @Thursday, @Friday)";
 
             int result = await sqlConnection.ExecuteAsync(sqlQuery, menuManagement);
@@ -31,7 +31,7 @@ public class MenuManagementRepository : Database, IMenuManagementRepository
         try
         {
             await sqlConnection.OpenAsync();
-            string sqlQuery = "DELETE FROM MenuManagement WHERE ChId = @ChId";
+            string sqlQuery = "DELETE FROM MenuManagements WHERE ChId = @ChId";
 
             int result = await sqlConnection.ExecuteAsync(sqlQuery, new { ChId });
             return result > 0;
@@ -52,7 +52,7 @@ public class MenuManagementRepository : Database, IMenuManagementRepository
         try
         {
             await sqlConnection.OpenAsync();
-            string sqlQuery = "SELECT * FROM MenuManagement";
+            string sqlQuery = "SELECT * FROM MenuManagements";
 
             IEnumerable<MenuManagement> menuManagements = await sqlConnection.QueryAsync<MenuManagement>(sqlQuery);
             return menuManagements;
@@ -73,7 +73,7 @@ public class MenuManagementRepository : Database, IMenuManagementRepository
         try
         {
             await sqlConnection.OpenAsync();
-            string sqlQuery = "SELECT * FROM MenuManagement WHERE ChId = @ChId";
+            string sqlQuery = "SELECT * FROM MenuManagements WHERE ChId = @ChId";
 
             MenuManagement menuManagement = await sqlConnection.QueryFirstOrDefaultAsync<MenuManagement>(sqlQuery, new { ChId = ChId });
             return menuManagement;
@@ -94,7 +94,7 @@ public class MenuManagementRepository : Database, IMenuManagementRepository
         try
         {
             await sqlConnection.OpenAsync();
-            string sqlQuery = "UPDATE MenuManagement " +
+            string sqlQuery = "UPDATE MenuManagements " +
                               "SET Monday = @Monday, Tuesday = @Tuesday, Wednesday = @Wednesday, Thursday = @Thursday, Friday = @Friday " +
                               "WHERE ChId = @ChId";
 

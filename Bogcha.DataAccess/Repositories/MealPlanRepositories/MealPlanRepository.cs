@@ -9,8 +9,8 @@ public class MealPlanRepository : Database, IMealPlanRepository
         try
         {
             await sqlConnection.OpenAsync();
-            string sqlQuery = "INSERT INTO MealPlan " +
-                              "VALUES (@DateName, @MealNo, @AM_Snack, @Lunch, @Fruit, @PM_Snack)";
+            string sqlQuery = "INSERT INTO MealPlans " +
+                              "VALUES (@MealNo, @DateName, @AM_Snack, @Lunch, @Fruit, @PM_Snack)";
 
             int result = await sqlConnection.ExecuteAsync(sqlQuery, mealPlan);
             return result > 0;
@@ -31,7 +31,7 @@ public class MealPlanRepository : Database, IMealPlanRepository
         try
         {
             await sqlConnection.OpenAsync();
-            string sqlQuery = "DELETE FROM MealPlan WHERE MealNo = @MealNo";
+            string sqlQuery = "DELETE FROM MealPlans WHERE MealNo = @MealNo";
 
             int result = await sqlConnection.ExecuteAsync(sqlQuery, new { MealNo });
             return result > 0;
@@ -52,7 +52,7 @@ public class MealPlanRepository : Database, IMealPlanRepository
         try
         {
             await sqlConnection.OpenAsync();
-            string sqlQuery = "SELECT * FROM MealPlan";
+            string sqlQuery = "SELECT * FROM MealPlans";
 
             IEnumerable<MealPlan> mealPlans = await sqlConnection.QueryAsync<MealPlan>(sqlQuery);
             return mealPlans;
@@ -73,7 +73,7 @@ public class MealPlanRepository : Database, IMealPlanRepository
         try
         {
             await sqlConnection.OpenAsync();
-            string sqlQuery = "SELECT * FROM MealPlan WHERE MealNo = @MealNo";
+            string sqlQuery = "SELECT * FROM MealPlans WHERE MealNo = @MealNo";
 
             MealPlan mealPlan = await sqlConnection.QueryFirstOrDefaultAsync<MealPlan>(sqlQuery, new { MealNo });
             return mealPlan;
@@ -94,7 +94,7 @@ public class MealPlanRepository : Database, IMealPlanRepository
         try
         {
             await sqlConnection.OpenAsync();
-            string sqlQuery = "UPDATE MealPlan " +
+            string sqlQuery = "UPDATE MealPlans " +
                               "SET DateName = @DateName, AM_Snack = @AM_Snack, Lunch = @Lunch, Fruit = @Fruit, PM_Snack = @PM_Snack " +
                               "WHERE MealNo = @MealNo";
 
