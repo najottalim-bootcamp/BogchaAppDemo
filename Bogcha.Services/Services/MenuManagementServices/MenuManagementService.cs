@@ -29,7 +29,7 @@ public class MenuManagementService : IMenuManagementService
             .GroupJoin(mealPlans, temp => temp.menu.Tuesday, mealPlan => mealPlan.MealNo, (temp, tuesdayMealPlan) => new { temp.menu, temp.mondayMealPlan, tuesdayMealPlan })
             .GroupJoin(mealPlans, temp => temp.menu.Wednesday, mealPlan => mealPlan.MealNo, (temp, wednesdayMealPlan) => new { temp.menu, temp.mondayMealPlan, temp.tuesdayMealPlan, wednesdayMealPlan })
             .GroupJoin(mealPlans, temp => temp.menu.Thursday, mealPlan => mealPlan.MealNo, (temp, thursdayMealPlan) => new { temp.menu, temp.mondayMealPlan, temp.tuesdayMealPlan, temp.wednesdayMealPlan, thursdayMealPlan })
-            .GroupJoin(mealPlans, temp => temp.menu.Friday, mealPlan => mealPlan.MealNo, (temp, fridayMealPlan) => new { temp.menu, temp.mondayMealPlan, temp.tuesdayMealPlan, temp.wednesdayMealPlan, temp.thursdayMealPlan, fridayMealPlan })
+            .GroupJoin(mealPlans, temp => temp.menu.FridayId, mealPlan => mealPlan.MealNo, (temp, fridayMealPlan) => new { temp.menu, temp.mondayMealPlan, temp.tuesdayMealPlan, temp.wednesdayMealPlan, temp.thursdayMealPlan, fridayMealPlan })
             .Join(students, temp => temp.menu.ChId, student => student.CHId, (temp, std) => new ViewMenuManagementDto
 
             {
@@ -44,7 +44,7 @@ public class MenuManagementService : IMenuManagementService
                 WednesdayMealPlan = temp.wednesdayMealPlan.FirstOrDefault(),
                 Thursday = temp.menu.Thursday,
                 ThursdayMealPlan = temp.thursdayMealPlan.FirstOrDefault(),
-                Friday = temp.menu.Friday,
+                Friday = temp.menu.FridayId,
                 FridayMealPlan = temp.fridayMealPlan.FirstOrDefault()
             });
         return viewMenuManagements;
@@ -71,8 +71,8 @@ public class MenuManagementService : IMenuManagementService
             WednesdayMealPlan = mealPlans.FirstOrDefault(x => x.MealNo == menu.Wednesday),
             Thursday = menu.Thursday,
             ThursdayMealPlan = mealPlans.FirstOrDefault(x => x.MealNo == menu.Thursday),
-            Friday = menu.Friday,
-            FridayMealPlan = mealPlans.FirstOrDefault(x => x.MealNo == menu.Friday),
+            Friday = menu.FridayId,
+            FridayMealPlan = mealPlans.FirstOrDefault(x => x.MealNo == menu.FridayId),
         };
         return menuManagementDto;
     }
