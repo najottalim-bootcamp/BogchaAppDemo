@@ -1,6 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
-
-namespace Bogcha.Domain.Entities;
+﻿namespace Bogcha.Domain.Entities;
 
 public class BlackList
 {
@@ -15,6 +13,5 @@ public class BlackList
     public string zipCode { get; set; }
     public string phoneNo { get; set; }
 
-    [ForeignKey(nameof(ChId))]
-    public Student Studnet { get; set; }
+    public virtual Student Studnet { get; set; }
 }

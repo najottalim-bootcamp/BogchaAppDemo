@@ -17,4 +17,12 @@ public class Student
     public string? AllergyType { get; set; }
     public string? AllergySymptom { get; set; }
 
+    public virtual ICollection<Revenue> Revenues { get; set; }
+    public virtual ICollection<BlackList> BlackLists { get; set; }
+    public virtual ICollection<Attendance> Attendances { get; set; }
+    public virtual ICollection<AuthorizedPickUp> AuthorizedPickUps { get; set; }
+    public virtual ICollection<AccidentRecords> Accident_Records { get; set; }
+    public virtual ICollection<RegularHealthCheck> RegularHealthChecks { get; set; }
+    public virtual ICollection<MenuManagement> MenuManagements { get; set; }
+
 }

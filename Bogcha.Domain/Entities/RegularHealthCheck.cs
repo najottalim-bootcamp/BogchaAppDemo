@@ -9,7 +9,7 @@ namespace Bogcha.Domain.Entities
         public DateTime CheckupDate { get; set; }
         public string? Symptom { get; set; }
         public string? ActionRequired { get; set; }
-        [ForeignKey(nameof(ChId))]
+
         public virtual Student Studnet { get; set; }
     }
 }

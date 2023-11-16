@@ -14,7 +14,7 @@ namespace Bogcha.Domain.Entities
         public string region { get; set; }
         public string zipCode { get; set; }
         public string phoneNo { get; set; }
-        [ForeignKey(nameof(ChId))]
-        public Student Studnet { get; set; }
+
+        public virtual Student Studnet { get; set; }
     }
 }
