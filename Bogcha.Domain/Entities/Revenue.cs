@@ -1,4 +1,6 @@
-﻿namespace Bogcha.Domain.Entities;
+﻿using System.ComponentModel.DataAnnotations.Schema;
+
+namespace Bogcha.Domain.Entities;
 
 public class Revenue
 {
@@ -10,4 +12,7 @@ public class Revenue
     public decimal? Book { get; set; }
     public string? InvoiceNo { get; set; }
     public string? RecieptNo { get; set; }
+
+    [ForeignKey(nameof(ChId))]
+    public Student Studnet { get; set; }
 }
